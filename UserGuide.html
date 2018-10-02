@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>SaveGoals - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>WishBook - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>SaveGoals - User Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>WishBook - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
@@ -14,21 +14,24 @@
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></li>
-<li><a href="#viewing-your-saving-history-code-history-s-code">3.4. Viewing your saving history: <code>history -s</code></a></li>
-<li><a href="#editing-a-wish-code-edit-code">3.5. Editing a wish : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">3.6. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-wish-code-delete-code">3.7. Deleting a wish : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">3.8. Selecting a person : <code>select</code></a></li>
-<li><a href="#save-money-for-a-particular-wish-code-save-code">3.9. Save money for a particular wish: <code>save</code></a></li>
-<li><a href="#listing-entered-commands-code-history-c-code">3.10. Listing entered commands : <code>history -c</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.11. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.12. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.13. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.14. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.15. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.16. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#adding-a-wish-code-add-code">3.2. Adding a wish: <code>add</code></a></li>
+<li><a href="#editing-a-wish-code-edit-code">3.3. Editing a wish : <code>edit</code></a></li>
+<li><a href="#listing-all-wishes-code-list-code">3.4. Listing all wishes : <code>list</code></a></li>
+<li><a href="#listing-completed-wishes-code-list-c-code">3.5. Listing completed wishes : <code>list -c</code></a></li>
+<li><a href="#listing-uncompleted-wishes-code-list-u-code">3.6. Listing uncompleted wishes : <code>list -u</code></a></li>
+<li><a href="#listing-history-of-entered-commands-code-history-c-code">3.7. Listing history of entered commands : <code>history -c</code></a></li>
+<li><a href="#viewing-your-saving-history-code-history-s-code">3.8. Viewing your saving history: <code>history -s</code></a></li>
+<li><a href="#locating-persons-by-name-code-find-code">3.9. Locating persons by name: <code>find</code></a></li>
+<li><a href="#deleting-a-wish-code-delete-code">3.10. Deleting a wish : <code>delete</code></a></li>
+<li><a href="#selecting-a-wish-code-select-code">3.11. Selecting a wish : <code>select</code></a></li>
+<li><a href="#save-money-for-a-particular-wish-code-save-code">3.12. Save money for a particular wish: <code>save</code></a></li>
+<li><a href="#editing-a-remark-for-a-wish-code-remark-code">3.13. Editing a remark for a wish : <code>remark</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.14. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.15. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.16. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.17. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.18. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.19. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -40,7 +43,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>SaveGoals (SG) is a piggy bank in a digital app form, made for people who need a user-friendly solution for keeping track of their disposable income. Not only does SG keep records of your savings, it also allows users to set items as goals for users to work towards, serving as a way to cultivate the habit of saving. SG is made for people who have material wants in life, but are uncertain of purchasing said wants, by helping them to reserve disposable income so that they know they can spend on their wants. So what are you waiting for? Go to Section 2, <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> and start saving!</p>
+<p>WishBook (WB) is a piggy bank in a digital app form, made for people who need a user-friendly solution for keeping track of their disposable income. Not only does WB keep records of your savings, it also allows users to set items as goals for users to work towards, serving as a way to cultivate the habit of saving. WB is made for people who have material wants in life, but are uncertain of purchasing said wants, by helping them to reserve disposable income so that they know they can spend on their wants. So what are you waiting for? Go to Section 2, <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> and start saving!</p>
 </div>
 </div>
 </div>
@@ -53,10 +56,10 @@
 <p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>savegoals.jar</code> <a href="https://github.com/CS2103-AY1819S1-T16-1/main/releases">here</a>.</p>
+<p>Download the latest <code>wishbook.jar</code> <a href="https://github.com/CS2103-AY1819S1-T16-1/main/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your Save Goals app.</p>
+<p>Copy the file to the folder you want to use as the home folder for your WishBook app.</p>
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
@@ -132,9 +135,9 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></h3>
+<h3 id="adding-a-wish-code-add-code"><a class="link" href="#adding-a-wish-code-add-code">3.2. Adding a wish: <code>add</code></a></h3>
 <div class="paragraph">
-<p>Adds a person to the wish list<br>
+<p>Adds a wish to the wish list<br>
 Format: <code>add n/WISH_NAME p/PRICE t/[d/TIME_GIVEN]/[d/END_DATE]</code></p>
 </div>
 <div class="ulist TIP">
@@ -165,21 +168,7 @@ Format: <code>add n/WISH_NAME p/PRICE t/[d/TIME_GIVEN]/[d/END_DATE]</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></h3>
-<div class="paragraph">
-<p>Shows a list of all the goals you have set, sorted by date by default.<br>
-Format: <code>list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-your-saving-history-code-history-s-code"><a class="link" href="#viewing-your-saving-history-code-history-s-code">3.4. Viewing your saving history: <code>history -s</code></a></h3>
-<div class="paragraph">
-<p>Shows a history of wishes you have accomplished, from newest to oldest.<br>
-Format: <code>history -s</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-a-wish-code-edit-code"><a class="link" href="#editing-a-wish-code-edit-code">3.5. Editing a wish : <code>edit</code></a></h3>
+<h3 id="editing-a-wish-code-edit-code"><a class="link" href="#editing-a-wish-code-edit-code">3.3. Editing a wish : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing wish in the wish list.<br>
 Format: <code>edit INDEX [n/WISH_NAME] [p/PRICE] [d/TIME_GIVEN]/[d/END_DATE] [t/TAG]</code></p>
@@ -224,7 +213,56 @@ Edits the price and time given to accomplish the 2nd goal to 22 (in the chosen c
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">3.6. Locating persons by name: <code>find</code></a></h3>
+<h3 id="listing-all-wishes-code-list-code"><a class="link" href="#listing-all-wishes-code-list-code">3.4. Listing all wishes : <code>list</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all the wishes you have set, sorted by date by default.<br>
+Format: <code>list</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-completed-wishes-code-list-c-code"><a class="link" href="#listing-completed-wishes-code-list-c-code">3.5. Listing completed wishes : <code>list -c</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all the wishes that have been completed, sorted by date by default.<br>
+Format: <code>list -c</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-uncompleted-wishes-code-list-u-code"><a class="link" href="#listing-uncompleted-wishes-code-list-u-code">3.6. Listing uncompleted wishes : <code>list -u</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all the wishes that are still in progress, sorted by date by default.<br>
+Format: <code>list -u</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-history-of-entered-commands-code-history-c-code"><a class="link" href="#listing-history-of-entered-commands-code-history-c-code">3.7. Listing history of entered commands : <code>history -c</code></a></h3>
+<div class="paragraph">
+<p>Lists all the commands that you have entered in reverse chronological order.<br>
+Format: <code>history -c</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-your-saving-history-code-history-s-code"><a class="link" href="#viewing-your-saving-history-code-history-s-code">3.8. Viewing your saving history: <code>history -s</code></a></h3>
+<div class="paragraph">
+<p>Shows a history of savings you have allocated, from newest to oldest.<br>
+Format: <code>history -s</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">3.9. Locating persons by name: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds wishes which satisfy the given search predicate.<br>
 Format: <code>find SEARCH_PREDICATE [MORE_SEARCH_PREDICATES]</code></p>
@@ -287,7 +325,7 @@ Returns any wish with name containing watch, with tag broke wishes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-wish-code-delete-code"><a class="link" href="#deleting-a-wish-code-delete-code">3.7. Deleting a wish : <code>delete</code></a></h3>
+<h3 id="deleting-a-wish-code-delete-code"><a class="link" href="#deleting-a-wish-code-delete-code">3.10. Deleting a wish : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified wish from the list.<br>
 Format: <code>delete INDEX</code></p>
@@ -325,7 +363,7 @@ Deletes the 1st wish in the results of the find command (if any).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">3.8. Selecting a person : <code>select</code></a></h3>
+<h3 id="selecting-a-wish-code-select-code"><a class="link" href="#selecting-a-wish-code-select-code">3.11. Selecting a wish : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the wish identified by the index number used in the displayed wish list.<br>
 Format: <code>select INDEX</code></p>
@@ -366,7 +404,7 @@ Selects the 1st wish in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="save-money-for-a-particular-wish-code-save-code"><a class="link" href="#save-money-for-a-particular-wish-code-save-code">3.9. Save money for a particular wish: <code>save</code></a></h3>
+<h3 id="save-money-for-a-particular-wish-code-save-code"><a class="link" href="#save-money-for-a-particular-wish-code-save-code">3.12. Save money for a particular wish: <code>save</code></a></h3>
 <div class="paragraph">
 <p>Channels savings for a specified wish.<br>
 Format: <code>save AMOUNT [INDEX]</code></p>
@@ -395,30 +433,47 @@ Adds $1000 into the item at index 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-c-code"><a class="link" href="#listing-entered-commands-code-history-c-code">3.10. Listing entered commands : <code>history -c</code></a></h3>
+<h3 id="editing-a-remark-for-a-wish-code-remark-code"><a class="link" href="#editing-a-remark-for-a-wish-code-remark-code">3.13. Editing a remark for a wish : <code>remark</code></a></h3>
 <div class="paragraph">
-<p>Lists all the commands that you have entered in reverse chronological order.<br>
-Format: <code>history -c</code></p>
+<p>Edits the remark for a wish specified in the index.<br>
+Format: <code>remark INDEX r/[REMARK]</code></p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> refers to the index number shown in the displayed list.</p>
+</li>
+<li>
+<p><code>INDEX</code> must be a positive integer 1, 2, 3&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph">
-<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
+<p>Examples:</p>
 </div>
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>remark 1 r/Buying this for dad.</code><br>
+Edits the remark for the first wish to <code>Buying this for dad.</code></p>
+</li>
+<li>
+<p><code>list</code><br>
+<code>remark 1 r/</code><br>
+Removes the remark for the first wish (if any).</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.11. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.14. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
-<p>Restores SaveGoals to the state before the previous undoable command was executed.<br>
+<p>Restores WishBook to the state before the previous undoable command was executed.<br>
 Format: <code>undo</code></p>
 </div>
 <div class="admonitionblock note">
@@ -429,7 +484,7 @@ Format: <code>undo</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: commands that modify SaveGoals content (<code>add, delete, edit, save</code>).</p>
+<p>Undoable commands: commands that modify WishBook content (<code>add, delete, edit, save</code>).</p>
 </div>
 </td>
 </tr>
@@ -461,7 +516,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.12. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.15. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -493,28 +548,28 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.13. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.16. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
-<p>Clears all entries from SaveGoals.<br>
+<p>Clears all entries from WishBook.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.14. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.17. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.15. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.18. Saving the data</a></h3>
 <div class="paragraph">
-<p>SaveGoals data are saved in the hard disk automatically after any command that changes the data.<br>
+<p>WishBook data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.16. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.19. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
@@ -558,6 +613,12 @@ e.g. <code>find 22d</code></p>
 <p><strong>List</strong> : <code>list</code></p>
 </li>
 <li>
+<p><strong>List completed</strong> : <code>list -c</code></p>
+</li>
+<li>
+<p><strong>List uncompleted</strong> : <code>list -u</code></p>
+</li>
+<li>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
 <li>
@@ -569,10 +630,13 @@ e.g.<code>select 2</code></p>
 e.g. <code>save 1000 1</code></p>
 </li>
 <li>
+<p><strong>Command History</strong> : <code>history -c</code></p>
+</li>
+<li>
 <p><strong>Savings History</strong> : <code>history -s</code></p>
 </li>
 <li>
-<p><strong>Command History</strong> : <code>history -c</code></p>
+<p><strong>Remark</strong> : <code>remark INDEX r/[REMARK]</code></p>
 </li>
 <li>
 <p><strong>Undo</strong> : <code>undo</code></p>
@@ -586,4 +650,4 @@ e.g. <code>save 1000 1</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-30 14:17:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-02 01:42:10 UTC</div></div></div></body></html>
