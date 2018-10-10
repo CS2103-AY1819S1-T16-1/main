@@ -38,11 +38,11 @@ public class UserPrefs {
     public void setWishTransactionFilePath(Path wishTransactionFilePath) {
         this.wishTransactionFilePath = wishTransactionFilePath;
     }
-  
+    
     public Path getWishBookFilePath() {
         return wishBookFilePath;
     }
-
+    
     public void setWishBookFilePath(Path wishBookFilePath) {
         this.wishBookFilePath = wishBookFilePath;
     }
