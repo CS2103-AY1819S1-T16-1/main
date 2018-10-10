@@ -12,6 +12,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Wish> PREDICATE_SHOW_ALL_WISHES = unused -> true;
 
+    /** Returns the WishTransaction */
+    WishTransaction getWishTransaction();
+
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyWishBook newData);
 

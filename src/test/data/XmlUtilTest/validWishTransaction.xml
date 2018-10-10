@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xmlWishTransactions>
+    <wishMap>
+        <entry>
+            <key>George Best</key>
+            <value>
+                <xmlAdaptedWishes>
+                    <xmlAdaptedWishes>
+                        <name>George Best</name>
+                        <price>94.82</price>
+                        <savedAmount>0.00</savedAmount>
+                        <email>anna@example.com</email>
+                        <url>https://www.amazon.com/EVGA-GeForce-Gaming-GDDR5X-Technology/dp/B0762Q49NV</url>
+                        <remark></remark>
+                    </xmlAdaptedWishes>
+                </xmlAdaptedWishes>
+            </value>
+        </entry>
+        <entry>
+            <key>Ida Mueller</key>
+            <value>
+                <xmlAdaptedWishes>
+                    <xmlAdaptedWishes>
+                        <name>Ida Mueller</name>
+                        <price>84.82</price>
+                        <savedAmount>0.00</savedAmount>
+                        <email>hans@example.com</email>
+                        <url>https://www.amazon.com/EVGA-GeForce-Gaming-GDDR5X-Technology/dp/B0762Q49NV</url>
+                        <remark></remark>
+                    </xmlAdaptedWishes>
+                </xmlAdaptedWishes>
+            </value>
+        </entry>
+        <entry>
+            <key>Fiona Kunz</key>
+            <value>
+                <xmlAdaptedWishes>
+                    <xmlAdaptedWishes>
+                        <name>Fiona Kunz</name>
+                        <price>94.82</price>
+                        <savedAmount>0.00</savedAmount>
+                        <email>lydia@example.com</email>
+                        <url>https://www.lazada.sg/products/nintendo-switch-neon-console-1-year-local-warranty-best-seller-i180040203-s230048296.html</url>
+                        <remark></remark>
+                    </xmlAdaptedWishes>
+                </xmlAdaptedWishes>
+            </value>
+        </entry>
+        <entry>
+            <key>Elle Meyer</key>
+            <value>
+                <xmlAdaptedWishes>
+                    <xmlAdaptedWishes>
+                        <name>Elle Meyer</name>
+                        <price>94.82</price>
+                        <savedAmount>0.00</savedAmount>
+                        <email>werner@example.com</email>
+                        <url>https://www.amazon.com/EVGA-GeForce-Gaming-GDDR5X-Technology/dp/B0762Q49NV</url>
+                        <remark></remark>
+                    </xmlAdaptedWishes>
+                </xmlAdaptedWishes>
+            </value>
+        </entry>
+        <entry>
+            <key>Carl Kurz</key>
+            <value>
+                <xmlAdaptedWishes>
+                    <xmlAdaptedWishes>
+                        <name>Carl Kurz</name>
+                        <price>98.76</price>
+                        <savedAmount>0.00</savedAmount>
+                        <email>heinz@example.com</email>
+                        <url>https://www.amazon.com/EVGA-GeForce-Gaming-GDDR5X-Technology/dp/B0762Q49NV</url>
+                        <remark></remark>
+                    </xmlAdaptedWishes>
+                </xmlAdaptedWishes>
+            </value>
+        </entry>
+        <entry>
+            <key>Daniel Meier</key>
+            <value>
+                <xmlAdaptedWishes>
+                    <xmlAdaptedWishes>
+                        <name>Daniel Meier</name>
+                        <price>87.65</price>
+                        <savedAmount>0.00</savedAmount>
+                        <email>cornelia@example.com</email>
+                        <url>https://www.amazon.com/Logitech-Mechanical-Keyboard-Romer-Switches/dp/B071VHYZ62</url>
+                        <remark></remark>
+                        <tagged>friends</tagged>
+                    </xmlAdaptedWishes>
+                </xmlAdaptedWishes>
+            </value>
+        </entry>
+        <entry>
+            <key>Benson Meier</key>
+            <value>
+                <xmlAdaptedWishes>
+                    <xmlAdaptedWishes>
+                        <name>Benson Meier</name>
+                        <price>98.76</price>
+                        <savedAmount>0.00</savedAmount>
+                        <email>johnd@example.com</email>
+                        <url>https://www.amazon.com/Apple-iPhone-Fully-Unlocked-32GB/dp/B0731HBTZ7</url>
+                        <remark></remark>
+                        <tagged>owesMoney</tagged>
+                        <tagged>friends</tagged>
+                    </xmlAdaptedWishes>
+                </xmlAdaptedWishes>
+            </value>
+        </entry>
+        <entry>
+            <key>Hoon Meier</key>
+            <value>
+                <xmlAdaptedWishes>
+                    <xmlAdaptedWishes>
+                        <name>Hoon Meier</name>
+                        <price>84.82</price>
+                        <savedAmount>0.00</savedAmount>
+                        <email>stefan@example.com</email>
+                        <url>https://www.amazon.com/EVGA-GeForce-Gaming-GDDR5X-Technology/dp/B0762Q49NV</url>
+                        <remark></remark>
+                    </xmlAdaptedWishes>
+                </xmlAdaptedWishes>
+            </value>
+        </entry>
+    </wishMap>
+</xmlWishTransactions>

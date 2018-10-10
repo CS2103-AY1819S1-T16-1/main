@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showWishAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_WISH;
 import static seedu.address.testutil.TypicalWishes.getTypicalWishBook;
+import static seedu.address.testutil.TypicalWishes.getTypicalWishTransaction;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,8 +25,8 @@ public class ListCommandTest {
 
     @Before
     public void setUp() {
-        model = new ModelManager(getTypicalWishBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getWishBook(), new UserPrefs());
+        model = new ModelManager(getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
+        expectedModel = new ModelManager(model.getWishBook(), model.getWishTransaction(), new UserPrefs());
     }
 
     @Test

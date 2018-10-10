@@ -1,8 +1,7 @@
 package seedu.address.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -21,7 +20,7 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
     /**
      * Stores a log of wish histories for this current state.
      */
-    private HashMap<String, List<Wish>> wishMap;
+    private HashMap<String, LinkedList<Wish>> wishMap;
 
     /**
      * Logger associated with this class.
@@ -44,9 +43,19 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
     }
 
     /**
+     * Creates a WishTransaction using a {@code ReadOnlyWishBook}.
+     *
+     * @param readOnlyWishBook referenced data-containing {@code ReadOnlyWishBook}.
+     */
+    public WishTransaction(ReadOnlyWishBook readOnlyWishBook) {
+        this();
+        extractData(readOnlyWishBook);
+    }
+
+    /**
      * Constructor to be called when converting XmlWishTransactions object to a WishTransaction object.
      */
-    public WishTransaction(HashMap<String, List<Wish>> wishMap) {
+    public WishTransaction(HashMap<String, LinkedList<Wish>> wishMap) {
         this.logger = getLogger();
         this.wishMap = wishMap;
     }
@@ -60,6 +69,7 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
      * @param wishBook object containing data to seed this object with.
      */
     protected void extractData(ReadOnlyWishBook wishBook) {
+        logger.info("Extracting data from ReadOnlyWishBook");
         for (Wish wish : wishBook.getWishList()) {
             addWish(wish);
         }
@@ -72,8 +82,8 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
     @Override
     public void addWish(Wish wish) {
         String wishName = getKey(wish);
-        List<Wish> wishList = getWishList(wishName);
-        setValueOfKey(wish, updateWishes(wishList, wish));
+        LinkedList<Wish> wishList = updateWishes(getWishList(wishName), wish);
+        setValueOfKey(wish, wishList);
     }
 
     /**
@@ -90,8 +100,8 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
      * @param key name of the wish.
      * @return wishlist stored at {@code key}.
      */
-    private List<Wish> getWishList(String key) {
-        return wishMap.getOrDefault(key, new ArrayList<>());
+    private LinkedList<Wish> getWishList(String key) {
+        return this.wishMap.getOrDefault(key, new LinkedList<>());
     }
 
     /**
@@ -99,8 +109,8 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
      * @param existing an existing wish.
      * @param wishes value to be changed to.
      */
-    private void setValueOfKey(Wish existing, List<Wish> wishes) {
-        wishMap.put(getKey(existing), wishes);
+    private void setValueOfKey(Wish existing, LinkedList<Wish> wishes) {
+        this.wishMap.put(getKey(existing), wishes);
     }
 
     /**
@@ -109,7 +119,7 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
      * @param editedWish wish to be updated to.
      * @return an updated log of saving history.
      */
-    private List<Wish> updateWishes(List<Wish> existingWishes, Wish editedWish) {
+    private LinkedList<Wish> updateWishes(LinkedList<Wish> existingWishes, Wish editedWish) {
         existingWishes.add(editedWish);
         return existingWishes;
     }
@@ -122,7 +132,7 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
     @Override
     public void updateWish(Wish target, Wish editedWish) {
         // get a reference to the stored wishes
-        List<Wish> wishes = wishMap.get(getKey(target));
+        LinkedList<Wish> wishes = getWishList(getKey(target));
         // change the key of the target wish
         changeKey(target, editedWish);
         // update the stored wishes
@@ -156,9 +166,6 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
      * @throws NoSuchElementException if key does not exist.
      */
     private void removeWish(String key) throws NoSuchElementException {
-        if (!wishMap.containsKey(key)) {
-            throw new NoSuchElementException(key);
-        }
         wishMap.remove(key);
     }
 
@@ -186,8 +193,8 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
      */
     @Override
     public void removeTagFromAll(Tag tag) {
-        for (Map.Entry<String, List<Wish>> entries : wishMap.entrySet()) {
-            List<Wish> wishes = entries.getValue();
+        for (Map.Entry<String, LinkedList<Wish>> entries : wishMap.entrySet()) {
+            LinkedList<Wish> wishes = entries.getValue();
             // associated wish has a recorded history
             if (wishes != null) {
                 removeTagIfPresent(tag, wishes);
@@ -200,7 +207,7 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
      * @param tag tag to be removed.
      * @param wishes list of wishes to be searched for tag.
      */
-    private void removeTagIfPresent(Tag tag, List<Wish> wishes) {
+    private void removeTagIfPresent(Tag tag, LinkedList<Wish> wishes) {
         Wish mostRecent = getMostRecentWish(wishes);
         if (hasTag(tag, mostRecent)) {
             removeTag(tag, mostRecent);
@@ -212,7 +219,7 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
      * @param wishes list to source for the most recent wish.
      * @return the most recent wish in {@code wishes}.
      */
-    private Wish getMostRecentWish(List<Wish> wishes) {
+    private Wish getMostRecentWish(LinkedList<Wish> wishes) {
         return wishes.get(wishes.size() - 1);
     }
 
@@ -252,12 +259,33 @@ public class WishTransaction implements ActionCommandListener<WishTransaction> {
      * Sets the current state's wish histories to {@code wishMap}.
      * @param wishMap updated wish history log.
      */
-    public void setWishMap(HashMap<String, List<Wish>> wishMap) {
+    public void setWishMap(HashMap<String, LinkedList<Wish>> wishMap) {
         this.wishMap = wishMap;
     }
 
-    public HashMap<String, List<Wish>> getWishMap() {
+    public HashMap<String, LinkedList<Wish>> getWishMap() {
         return wishMap;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof WishTransaction) {
+            for (Map.Entry<String, LinkedList<Wish>> entries : ((WishTransaction) obj).wishMap.entrySet()) {
+                if (!wishMap.containsKey(entries.getKey()) || !wishMap.containsValue(entries.getValue())) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        wishMap.entrySet().forEach(entry -> {
+            System.out.println(entry.getKey());
+            entry.getValue().forEach(System.out::println);
+        });
+        return null;
+    }
 }

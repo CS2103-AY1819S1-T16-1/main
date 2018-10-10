@@ -3,6 +3,7 @@ package seedu.address;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -16,6 +17,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyWishBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.WishBook;
+import seedu.address.model.WishTransaction;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.XmlSerializableWishBook;
 import seedu.address.testutil.TestUtil;
@@ -28,12 +30,17 @@ import systemtests.ModelHelper;
 public class TestApp extends MainApp {
 
     public static final Path SAVE_LOCATION_FOR_TESTING = TestUtil.getFilePathInSandboxFolder("sampleData.xml");
+    public static final Path SAVE_LOCATION_FOR_WISHTRANSACTION_TESTING = TestUtil
+            .getFilePathInSandboxFolder("emptywishtransaction.xml");
     public static final String APP_TITLE = "Test App";
 
     protected static final Path DEFAULT_PREF_FILE_LOCATION_FOR_TESTING =
             TestUtil.getFilePathInSandboxFolder("pref_testing.json");
     protected Supplier<ReadOnlyWishBook> initialDataSupplier = () -> null;
     protected Path saveFileLocation = SAVE_LOCATION_FOR_TESTING;
+    protected Path saveWishTransactionFileLocation = SAVE_LOCATION_FOR_WISHTRANSACTION_TESTING;
+
+    private Logger logger;
 
     public TestApp() {
     }
@@ -48,6 +55,9 @@ public class TestApp extends MainApp {
             createDataFileWithData(new XmlSerializableWishBook(this.initialDataSupplier.get()),
                     saveFileLocation);
         }
+
+        this.logger = Logger.getLogger(TestApp.APP_TITLE);
+        logger.info("Test App constructor called with saveFileLocation of " + saveFileLocation.toString());
     }
 
     @Override
@@ -64,8 +74,22 @@ public class TestApp extends MainApp {
         double x = Screen.getPrimary().getVisualBounds().getMinX();
         double y = Screen.getPrimary().getVisualBounds().getMinY();
         userPrefs.updateLastUsedGuiSetting(new GuiSettings(600.0, 600.0, (int) x, (int) y));
+        userPrefs.setWishTransactionFilePath(saveWishTransactionFileLocation);
         userPrefs.setWishBookFilePath(saveFileLocation);
         return userPrefs;
+    }
+
+    /**
+     * Returns a defensive copy of wish transactions stored inside the storage file.
+     */
+    public WishTransaction readWishTransaction() {
+        try {
+            return new WishTransaction(storage.readWishTransaction().get());
+        } catch (DataConversionException e) {
+            throw new AssertionError("Data is not in the wish transaction format.", e);
+        } catch (IOException e) {
+            throw new AssertionError("Wish Transaction Storage file cannot be found.", e);
+        }
     }
 
     /**
@@ -105,7 +129,7 @@ public class TestApp extends MainApp {
      * Returns a defensive copy of the model.
      */
     public Model getModel() {
-        Model copy = new ModelManager((model.getWishBook()), new UserPrefs());
+        Model copy = new ModelManager((model.getWishBook()), model.getWishTransaction(), new UserPrefs());
         ModelHelper.setFilteredList(copy, model.getFilteredWishList());
         return copy;
     }

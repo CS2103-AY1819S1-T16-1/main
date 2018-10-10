@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_WISH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_WISH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_WISH;
 import static seedu.address.testutil.TypicalWishes.getTypicalWishBook;
+import static seedu.address.testutil.TypicalWishes.getTypicalWishTransaction;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,8 +31,8 @@ public class SelectCommandTest {
     @Rule
     public final EventsCollectorRule eventsCollectorRule = new EventsCollectorRule();
 
-    private Model model = new ModelManager(getTypicalWishBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalWishBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test

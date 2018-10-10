@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.deleteFirstWish;
 import static seedu.address.testutil.TypicalWishes.getTypicalWishBook;
+import static seedu.address.testutil.TypicalWishes.getTypicalWishTransaction;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,8 +16,10 @@ import seedu.address.model.UserPrefs;
 
 public class RedoCommandTest {
 
-    private final Model model = new ModelManager(getTypicalWishBook(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalWishBook(), new UserPrefs());
+    private final Model model = new ModelManager(
+            getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(
+            getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
     private final CommandHistory commandHistory = new CommandHistory();
 
     @Before

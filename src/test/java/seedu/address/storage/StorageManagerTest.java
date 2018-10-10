@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.testutil.TypicalWishes.getTypicalWishBook;
+import static seedu.address.testutil.TypicalWishes.getTypicalWishTransaction;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -19,6 +20,7 @@ import seedu.address.commons.events.storage.DataSavingExceptionEvent;
 import seedu.address.model.ReadOnlyWishBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.WishBook;
+import seedu.address.model.WishTransaction;
 import seedu.address.ui.testutil.EventsCollectorRule;
 
 public class StorageManagerTest {
@@ -33,14 +35,16 @@ public class StorageManagerTest {
     @Before
     public void setUp() {
         XmlWishBookStorage wishBookStorage = new XmlWishBookStorage(getTempFilePath("ab"));
+        XmlWishTransactionStorage wishTransactionStorage = new XmlWishTransactionStorage(getTempFilePath("wt"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(wishBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(wishBookStorage, wishTransactionStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
         return testFolder.getRoot().toPath().resolve(fileName);
     }
 
+    // ================ UserPrefs tests ==============================
 
     @Test
     public void prefsReadSave() throws Exception {
@@ -55,6 +59,8 @@ public class StorageManagerTest {
         UserPrefs retrieved = storageManager.readUserPrefs().get();
         assertEquals(original, retrieved);
     }
+
+    // ================ WishBook tests ==============================
 
     @Test
     public void wishBookReadSave() throws Exception {
@@ -83,6 +89,25 @@ public class StorageManagerTest {
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof DataSavingExceptionEvent);
     }
 
+    // ================ WishTransaction tests ==============================
+
+    @Test
+    public void wishTransactionReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link XmlWishTransactionStorage} class.
+         * More extensive testing of WishTransaction saving/reading is done in {@link XmlWishTransactionStorageTest}.
+         */
+        WishTransaction original = getTypicalWishTransaction();
+        storageManager.saveWishTransaction(original);
+        WishTransaction retrieved = storageManager.readWishTransaction().get();
+        assertEquals(original, retrieved);
+    }
+
+    @Test
+    public void getWishTransactionFilePath() {
+        assertNotNull(storageManager.getWishTransactionFilePath());
+    }
 
     /**
      * A Stub class to throw an exception when the save method is called

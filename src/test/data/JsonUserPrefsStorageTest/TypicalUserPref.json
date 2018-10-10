@@ -7,5 +7,7 @@
       "y" : 100
     }
   },
+
+  "wishTransactionFilePath" : "data\\wishtransaction.xml"
   "wishBookFilePath" : "wishbook.xml"
 }

@@ -14,6 +14,7 @@ import seedu.address.commons.events.storage.DataSavingExceptionEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyWishBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.WishTransaction;
 
 /**
  * Manages storage of WishBook data in local storage.
@@ -22,12 +23,21 @@ public class StorageManager extends ComponentManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private WishBookStorage wishBookStorage;
+    private WishTransactionStorage wishTransactionStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
     public StorageManager(WishBookStorage wishBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.wishBookStorage = wishBookStorage;
+        this.userPrefsStorage = userPrefsStorage;
+    }
+
+    public StorageManager(WishBookStorage wishBookStorage, WishTransactionStorage wishTransactionStorage,
+                          UserPrefsStorage userPrefsStorage) {
+        super();
+        this.wishBookStorage = wishBookStorage;
+        this.wishTransactionStorage = wishTransactionStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -48,6 +58,34 @@ public class StorageManager extends ComponentManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
+    // ================ WishTransaction methods ==============================
+
+    @Override
+    public Path getWishTransactionFilePath() {
+        return wishTransactionStorage.getWishTransactionFilePath();
+    }
+
+    @Override
+    public Optional<WishTransaction> readWishTransaction() throws DataConversionException, IOException {
+        return wishTransactionStorage.readWishTransaction(getWishTransactionFilePath());
+    }
+
+    @Override
+    public Optional<WishTransaction> readWishTransaction(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read wishTransaction data from file: " + filePath);
+        return wishTransactionStorage.readWishTransaction(filePath);
+    }
+
+    @Override
+    public void saveWishTransaction(WishTransaction wishTransaction) throws IOException {
+        saveWishTransaction(wishTransaction, getWishTransactionFilePath());
+    }
+
+    @Override
+    public void saveWishTransaction(WishTransaction wishTransaction, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        wishTransactionStorage.saveWishTransaction(wishTransaction, filePath);
+    }
 
     // ================ WishBook methods ==============================
 

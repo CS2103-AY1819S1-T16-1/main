@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.WishBook;
+import seedu.address.model.WishTransaction;
 import seedu.address.model.wish.Wish;
 
 /**
@@ -107,6 +108,14 @@ public class TypicalWishes {
             ab.addWish(wish);
         }
         return ab;
+    }
+
+    /**
+     * Returns a {@code WishTransaction} with all the typical wish transactions.
+     * Assumption: no previous wish transaction available other than current state of {@code WishBook}.
+     */
+    public static WishTransaction getTypicalWishTransaction() {
+        return new WishTransaction(getTypicalWishBook());
     }
 
     public static List<Wish> getTypicalWishes() {

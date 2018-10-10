@@ -48,12 +48,14 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         WishBook wishBook = new WishBookBuilder().withWish(ALICE).withWish(BENSON).build();
+        WishTransaction wishTransaction = new WishTransaction(wishBook);
         WishBook differentWishBook = new WishBook();
+        WishTransaction differentWishTransaction = new WishTransaction();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(wishBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(wishBook, userPrefs);
+        modelManager = new ModelManager(wishBook, wishTransaction, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(wishBook, wishTransaction, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -66,19 +68,19 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different wishBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentWishBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentWishBook, differentWishTransaction, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredWishList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(wishBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(wishBook, wishTransaction, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredWishList(PREDICATE_SHOW_ALL_WISHES);
 
         // different userPrefs -> returns true
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setWishBookFilePath(Paths.get("differentFilePath"));
-        assertTrue(modelManager.equals(new ModelManager(wishBook, differentUserPrefs)));
+        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        assertTrue(modelManager.equals(new ModelManager(wishBook, wishTransaction, differentUserPrefs)));
     }
 }

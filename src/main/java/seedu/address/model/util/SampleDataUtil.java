@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyWishBook;
 import seedu.address.model.WishBook;
+import seedu.address.model.WishTransaction;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.wish.Email;
 import seedu.address.model.wish.Name;
@@ -60,6 +61,10 @@ public class SampleDataUtil {
             sampleWb.addWish(sampleWish);
         }
         return sampleWb;
+    }
+
+    public static WishTransaction getSampleWishTransaction() {
+        return new WishTransaction(getSampleWishBook());
     }
 
     /**

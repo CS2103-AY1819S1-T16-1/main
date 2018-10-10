@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showWishAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_WISH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_WISH;
 import static seedu.address.testutil.TypicalWishes.getTypicalWishBook;
+import static seedu.address.testutil.TypicalWishes.getTypicalWishTransaction;
 
 import org.junit.Test;
 
@@ -34,7 +35,7 @@ import seedu.address.testutil.WishBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalWishBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -45,7 +46,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_WISH_SUCCESS, editedWish);
 
-        Model expectedModel = new ModelManager(new WishBook(model.getWishBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new WishBook(model.getWishBook()), model.getWishTransaction(), new UserPrefs());
         expectedModel.updateWish(model.getFilteredWishList().get(0), editedWish);
         expectedModel.commitWishBook();
 
@@ -67,7 +69,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_WISH_SUCCESS, editedWish);
 
-        Model expectedModel = new ModelManager(new WishBook(model.getWishBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new WishBook(model.getWishBook()), model.getWishTransaction(), new UserPrefs());
         expectedModel.updateWish(lastWish, editedWish);
         expectedModel.commitWishBook();
 
@@ -81,7 +84,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_WISH_SUCCESS, editedWish);
 
-        Model expectedModel = new ModelManager(new WishBook(model.getWishBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new WishBook(model.getWishBook()), model.getWishTransaction(), new UserPrefs());
         expectedModel.commitWishBook();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -98,7 +102,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_WISH_SUCCESS, editedWish);
 
-        Model expectedModel = new ModelManager(new WishBook(model.getWishBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new WishBook(model.getWishBook()), model.getWishTransaction(), new UserPrefs());
         expectedModel.updateWish(model.getFilteredWishList().get(0), editedWish);
         expectedModel.commitWishBook();
 
@@ -158,7 +163,8 @@ public class EditCommandTest {
         Wish wishToEdit = model.getFilteredWishList().get(INDEX_FIRST_WISH.getZeroBased());
         EditWishDescriptor descriptor = new EditWishDescriptorBuilder(editedWish).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_WISH, descriptor);
-        Model expectedModel = new ModelManager(new WishBook(model.getWishBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new WishBook(model.getWishBook()), model.getWishTransaction(), new UserPrefs());
         expectedModel.updateWish(wishToEdit, editedWish);
         expectedModel.commitWishBook();
 
@@ -200,7 +206,8 @@ public class EditCommandTest {
         Wish editedWish = new WishBuilder().build();
         EditWishDescriptor descriptor = new EditWishDescriptorBuilder(editedWish).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_WISH, descriptor);
-        Model expectedModel = new ModelManager(new WishBook(model.getWishBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new WishBook(model.getWishBook()), model.getWishTransaction(), new UserPrefs());
 
         showWishAtIndex(model, INDEX_SECOND_WISH);
         Wish wishToEdit = model.getFilteredWishList().get(INDEX_FIRST_WISH.getZeroBased());

@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalWishes.CARL;
 import static seedu.address.testutil.TypicalWishes.ELLE;
 import static seedu.address.testutil.TypicalWishes.FIONA;
 import static seedu.address.testutil.TypicalWishes.getTypicalWishBook;
+import static seedu.address.testutil.TypicalWishes.getTypicalWishTransaction;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,8 +26,8 @@ import seedu.address.model.wish.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalWishBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalWishBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test

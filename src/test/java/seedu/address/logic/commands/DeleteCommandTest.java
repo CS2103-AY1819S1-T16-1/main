@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showWishAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_WISH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_WISH;
 import static seedu.address.testutil.TypicalWishes.getTypicalWishBook;
+import static seedu.address.testutil.TypicalWishes.getTypicalWishTransaction;
 
 import org.junit.Test;
 
@@ -26,7 +27,7 @@ import seedu.address.model.wish.Wish;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalWishBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -36,7 +37,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_WISH_SUCCESS, wishToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getWishBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getWishBook(), model.getWishTransaction(), new UserPrefs());
         expectedModel.deleteWish(wishToDelete);
         expectedModel.commitWishBook();
 
@@ -60,7 +61,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_WISH_SUCCESS, wishToDelete);
 
-        Model expectedModel = new ModelManager(model.getWishBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getWishBook(), model.getWishTransaction(), new UserPrefs());
         expectedModel.deleteWish(wishToDelete);
         expectedModel.commitWishBook();
         showNoWish(expectedModel);
@@ -85,7 +86,7 @@ public class DeleteCommandTest {
     public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
         Wish wishToDelete = model.getFilteredWishList().get(INDEX_FIRST_WISH.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_WISH);
-        Model expectedModel = new ModelManager(model.getWishBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getWishBook(), model.getWishTransaction(), new UserPrefs());
         expectedModel.deleteWish(wishToDelete);
         expectedModel.commitWishBook();
 
@@ -124,7 +125,7 @@ public class DeleteCommandTest {
     @Test
     public void executeUndoRedo_validIndexFilteredList_sameWishDeleted() throws Exception {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_WISH);
-        Model expectedModel = new ModelManager(model.getWishBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getWishBook(), model.getWishTransaction(), new UserPrefs());
 
         showWishAtIndex(model, INDEX_SECOND_WISH);
         Wish wishToDelete = model.getFilteredWishList().get(INDEX_FIRST_WISH.getZeroBased());
