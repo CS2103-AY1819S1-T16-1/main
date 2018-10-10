@@ -77,7 +77,7 @@
 <li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">H.2. Deleting a person</a></li>
+<li><a href="#deleting-a-wish">H.2. Deleting a wish</a></li>
 <li><a href="#saving-data">H.3. Saving data</a></li>
 </ul>
 </li>
@@ -166,7 +166,7 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 This will generate all resources required by the application and tests.</p>
 </li>
 <li>
-<p>Open <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson.java</code></a> and <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/MainWindow.java"><code>MainWindow.java</code></a> and check for any code errors</p>
+<p>Open <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/storage/XmlAdaptedWish.java"><code>XmlAdaptedWish.java</code></a> and <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/MainWindow.java"><code>MainWindow.java</code></a> and check for any code errors</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -415,7 +415,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note how the <code>Model</code> simply raises a <code>WishBookChangedEvent</code> when the Address Book data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
+Note how the <code>Model</code> simply raises a <code>WishBookChangedEvent</code> when the Wish Book data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
 </td>
 </tr>
 </table>
@@ -457,7 +457,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>WishListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
@@ -500,7 +500,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person) and/or raise events.</p>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a wish) and/or raise events.</p>
 </li>
 <li>
 <p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
@@ -537,10 +537,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the Address Book data.</p>
+<p>stores the Wish Book data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;Wish&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -554,7 +554,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
+As a more OOP model, we can store a <code>Tag</code> list in <code>Wish Book</code>, which <code>Wish</code> can reference. This would allow <code>Wish Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Wish</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
 <br>
 <span class="image"><img src="images/ModelClassBetterOopDiagram.png" alt="ModelClassBetterOopDiagram" width="800"></span>
 </td>
@@ -582,7 +582,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in xml format and read it back.</p>
+<p>can save the Wish Book data in xml format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -638,7 +638,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the url book. The <code>delete</code> command calls <code>Model#commitWishBook()</code>, causing the modified state of the url book after the <code>delete 5</code> command executes to be saved in the <code>wishBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted url book state.</p>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th wish in the url book. The <code>delete</code> command calls <code>Model#commitWishBook()</code>, causing the modified state of the url book after the <code>delete 5</code> command executes to be saved in the <code>wishBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted url book state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -646,7 +646,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitWishBook()</code>, causing another modified url book state to be saved into the <code>wishBookStateList</code>.</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new wish. The <code>add</code> command also calls <code>Model#commitWishBook()</code>, causing another modified url book state to be saved into the <code>wishBookStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -666,7 +666,7 @@ If a command fails its execution, it will not call <code>Model#commitWishBook()<
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoWishBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous url book state, and restores the url book to that state.</p>
+<p>Step 4. The user now decides that adding the wish was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoWishBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous url book state, and restores the url book to that state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -757,7 +757,7 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
+<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the wish being deleted).</p>
 </li>
 <li>
 <p>Cons: We must ensure that the implementation of each individual command are correct.</p>
@@ -1239,7 +1239,7 @@ e.g. <code>seedu.url.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.6. Managing Dependencies</a></h3>
 <div class="paragraph">
-<p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
+<p>A project often depends on third-party libraries. For example, Wish Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
 b. Require developers to download those libraries manually (this creates extra work for developers)</p>
 </div>
@@ -1286,7 +1286,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clear</code>, the user can also type <code>c</code> to remove all persons in the list.</p>
+<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clear</code>, the user can also type <code>c</code> to remove all wishes in the list.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -1365,7 +1365,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <p>Think about how you can use SLAP to design the method. Where should we place the main logic of deleting tags?</p>
 </li>
 <li>
-<p>Find out which of the existing API methods in  <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/WishBook.java"><code>WishBook</code></a> and <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/WishBook.java"><code>WishBook</code></a> allows you to update a person, and <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
+<p>Find out which of the existing API methods in  <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/WishBook.java"><code>WishBook</code></a> and <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/wish/Wish.java"><code>Wish</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/WishBook.java"><code>WishBook</code></a> allows you to update a wish, and <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/wish/Wish.java"><code>Wish</code></a> allows you to update the tags.</p>
 </li>
 </ul>
 </div>
@@ -1375,7 +1375,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/WishBook.java"><code>WishBook</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
+<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/WishBook.java"><code>WishBook</code></a>. Loop through each wish, and remove the <code>tag</code> from each wish.</p>
 </li>
 <li>
 <p>Add a new API method <code>deleteTag(Tag)</code> in <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/ModelManager.java"><code>ModelManager</code></a>. Your <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/ModelManager.java"><code>ModelManager</code></a> should call <code>WishBook#removeTag(Tag)</code>.</p>
@@ -1441,7 +1441,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <div class="ulist">
 <ul>
 <li>
-<p>The tag labels are created inside <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/PersonCard.java">the <code>WishCard</code> constructor</a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
+<p>The tag labels are created inside <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/WishCard.java">the <code>WishCard</code> constructor</a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
 </li>
 <li>
 <p>Use the .css attribute <code>-fx-background-color</code> to add a color.</p>
@@ -1596,13 +1596,13 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <p>Modify the constructor of <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of wishes when the application just started.</p>
 </li>
 <li>
-<p>Use <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/StatusBarFooter.java"><code>StatusBarFooter#handleWishBookChangedEvent(WishBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the wishbook.</p>
+<p>Use <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/StatusBarFooter.java"><code>StatusBarFooter#handleWishBookChangedEvent(WishBookChangedEvent)</code></a> to update the number of wishes whenever there are new changes to the wishbook.</p>
 </li>
 <li>
 <p>For tests, modify <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/test/java/guitests/guihandles/StatusBarFooterHandle.java"><code>StatusBarFooterHandle</code></a> by adding a state-saving functionality for the total number of people status, just like what we did for save location and sync status.</p>
 </li>
 <li>
-<p>For system tests, modify <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/test/java/systemtests/WishBookSystemTest.java"><code>WishBookSystemTest</code></a> to also verify the new total number of persons status bar.</p>
+<p>For system tests, modify <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/test/java/systemtests/WishBookSystemTest.java"><code>WishBookSystemTest</code></a> to also verify the new total number of wishes status bar.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/803">PR</a> for the full solution.</p>
@@ -1815,7 +1815,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
+<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/model/wish/Wish.java"><code>Wish</code></a>, remove the regex and change the names accordingly).</p>
 </li>
 <li>
 <p>Modify <code>RemarkCommand</code> to now take in a <code>Remark</code> instead of a <code>String</code>.</p>
@@ -1876,7 +1876,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Fix <code>invalidAndValidPersonWishBook.xml</code>, <code>typicalPersonsWishBook.xml</code>, <code>validWishBook.xml</code> etc., such that the XML tests will not fail due to a missing <code>&lt;remark&gt;</code> element.</p>
+<p>Fix <code>invalidAndValidWishWishBook.xml</code>, <code>typicalWishesWishBook.xml</code>, <code>validWishBook.xml</code> etc., such that the XML tests will not fail due to a missing <code>&lt;remark&gt;</code> element.</p>
 </li>
 </ol>
 </div>
@@ -1937,7 +1937,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Replace the logic in <code>RemarkCommand#execute()</code> (that currently just throws an <code>Exception</code>), with the actual logic to modify the remarks of a person.</p>
+<p>Replace the logic in <code>RemarkCommand#execute()</code> (that currently just throws an <code>Exception</code>), with the actual logic to modify the remarks of a wish.</p>
 </li>
 </ol>
 </div>
@@ -2814,15 +2814,15 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.2. Deleting a person</a></h3>
+<h3 id="deleting-a-wish"><a class="link" href="#deleting-a-wish">H.2. Deleting a wish</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Deleting a wish while all wishes are listed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all wishes using the <code>list</code> command. Multiple wishes in the list.</p>
 </li>
 <li>
 <p>Test case: <code>delete 1</code><br>
@@ -2830,7 +2830,7 @@ Expected: First contact is deleted from the list. Details of the deleted contact
 </li>
 <li>
 <p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+Expected: No wish is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
 <p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
@@ -2866,4 +2866,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-09 08:00:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-10 02:14:36 UTC</div></div></div></body></html>

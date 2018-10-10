@@ -271,7 +271,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the url book. The <code>delete</code> command calls <code>Model#commitWishBook()</code>, causing the modified state of the url book after the <code>delete 5</code> command executes to be saved in the <code>wishBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted url book state.</p>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th wish in the url book. The <code>delete</code> command calls <code>Model#commitWishBook()</code>, causing the modified state of the url book after the <code>delete 5</code> command executes to be saved in the <code>wishBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted url book state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -279,7 +279,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitWishBook()</code>, causing another modified url book state to be saved into the <code>wishBookStateList</code>.</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new wish. The <code>add</code> command also calls <code>Model#commitWishBook()</code>, causing another modified url book state to be saved into the <code>wishBookStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -299,7 +299,7 @@ If a command fails its execution, it will not call <code>Model#commitWishBook()<
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoWishBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous url book state, and restores the url book to that state.</p>
+<p>Step 4. The user now decides that adding the wish was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoWishBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous url book state, and restores the url book to that state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -390,7 +390,7 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
+<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the wish being deleted).</p>
 </li>
 <li>
 <p>Cons: We must ensure that the implementation of each individual command are correct.</p>
@@ -452,4 +452,4 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-09 08:00:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-10 02:14:36 UTC</div></div></div></body></html>
