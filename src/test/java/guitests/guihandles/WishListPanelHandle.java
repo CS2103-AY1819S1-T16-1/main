@@ -9,7 +9,7 @@ import javafx.scene.control.ListView;
 import seedu.address.model.wish.Wish;
 
 /**
- * Provides a handle for {@code PersonListPanel} containing the list of {@code PersonCard}.
+ * Provides a handle for {@code WishListPanel} containing the list of {@code WishCard}.
  */
 public class WishListPanelHandle extends NodeHandle<ListView<Wish>> {
     public static final String WISH_LIST_VIEW_ID = "#wishListView";
@@ -32,7 +32,7 @@ public class WishListPanelHandle extends NodeHandle<ListView<Wish>> {
         List<Wish> selectedWishList = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedWishList.size() != 1) {
-            throw new AssertionError("Person list size expected 1.");
+            throw new AssertionError("Wish list size expected 1.");
         }
 
         return getAllCardNodes().stream()
@@ -67,7 +67,7 @@ public class WishListPanelHandle extends NodeHandle<ListView<Wish>> {
      */
     public void navigateToCard(Wish wish) {
         if (!getRootNode().getItems().contains(wish)) {
-            throw new IllegalArgumentException("Person does not exist.");
+            throw new IllegalArgumentException("Wish does not exist.");
         }
 
         guiRobot.interact(() -> {
@@ -91,7 +91,7 @@ public class WishListPanelHandle extends NodeHandle<ListView<Wish>> {
     }
 
     /**
-     * Selects the {@code PersonCard} at {@code index} in the list.
+     * Selects the {@code WishCard} at {@code index} in the list.
      */
     public void select(int index) {
         getRootNode().getSelectionModel().select(index);
@@ -123,7 +123,7 @@ public class WishListPanelHandle extends NodeHandle<ListView<Wish>> {
     }
 
     /**
-     * Remembers the selected {@code PersonCard} in the list.
+     * Remembers the selected {@code WishCard} in the list.
      */
     public void rememberSelectedWishCard() {
         List<Wish> selectedItems = getRootNode().getSelectionModel().getSelectedItems();

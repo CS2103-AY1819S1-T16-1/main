@@ -57,7 +57,7 @@ public class RemarkCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Wish} with the details of {@code wishToEdit}
      * with updated Remark.
      */
     private static Wish createUpdatedRemarkWish(Wish wishToEdit, Remark remark) {

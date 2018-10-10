@@ -80,7 +80,7 @@ public class EditCommand extends Command {
         }
 
         Wish wishToEdit = lastShownList.get(index.getZeroBased());
-        Wish editedWish = createEditedPerson(wishToEdit, editWishDescriptor);
+        Wish editedWish = createEditedWish(wishToEdit, editWishDescriptor);
 
         if (!wishToEdit.isSameWish(editedWish) && model.hasWish(editedWish)) {
             throw new CommandException(MESSAGE_DUPLICATE_WISH);
@@ -93,10 +93,10 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code wishToEdit}
+     * Creates and returns a {@code Wish} with the details of {@code wishToEdit}
      * edited with {@code editWishDescriptor}.
      */
-    private static Wish createEditedPerson(Wish wishToEdit, EditWishDescriptor editWishDescriptor) {
+    private static Wish createEditedWish(Wish wishToEdit, EditWishDescriptor editWishDescriptor) {
         assert wishToEdit != null;
 
         Name updatedName = editWishDescriptor.getName().orElse(wishToEdit.getName());

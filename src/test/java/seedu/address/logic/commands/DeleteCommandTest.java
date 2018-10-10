@@ -64,7 +64,7 @@ public class DeleteCommandTest {
         Model expectedModel = new ModelManager(model.getWishBook(), model.getWishTransaction(), new UserPrefs());
         expectedModel.deleteWish(wishToDelete);
         expectedModel.commitWishBook();
-        showNoPerson(expectedModel);
+        showNoWish(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -123,7 +123,7 @@ public class DeleteCommandTest {
      * 4. Redo the deletion. This ensures {@code RedoCommand} deletes the wish object regardless of indexing.
      */
     @Test
-    public void executeUndoRedo_validIndexFilteredList_samePersonDeleted() throws Exception {
+    public void executeUndoRedo_validIndexFilteredList_sameWishDeleted() throws Exception {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_WISH);
         Model expectedModel = new ModelManager(model.getWishBook(), model.getWishTransaction(), new UserPrefs());
 
@@ -135,7 +135,7 @@ public class DeleteCommandTest {
         // delete -> deletes second wish in unfiltered wish list / first wish in filtered wish list
         deleteCommand.execute(model, commandHistory);
 
-        // undo -> reverts wishbook back to previous state and filtered wish list to show all persons
+        // undo -> reverts wishbook back to previous state and filtered wish list to show all wishes
         expectedModel.undoWishBook();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
@@ -170,7 +170,7 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoWish(Model model) {
         model.updateFilteredWishList(p -> false);
 
         assertTrue(model.getFilteredWishList().isEmpty());

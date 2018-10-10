@@ -80,12 +80,12 @@ public class WishListPanelTest extends GuiUnitTest {
      */
     private ObservableList<Wish> createBackingList(int wishCount) throws Exception {
         Path xmlFile = createXmlFileWithWishes(wishCount);
-        XmlSerializableWishBook xmlAddressBook = XmlUtil.getDataFromFile(xmlFile, XmlSerializableWishBook.class);
-        return FXCollections.observableArrayList(xmlAddressBook.toModelType().getWishList());
+        XmlSerializableWishBook xmlWishBook = XmlUtil.getDataFromFile(xmlFile, XmlSerializableWishBook.class);
+        return FXCollections.observableArrayList(xmlWishBook.toModelType().getWishList());
     }
 
     /**
-     * Returns a .xml file containing {@code wishCount} persons. This file will be deleted when the JVM terminates.
+     * Returns a .xml file containing {@code wishCount} wishes. This file will be deleted when the JVM terminates.
      */
     private Path createXmlFileWithWishes(int wishCount) throws Exception {
         StringBuilder builder = new StringBuilder();

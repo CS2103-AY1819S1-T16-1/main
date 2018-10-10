@@ -43,13 +43,13 @@ public class XmlAdaptedWish {
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs an XmlAdaptedPerson.
+     * Constructs an XmlAdaptedWish.
      * This is the no-arg constructor that is required by JAXB.
      */
     public XmlAdaptedWish() {}
 
     /**
-     * Constructs an {@code XmlAdaptedPerson} with the given wish details.
+     * Constructs an {@code XmlAdaptedWish} with the given wish details.
      */
     public XmlAdaptedWish(String name, String price, String email, String url, List<XmlAdaptedTag> tagged) {
         this.name = name;
@@ -64,7 +64,7 @@ public class XmlAdaptedWish {
     }
 
     /**
-     * Converts a given Person into this class for JAXB use.
+     * Converts a given Wish into this class for JAXB use.
      *
      * @param source future changes to this will not affect the created XmlAdaptedWish
      */
@@ -81,7 +81,7 @@ public class XmlAdaptedWish {
     }
 
     /**
-     * Converts this jaxb-friendly adapted wish object into the model's Person object.
+     * Converts this jaxb-friendly adapted wish object into the model's Wish object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted wish
      */

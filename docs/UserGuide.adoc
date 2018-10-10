@@ -122,7 +122,7 @@ Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and 
 Shows a history of savings you have allocated, from newest to oldest. +
 Format: `history -s`
 
-=== Locating persons by name: `find`
+=== Locating wishes by name: `find`
 
 Finds wishes which satisfy the given search predicate. +
 Format: `find SEARCH_PREDICATE [MORE_SEARCH_PREDICATES]`
@@ -305,7 +305,7 @@ _{explain how the user can enable/disable data encryption}_
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Wish Book folder.
 
 == Command Summary
 

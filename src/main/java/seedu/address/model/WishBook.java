@@ -35,7 +35,7 @@ public class WishBook implements ReadOnlyWishBook {
     public WishBook() {}
 
     /**
-     * Creates an WishBook using the Persons in the {@code toBeCopied}
+     * Creates an WishBook using the Wishes in the {@code toBeCopied}
      */
     public WishBook(ReadOnlyWishBook toBeCopied) {
         this();
@@ -80,9 +80,9 @@ public class WishBook implements ReadOnlyWishBook {
     }
 
     /**
-     * Replaces the given wish {@code target} in the list with {@code editedPerson}.
+     * Replaces the given wish {@code target} in the list with {@code editedWish}.
      * {@code target} must exist in the wish book.
-     * The wish identity of {@code editedPerson} must not be the same as another existing wish in the wish book.
+     * The wish identity of {@code editedWish} must not be the same as another existing wish in the wish book.
      */
     public void updateWish(Wish target, Wish editedWish) {
         requireNonNull(editedWish);
@@ -100,7 +100,7 @@ public class WishBook implements ReadOnlyWishBook {
 
     /**
      * Removes {@code tag} from all {@code wish}es in this {@code WishBook}.
-     * @throws DuplicateWishException if there's a duplicate {@code Person} in this {@code WishBook}.
+     * @throws DuplicateWishException if there's a duplicate {@code Wish} in this {@code WishBook}.
      */
     public void removeTagFromAll(Tag tag) throws DuplicateWishException {
         ArrayList<Wish> modifiedWishes = new ArrayList<>();

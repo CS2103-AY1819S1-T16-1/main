@@ -38,7 +38,7 @@ public interface Storage extends WishBookStorage, WishTransactionStorage, UserPr
     Optional<ReadOnlyWishBook> readWishBook() throws DataConversionException, IOException;
 
     @Override
-    void saveWishBook(ReadOnlyWishBook addressBook) throws IOException;
+    void saveWishBook(ReadOnlyWishBook wishBook) throws IOException;
 
     @Override
     void saveBackup() throws IOException, DataConversionException;

@@ -39,9 +39,9 @@ public interface Model {
     void addWish(Wish wish);
 
     /**
-     * Replaces the given wish {@code target} with {@code editedPerson}.
+     * Replaces the given wish {@code target} with {@code editedWish}.
      * {@code target} must exist in the wish book.
-     * The wish identity of {@code editedPerson} must not be the same as another existing wish in the wish book.
+     * The wish identity of {@code editedWish} must not be the same as another existing wish in the wish book.
      */
     void updateWish(Wish target, Wish editedWish);
 

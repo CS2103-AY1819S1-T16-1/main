@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <wishbook>
-    <!-- Valid Person -->
+    <!-- Valid Wish -->
     <wishes>
         <name>Hans Muster</name>
         <price isPrivate="false">9482424</price>
@@ -9,7 +9,7 @@
         <url isPrivate="false">https://www.amazon.com/gp/product/B07D998212</url>
         <remark>test remark</remark>
     </wishes>
-    <!-- Person with invalid price field -->
+    <!-- Wish with invalid price field -->
     <wishes>
         <name>Hans Muster</name>
         <price isPrivate="false">948asdf2424</price>

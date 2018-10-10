@@ -15,7 +15,7 @@ The source code can be found https://github.com/nus-cs2103-AY1819S1/addressbook-
 == Project Team
 
 === Dominic Chong
-image::bannified.jpg[width="150", align="left"]
+image::bannified.png[width="150", align="left"]
 {empty} [https://github.com/bannified[github]] [https://bannified.github.io/portfolio/[portfolio]]
 
 Role: Team Lead +
@@ -24,7 +24,7 @@ Responsibilities: Scheduling and Tasking, In charge of Model
 '''
 
 === Leong Sheng Min
-image::leongshengmin.jpg[width="150", align="left"]
+image::leongshengmin.png[width="150", align="left"]
 {empty}[http://github.com/leongshengmin[github]] [[portfolio]]
 
 Role: Developer +
@@ -33,7 +33,7 @@ Responsibilities: Code Quality, In charge of Storage
 '''
 
 === Ananda Kumar
-image::dioptrique.jpg[width="150", align="left"]
+image::dioptrique.png[width="150", align="left"]
 {empty}[http://github.com/dioptrique[github]] [[portfolio]]
 
 Role: Developer +
@@ -42,7 +42,7 @@ Responsibilities: Testing, Integration, IntelliJ Expert
 '''
 
 === Lionel Tan
-image::lionelat.jpg[width="150", align="left"]
+image::lionelat.png[width="150", align="left"]
 {empty}[http://github.com/lionelat[github]] [[portfolio]]
 
 Role: Developer +
@@ -51,7 +51,7 @@ Responsibilities: Documentation, In charge of Logic, Deliverables and Deadlines
 '''
 
 === Lim Jiho
-image::jiholim.jpg[width="150", align="left"]
+image::jiholim.png[width="150", align="left"]
 {empty}[https://mobbin.design/[homepage]] [http://github.com/jiholim[github]] [[portfolio]]
 
 Role: Developer +

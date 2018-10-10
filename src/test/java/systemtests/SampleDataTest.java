@@ -44,7 +44,7 @@ public class SampleDataTest extends WishBookSystemTest {
     }
 
     @Test
-    public void addressBook_dataFileDoesNotExist_loadSampleData() {
+    public void wishBook_dataFileDoesNotExist_loadSampleData() {
         Wish[] expectedList = SampleDataUtil.getSampleWishes();
         assertListMatching(getWishListPanel(), expectedList);
     }

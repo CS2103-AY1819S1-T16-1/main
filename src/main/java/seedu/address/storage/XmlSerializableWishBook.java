@@ -43,7 +43,7 @@ public class XmlSerializableWishBook {
      * Converts this wishBook into the model's {@code WishBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated or duplicates in the
-     * {@code XmlAdaptedPerson}.
+     * {@code XmlAdaptedWish}.
      */
     public WishBook toModelType() throws IllegalValueException {
         WishBook wishBook = new WishBook();

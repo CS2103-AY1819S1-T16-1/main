@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SAVED_AMOUNT_BO
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showWishAtIndex;
+import static seedu.address.logic.commands.SaveCommand.MESSAGE_SAVE_DIFFERENCE;
+import static seedu.address.logic.commands.SaveCommand.MESSAGE_SAVE_EXCESS;
 import static seedu.address.logic.commands.SaveCommand.MESSAGE_SAVE_SUCCESS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_WISHES;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_WISH;
@@ -43,13 +45,23 @@ public class SaveCommandTest {
         Index editedWishIndex = INDEX_FIRST_WISH;
 
         SaveCommand saveCommandToTest = new SaveCommand(INDEX_FIRST_WISH, amountToSave);
-        String expectedMessage = String.format(MESSAGE_SAVE_SUCCESS, amountToSave,
-                editedWishIndex.getOneBased());
 
         Model expectedModel = new ModelManager(
                 new WishBook(model.getWishBook()), model.getWishTransaction(), new UserPrefs());
         expectedModel.updateWish(firstWish, editedWish);
         expectedModel.commitWishBook();
+
+        String differenceString = "";
+        Amount wishSavedDifference = editedWish.getSavedAmountToPriceDifference();
+
+        if (wishSavedDifference.value < 0) {
+            differenceString = String.format(MESSAGE_SAVE_EXCESS, wishSavedDifference);
+        } else {
+            differenceString = String.format(MESSAGE_SAVE_DIFFERENCE, wishSavedDifference.getAbsoluteAmount());
+        }
+
+        String expectedMessage = String.format(String.format(MESSAGE_SAVE_SUCCESS, amountToSave.toString(),
+                editedWishIndex.getOneBased(), differenceString));
 
         assertCommandSuccess(saveCommandToTest, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -67,13 +79,23 @@ public class SaveCommandTest {
         Index editedWishIndex = INDEX_FIRST_WISH;
 
         SaveCommand saveCommandToTest = new SaveCommand(INDEX_FIRST_WISH, amountToSave);
-        String expectedMessage = String.format(MESSAGE_SAVE_SUCCESS, amountToSave,
-                editedWishIndex.getOneBased());
 
         Model expectedModel = new ModelManager(
                 new WishBook(model.getWishBook()), model.getWishTransaction(), new UserPrefs());
         expectedModel.updateWish(firstWish, editedWish);
         expectedModel.commitWishBook();
+
+        String differenceString = "";
+        Amount wishSavedDifference = editedWish.getSavedAmountToPriceDifference();
+
+        if (wishSavedDifference.value < 0) {
+            differenceString = String.format(MESSAGE_SAVE_EXCESS, wishSavedDifference);
+        } else {
+            differenceString = String.format(MESSAGE_SAVE_DIFFERENCE, wishSavedDifference.getAbsoluteAmount());
+        }
+
+        String expectedMessage = String.format(String.format(MESSAGE_SAVE_SUCCESS, amountToSave.toString(),
+                editedWishIndex.getOneBased(), differenceString));
 
         assertCommandSuccess(saveCommandToTest, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -124,13 +146,23 @@ public class SaveCommandTest {
         Index editedWishIndex = INDEX_FIRST_WISH;
 
         SaveCommand saveCommandToTest = new SaveCommand(INDEX_FIRST_WISH, amountToSave);
-        String expectedMessage = String.format(MESSAGE_SAVE_SUCCESS, amountToSave,
-                editedWishIndex.getOneBased());
 
         Model expectedModel = new ModelManager(
                 new WishBook(model.getWishBook()), model.getWishTransaction(), new UserPrefs());
         expectedModel.updateWish(firstWish, editedWish);
         expectedModel.commitWishBook();
+
+        String differenceString = "";
+        Amount wishSavedDifference = editedWish.getSavedAmountToPriceDifference();
+
+        if (wishSavedDifference.value < 0) {
+            differenceString = String.format(MESSAGE_SAVE_EXCESS, wishSavedDifference);
+        } else {
+            differenceString = String.format(MESSAGE_SAVE_DIFFERENCE, wishSavedDifference.getAbsoluteAmount());
+        }
+
+        String expectedMessage = String.format(String.format(MESSAGE_SAVE_SUCCESS, amountToSave.toString(),
+                editedWishIndex.getOneBased(), differenceString));
 
         // Ensure that save command works first
         assertCommandSuccess(saveCommandToTest, model, commandHistory, expectedMessage, expectedModel);

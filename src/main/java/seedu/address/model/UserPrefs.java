@@ -31,20 +31,20 @@ public class UserPrefs {
         guiSettings = new GuiSettings(width, height, x, y);
     }
 
-    public Path getAddressBookFilePath() {
-        return wishBookFilePath;
-    }
-
-    public void setAddressBookFilePath(Path wishBookFilePath) {
-        this.wishBookFilePath = wishBookFilePath;
-    }
-
     public Path getWishTransactionFilePath() {
         return wishTransactionFilePath;
     }
 
     public void setWishTransactionFilePath(Path wishTransactionFilePath) {
         this.wishTransactionFilePath = wishTransactionFilePath;
+    }
+  
+    public Path getWishBookFilePath() {
+        return wishBookFilePath;
+    }
+
+    public void setWishBookFilePath(Path wishBookFilePath) {
+        this.wishBookFilePath = wishBookFilePath;
     }
 
     @Override

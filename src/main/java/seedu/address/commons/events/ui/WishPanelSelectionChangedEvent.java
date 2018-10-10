@@ -4,7 +4,7 @@ import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.wish.Wish;
 
 /**
- * Represents a selection change in the Person List Panel
+ * Represents a selection change in the Wish List Panel
  */
 public class WishPanelSelectionChangedEvent extends BaseEvent {
 

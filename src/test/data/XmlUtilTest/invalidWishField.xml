@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- Person with an invalid price field -->
+<!-- Wish with an invalid price field -->
 <wish>
     <name>Hans Muster</name>
     <price>9482asf424</price>

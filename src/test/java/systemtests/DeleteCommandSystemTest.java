@@ -39,8 +39,8 @@ public class DeleteCommandSystemTest extends WishBookSystemTest {
 
         /* Case: delete the last wish in the list -> deleted */
         Model modelBeforeDeletingLast = getModel();
-        Index lastPersonIndex = getLastIndex(modelBeforeDeletingLast);
-        assertCommandSuccess(lastPersonIndex);
+        Index lastWishIndex = getLastIndex(modelBeforeDeletingLast);
+        assertCommandSuccess(lastWishIndex);
 
         /* Case: undo deleting the last wish in the list -> last wish restored */
         command = UndoCommand.COMMAND_WORD;
@@ -49,13 +49,13 @@ public class DeleteCommandSystemTest extends WishBookSystemTest {
 
         /* Case: redo deleting the last wish in the list -> last wish deleted again */
         command = RedoCommand.COMMAND_WORD;
-        removeWish(modelBeforeDeletingLast, lastPersonIndex);
+        removeWish(modelBeforeDeletingLast, lastWishIndex);
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, modelBeforeDeletingLast, expectedResultMessage);
 
         /* Case: delete the middle wish in the list -> deleted */
-        Index middlePersonIndex = getMidIndex(getModel());
-        assertCommandSuccess(middlePersonIndex);
+        Index middleWishIndex = getMidIndex(getModel());
+        assertCommandSuccess(middleWishIndex);
 
         /* ------------------ Performing delete operation while a filtered list is being shown ---------------------- */
 
@@ -113,7 +113,7 @@ public class DeleteCommandSystemTest extends WishBookSystemTest {
     }
 
     /**
-     * Removes the {@code Person} at the specified {@code index} in {@code model}'s wish book.
+     * Removes the {@code Wish} at the specified {@code index} in {@code model}'s wish book.
      * @return the removed wish
      */
     private Wish removeWish(Model model, Index index) {

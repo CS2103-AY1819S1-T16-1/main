@@ -12,10 +12,10 @@ import seedu.address.model.wish.exceptions.DuplicateWishException;
 import seedu.address.model.wish.exceptions.WishNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A wish is considered unique by comparing using {@code Person#isSameWish(Person)}. As such, adding and updating of
- * persons uses Person#isSameWish(Person) for equality so as to ensure that the wish being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a wish uses Person#equals(Object) so
+ * A list of wishes that enforces uniqueness between its elements and does not allow nulls.
+ * A wish is considered unique by comparing using {@code Wish#isSameWish(Wish)}. As such, adding and updating of
+ * wishes uses Wish#isSameWish(Wish) for equality so as to ensure that the wish being added or updated is
+ * unique in terms of identity in the UniqueWishList. However, the removal of a wish uses Wish#equals(Object) so
  * as to ensure that the wish with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -47,9 +47,9 @@ public class UniqueWishList implements Iterable<Wish> {
     }
 
     /**
-     * Replaces the wish {@code target} in the list with {@code editedPerson}.
+     * Replaces the wish {@code target} in the list with {@code editedWish}.
      * {@code target} must exist in the list.
-     * The wish identity of {@code editedPerson} must not be the same as another existing wish in the list.
+     * The wish identity of {@code editedWish} must not be the same as another existing wish in the list.
      */
     public void setWish(Wish target, Wish editedWish) {
         requireAllNonNull(target, editedWish);
@@ -83,8 +83,8 @@ public class UniqueWishList implements Iterable<Wish> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code wishes}.
+     * {@code wishes} must not contain duplicate wishes.
      */
     public void setWishes(List<Wish> wishes) {
         requireAllNonNull(wishes);
@@ -120,7 +120,7 @@ public class UniqueWishList implements Iterable<Wish> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code wishes} contains only unique wishes.
      */
     private boolean wishesAreUnique(List<Wish> wishes) {
         for (int i = 0; i < wishes.size() - 1; i++) {

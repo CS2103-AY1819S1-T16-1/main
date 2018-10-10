@@ -123,7 +123,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     /**
      * Removes {@code tag} from all {@code wish}s in this {@code WishBook}.
-     * @throws DuplicateWishException if there's a duplicate {@code Person} in this {@code WishBook}.
+     * @throws DuplicateWishException if there's a duplicate {@code Wish} in this {@code WishBook}.
      */
     public void deleteTag(Tag tag) throws DuplicateWishException {
         versionedWishBook.removeTagFromAll(tag);
@@ -131,10 +131,10 @@ public class ModelManager extends ComponentManager implements Model {
         indicateWishBookChanged();
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Wish List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Wish} backed by the internal list of
      * {@code versionedWishBook}
      */
     @Override

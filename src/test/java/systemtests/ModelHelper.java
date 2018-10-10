@@ -31,7 +31,7 @@ public class ModelHelper {
     }
 
     /**
-     * Returns a predicate that evaluates to true if this {@code Person} equals to {@code other}.
+     * Returns a predicate that evaluates to true if this {@code Wish} equals to {@code other}.
      */
     private static Predicate<Wish> getPredicateMatching(Wish other) {
         return wish -> wish.equals(other);

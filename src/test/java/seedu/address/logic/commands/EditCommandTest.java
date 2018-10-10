@@ -171,7 +171,7 @@ public class EditCommandTest {
         // edit -> first wish edited
         editCommand.execute(model, commandHistory);
 
-        // undo -> reverts wishbook back to previous state and filtered wish list to show all persons
+        // undo -> reverts wishbook back to previous state and filtered wish list to show all wishes
         expectedModel.undoWishBook();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
@@ -217,7 +217,7 @@ public class EditCommandTest {
         // edit -> edits second wish in unfiltered wish list / first wish in filtered wish list
         editCommand.execute(model, commandHistory);
 
-        // undo -> reverts wishbook back to previous state and filtered wish list to show all persons
+        // undo -> reverts wishbook back to previous state and filtered wish list to show all wishes
         expectedModel.undoWishBook();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 

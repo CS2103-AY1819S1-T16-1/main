@@ -13,7 +13,7 @@ import seedu.address.model.wish.Url;
 import seedu.address.model.wish.Wish;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditWishDescriptor objects.
  */
 public class EditWishDescriptorBuilder {
 
@@ -28,7 +28,7 @@ public class EditWishDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code wish}'s details
+     * Returns an {@code EditWishDescriptor} with fields containing {@code wish}'s details
      */
     public EditWishDescriptorBuilder(Wish wish) {
         descriptor = new EditWishDescriptor();
@@ -40,7 +40,7 @@ public class EditWishDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditWishDescriptor} that we are building.
      */
     public EditWishDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -48,7 +48,7 @@ public class EditWishDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Price} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Price} of the {@code EditWishDescriptor} that we are building.
      */
     public EditWishDescriptorBuilder withPrice(String price) {
         descriptor.setPrice(new Price(price));
@@ -56,7 +56,7 @@ public class EditWishDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditWishDescriptor} that we are building.
      */
     public EditWishDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -64,7 +64,7 @@ public class EditWishDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Url} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Url} of the {@code EditWishDescriptor} that we are building.
      */
     public EditWishDescriptorBuilder withAddress(String url) {
         descriptor.setUrl(new Url(url));
@@ -72,7 +72,7 @@ public class EditWishDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditWishDescriptor}
      * that we are building.
      */
     public EditWishDescriptorBuilder withTags(String... tags) {

@@ -79,7 +79,7 @@ public class XmlWishBookStorage implements WishBookStorage {
     }
 
     /**
-     * Saves backup addressBook at backup filepath.
+     * Saves backup wishBook at backup filepath.
      * Done by transferring backup copy into save file location.
      * @throws IOException
      * @throws DataConversionException

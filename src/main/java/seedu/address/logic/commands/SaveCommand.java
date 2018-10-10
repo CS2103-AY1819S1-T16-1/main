@@ -27,7 +27,10 @@ public class SaveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SAVING + "108.50";
 
-    public static final String MESSAGE_SAVE_SUCCESS = "Saved %1$s for wish %2$s";
+    public static final String MESSAGE_SAVE_SUCCESS = "Saved %1$s for wish %2$s%3$s.";
+
+    public static final String MESSAGE_SAVE_EXCESS = " with %1$s in excess";
+    public static final String MESSAGE_SAVE_DIFFERENCE = " with %1$s left to completion";
 
     private final Index index;
     private final Amount amountToSave;
@@ -53,6 +56,8 @@ public class SaveCommand extends Command {
             throw new CommandException(Messages.MESSAGE_WISH_FULFILLED);
         }
 
+        String differenceString = "";
+
         try {
             Wish editedWish = new Wish(wishToEdit.getName(), wishToEdit.getPrice(), wishToEdit.getEmail(),
                     wishToEdit.getUrl(), wishToEdit.getSavedAmount().incrementSavedAmount(amountToSave),
@@ -61,13 +66,21 @@ public class SaveCommand extends Command {
             model.updateWish(wishToEdit, editedWish);
             model.updateFilteredWishList(PREDICATE_SHOW_ALL_WISHES);
             model.commitWishBook();
+
+            Amount wishSavedDifference = editedWish.getSavedAmountToPriceDifference();
+
+            if (wishSavedDifference.value < 0) {
+                differenceString = String.format(MESSAGE_SAVE_EXCESS, wishSavedDifference);
+            } else {
+                differenceString = String.format(MESSAGE_SAVE_DIFFERENCE, wishSavedDifference.getAbsoluteAmount());
+            }
         } catch (IllegalArgumentException iae) {
             throw new CommandException(iae.getMessage());
         }
 
 
         return new CommandResult(String.format(MESSAGE_SAVE_SUCCESS, amountToSave.toString(),
-                index.getOneBased()));
+                index.getOneBased(), differenceString));
     }
 
     @Override

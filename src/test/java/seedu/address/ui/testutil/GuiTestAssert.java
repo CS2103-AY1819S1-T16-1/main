@@ -27,7 +27,7 @@ public class GuiTestAssert {
     }
 
     /**
-     * Asserts that {@code actualCard} displays the details of {@code expectedPerson}.
+     * Asserts that {@code actualCard} displays the details of {@code expectedWish}.
      */
     public static void assertCardDisplaysWish(Wish expectedWish, WishCardHandle actualCard) {
         //assertEquals(expectedWish.getPrice().toString(), actualCard.getPrice());
@@ -40,7 +40,7 @@ public class GuiTestAssert {
     }
 
     /**
-     * Asserts that the list in {@code personListPanelHandle} displays the details of {@code persons} correctly and
+     * Asserts that the list in {@code wishListPanelHandle} displays the details of {@code wishes} correctly and
      * in the correct order.
      */
     public static void assertListMatching(WishListPanelHandle wishListPanelHandle, Wish... wishes) {
@@ -51,7 +51,7 @@ public class GuiTestAssert {
     }
 
     /**
-     * Asserts that the list in {@code personListPanelHandle} displays the details of {@code persons} correctly and
+     * Asserts that the list in {@code wishListPanelHandle} displays the details of {@code wishes} correctly and
      * in the correct order.
      */
     public static void assertListMatching(WishListPanelHandle wishListPanelHandle, List<Wish> wishes) {
@@ -59,7 +59,7 @@ public class GuiTestAssert {
     }
 
     /**
-     * Asserts the size of the list in {@code personListPanelHandle} equals to {@code size}.
+     * Asserts the size of the list in {@code wishListPanelHandle} equals to {@code size}.
      */
     public static void assertListSize(WishListPanelHandle wishListPanelHandle, int size) {
         int numberOfPeople = wishListPanelHandle.getListSize();

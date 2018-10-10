@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- WishBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook() -->
+<!-- WishBook save file which contains the same Wish values as in TypicalWishes#getTypicalWishBook() -->
 <wishbook>
     <wishes>
         <name>Alice Pauline</name>

@@ -58,7 +58,7 @@ public class UniqueWishListTest {
     }
 
     @Test
-    public void add_duplicateWish_throwsDuplicatePersonException() {
+    public void add_duplicateWish_throwsDuplicateWishException() {
         uniqueWishList.add(ALICE);
         thrown.expect(DuplicateWishException.class);
         uniqueWishList.add(ALICE);

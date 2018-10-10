@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.wish.WishCompletedPredicate;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all wishes in the wish book to the user.
  */
 public class ListCommand extends Command {
 
@@ -38,7 +38,6 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
-        //model.updateFilteredWishList(PREDICATE_SHOW_ALL_PERSONS);
         if (this.listType.equals(ListType.SHOW_ALL)) {
             model.updateFilteredWishList(PREDICATE_SHOW_ALL_WISHES);
         } else if (this.listType.equals(ListType.SHOW_COMPLETED)) {

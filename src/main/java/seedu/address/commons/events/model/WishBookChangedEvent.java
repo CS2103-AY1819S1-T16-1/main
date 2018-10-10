@@ -14,6 +14,6 @@ public class WishBookChangedEvent extends BaseEvent {
 
     @Override
     public String toString() {
-        return "number of persons " + data.getWishList().size();
+        return "number of wishes " + data.getWishList().size();
     }
 }

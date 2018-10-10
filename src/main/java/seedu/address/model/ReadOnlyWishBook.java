@@ -9,8 +9,8 @@ import seedu.address.model.wish.Wish;
 public interface ReadOnlyWishBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the wish list.
+     * This list will not contain any duplicate wishes.
      */
     ObservableList<Wish> getWishList();
 

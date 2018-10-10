@@ -3,7 +3,7 @@ package seedu.address.model.wish;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Wish's remark in the wish book.
  */
 public class Remark {
     public static final String MESSAGE_REMARK_CONSTRAINTS =

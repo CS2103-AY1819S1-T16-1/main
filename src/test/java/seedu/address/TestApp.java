@@ -74,8 +74,8 @@ public class TestApp extends MainApp {
         double x = Screen.getPrimary().getVisualBounds().getMinX();
         double y = Screen.getPrimary().getVisualBounds().getMinY();
         userPrefs.updateLastUsedGuiSetting(new GuiSettings(600.0, 600.0, (int) x, (int) y));
-        userPrefs.setAddressBookFilePath(saveFileLocation);
         userPrefs.setWishTransactionFilePath(saveWishTransactionFileLocation);
+        userPrefs.setWishBookFilePath(saveFileLocation);
         return userPrefs;
     }
 
@@ -102,6 +102,19 @@ public class TestApp extends MainApp {
             throw new AssertionError("Data is not in the WishBook format.", dce);
         } catch (IOException ioe) {
             throw new AssertionError("Storage file cannot be found.", ioe);
+        }
+    }
+
+    /**
+     * transfer backup to actual wishbook storage
+     */
+    public void saveBackup() {
+        try {
+            storage.saveBackup();
+        } catch (IOException e) {
+            throw new AssertionError("Storage file cannot be found");
+        } catch (DataConversionException e) {
+            throw new AssertionError("Data is not in the WishBook format.", e);
         }
     }
 

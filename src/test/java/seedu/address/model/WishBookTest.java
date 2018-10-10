@@ -50,7 +50,7 @@ public class WishBookTest {
 
     @Test
     public void resetData_withDuplicateWishes_throwsDuplicateWishException() {
-        // Two persons with the same identity fields
+        // Two Wishes with the same identity fields
         Wish editedAlice = new WishBuilder(ALICE).withUrl(VALID_URL_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Wish> newWishes = Arrays.asList(ALICE, editedAlice);
@@ -61,7 +61,7 @@ public class WishBookTest {
     }
 
     @Test
-    public void hasPerson_nullWish_throwsNullPointerException() {
+    public void hasWish_nullWish_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         wishBook.hasWish(null);
     }
@@ -92,7 +92,7 @@ public class WishBookTest {
     }
 
     /**
-     * A stub ReadOnlyWishBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyWishBook whose wishes list can violate interface constraints.
      */
     private static class WishBookStub implements ReadOnlyWishBook {
         private final ObservableList<Wish> wishes = FXCollections.observableArrayList();

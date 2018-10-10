@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <wishbook>
-    <!-- Person with invalid email field -->
+    <!-- Wish with invalid email field -->
     <wishes>
         <name>Hans Muster</name>
         <price isPrivate="false">9482424</price>

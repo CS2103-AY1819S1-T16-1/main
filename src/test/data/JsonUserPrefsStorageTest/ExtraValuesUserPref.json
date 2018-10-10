@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "data\\addressbook.xml"
+  "wishBookFilePath" : "wishbook.xml"
 }

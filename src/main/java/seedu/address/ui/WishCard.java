@@ -10,7 +10,7 @@ import seedu.address.model.wish.Wish;
 
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Wish}.
  */
 public class WishCard extends UiPart<Region> {
 
@@ -52,7 +52,7 @@ public class WishCard extends UiPart<Region> {
 
         name.setText(wish.getName().fullName);
         progress.setText(getProgressInString(wish));
-        progressBar.setProgress(getProgress(wish));
+        progressBar.setProgress(wish.getProgress());
 
         if (wish.isFulfilled()) {
             cardPane.setOpacity(0.5);
@@ -68,17 +68,10 @@ public class WishCard extends UiPart<Region> {
     }
 
     /**
-     * Returns the progress for {@code wish}.
-     */
-    private Double getProgress(Wish wish) {
-        return wish.getSavedAmount().value / wish.getPrice().value;
-    }
-
-    /**
-     * Returns the progress in percentage for {@code wish}.
+     * Returns the progress String (in percentage) for {@code wish}.
      */
     private String getProgressInString(Wish wish) {
-        Double progress = getProgress(wish) * 100;
+        Double progress = wish.getProgress() * 100;
         return String.format("%d", progress.intValue()) + "%";
     }
 

@@ -33,15 +33,15 @@ public interface WishBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyWishBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param wishBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveWishBook(ReadOnlyWishBook addressBook) throws IOException;
+    void saveWishBook(ReadOnlyWishBook wishBook) throws IOException;
 
     /**
      * @see #saveWishBook(ReadOnlyWishBook)
      */
-    void saveWishBook(ReadOnlyWishBook addressBook, Path filePath) throws IOException;
+    void saveWishBook(ReadOnlyWishBook wishBook, Path filePath) throws IOException;
 
     /**
      * @see #saveBackup(Path)
@@ -49,20 +49,20 @@ public interface WishBookStorage {
     void saveBackup() throws IOException, DataConversionException;
 
     /**
-     * Saves backup copy of addressbook at the corresponding filepath.
+     * Saves backup copy of wishbook at the corresponding filepath.
      * @param path filepath of backup file.
      */
     void saveBackup(Path path) throws IOException, DataConversionException;
 
     /**
      * Backs up the given {@link ReadOnlyWishBook} to local storage.
-     * @param addressBook addressBook cannot be null.
+     * @param wishBook wishBook cannot be null.
      * @throws IOException if there was any problem writing to the file
      */
-    void backupWishBook(ReadOnlyWishBook addressBook) throws IOException;
+    void backupWishBook(ReadOnlyWishBook wishBook) throws IOException;
 
     /**
      * @see #saveWishBook(ReadOnlyWishBook)
      */
-    void backupWishBook(ReadOnlyWishBook addressBook, Path filePath) throws IOException;
+    void backupWishBook(ReadOnlyWishBook wishBook, Path filePath) throws IOException;
 }
