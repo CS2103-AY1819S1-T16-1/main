@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalWishes.getTypicalWishBook;
+import static seedu.address.testutil.TypicalWishes.getTypicalWishTransaction;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,14 +25,14 @@ public class AddCommandIntegrationTest {
 
     @Before
     public void setUp() {
-        model = new ModelManager(getTypicalWishBook(), new UserPrefs());
+        model = new ModelManager(getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
     }
 
     @Test
     public void execute_newWish_success() {
         Wish validWish = new WishBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getWishBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getWishBook(), model.getWishTransaction(), new UserPrefs());
         expectedModel.addWish(validWish);
         expectedModel.commitWishBook();
 

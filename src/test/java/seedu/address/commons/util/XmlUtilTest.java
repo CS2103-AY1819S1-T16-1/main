@@ -1,6 +1,7 @@
 package seedu.address.commons.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
@@ -16,9 +17,12 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import seedu.address.model.WishBook;
+import seedu.address.model.WishTransaction;
+import seedu.address.model.wish.Wish;
 import seedu.address.storage.XmlAdaptedTag;
 import seedu.address.storage.XmlAdaptedWish;
 import seedu.address.storage.XmlSerializableWishBook;
+import seedu.address.storage.XmlWishTransactions;
 import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.WishBookBuilder;
 import seedu.address.testutil.WishBuilder;
@@ -35,6 +39,10 @@ public class XmlUtilTest {
     private static final Path VALID_WISH_FILE = TEST_DATA_FOLDER.resolve("validWish.xml");
     private static final Path TEMP_FILE = TestUtil.getFilePathInSandboxFolder("tempWishBook.xml");
 
+    private static final Path VALID_WISHTRANSACTION_FILE = TEST_DATA_FOLDER.resolve("validWishTransaction.xml");
+    private static final Path TEMP_WISHTRANSACTION_FILE =
+            TestUtil.getFilePathInSandboxFolder("tempWishTransaction.xml");
+
     private static final String INVALID_PHONE = "9482asf424";
 
     private static final String VALID_NAME = "Hans Muster";
@@ -42,6 +50,14 @@ public class XmlUtilTest {
     private static final String VALID_EMAIL = "hans@example";
     private static final String VALID_URL = "https://www.amazon.com/gp/product/B07D998212";
     private static final List<XmlAdaptedTag> VALID_TAGS = Collections.singletonList(new XmlAdaptedTag("friends"));
+
+    private static final String VALID_WISHTRANSACTION_NAME = "George Best";
+    private static final String VALID_WISHTRANSACTION_PRICE = "94.82";
+    private static final String VALID_WISHTRANSACTION_SAVED_AMT = "0.00";
+    private static final String VALID_WISHTRANSACTION_EMAIL = "anna@example.com";
+    private static final String VALID_WISHTRANSACTION_URL =
+            "https://www.amazon.com/EVGA-GeForce-Gaming-GDDR5X-Technology/dp/B0762Q49NV";
+    private static final String VALID_WISHTRANSACTION_REMARK = "";
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -74,6 +90,10 @@ public class XmlUtilTest {
     public void getDataFromFile_validFile_validResult() throws Exception {
         WishBook dataFromFile = XmlUtil.getDataFromFile(VALID_FILE, XmlSerializableWishBook.class).toModelType();
         assertEquals(9, dataFromFile.getWishList().size());
+
+        WishTransaction retrieved = XmlUtil.getDataFromFile(VALID_WISHTRANSACTION_FILE, XmlWishTransactions.class)
+                .toModelType();
+        assertEquals(8, retrieved.getWishMap().size());
     }
 
     @Test
@@ -135,6 +155,46 @@ public class XmlUtilTest {
 
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
         dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableWishBook.class);
+        assertEquals(dataToWrite, dataFromFile);
+    }
+
+    @Test
+    public void xmlWishTransactionsFromFile_fileWithValidWishTransaction_validResult() throws Exception {
+        WishTransaction retrievedWishTransaction = XmlUtil
+                .getDataFromFile(VALID_WISHTRANSACTION_FILE, XmlWishTransactions.class)
+                .toModelType();
+        Wish containedWish = getWish();
+        String key = containedWish.getName().fullName;
+        assertTrue(retrievedWishTransaction.getWishMap().containsKey(key));
+        assertTrue(retrievedWishTransaction.getWishMap().get(key).contains(containedWish));
+    }
+
+    private static Wish getWish() {
+        return new WishBuilder()
+                .withName(VALID_WISHTRANSACTION_NAME)
+                .withPrice(VALID_WISHTRANSACTION_PRICE)
+                .withSavedAmountIncrement(VALID_WISHTRANSACTION_SAVED_AMT)
+                .withEmail(VALID_WISHTRANSACTION_EMAIL)
+                .withUrl(VALID_WISHTRANSACTION_URL)
+                .build();
+    }
+
+    @Test
+    public void saveDataToFile_validWishTransactionFile_dataSaved() throws Exception {
+        FileUtil.createFile(TEMP_WISHTRANSACTION_FILE);
+        XmlWishTransactions dataToWrite = new XmlWishTransactions(new WishTransaction());
+        XmlUtil.saveDataToFile(TEMP_WISHTRANSACTION_FILE, dataToWrite);
+        XmlWishTransactions dataFromFile = XmlUtil
+                .getDataFromFile(TEMP_WISHTRANSACTION_FILE, XmlWishTransactions.class);
+        assertEquals(dataToWrite, dataFromFile);
+
+        WishBookBuilder builder = new WishBookBuilder(new WishBook());
+        WishTransaction wishTransaction = new WishTransaction(
+                builder.withWish(new WishBuilder().build()).build());
+        dataToWrite = new XmlWishTransactions(wishTransaction);
+
+        XmlUtil.saveDataToFile(TEMP_WISHTRANSACTION_FILE, dataToWrite);
+        dataFromFile = XmlUtil.getDataFromFile(TEMP_WISHTRANSACTION_FILE, XmlWishTransactions.class);
         assertEquals(dataToWrite, dataFromFile);
     }
 

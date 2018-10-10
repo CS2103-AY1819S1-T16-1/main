@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalWishes.getTypicalWishBook;
+import static seedu.address.testutil.TypicalWishes.getTypicalWishTransaction;
 
 import org.junit.Test;
 
@@ -27,8 +28,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyWishBook_success() {
-        Model model = new ModelManager(getTypicalWishBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalWishBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalWishBook(), getTypicalWishTransaction(), new UserPrefs());
         expectedModel.resetData(new WishBook());
         expectedModel.commitWishBook();
 

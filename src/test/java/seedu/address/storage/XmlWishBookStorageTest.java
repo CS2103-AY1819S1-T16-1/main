@@ -106,7 +106,7 @@ public class XmlWishBookStorageTest {
     }
 
     /**
-     * Saves {@code wishBook} at the specified {@code filePath}.
+     * Saves {@code wishbook} at the specified {@code filePath}.
      */
     private void saveWishBook(ReadOnlyWishBook wishBook, String filePath) {
         try {
@@ -122,6 +122,5 @@ public class XmlWishBookStorageTest {
         thrown.expect(NullPointerException.class);
         saveWishBook(new WishBook(), null);
     }
-
 
 }

@@ -33,21 +33,33 @@ public class ModelManager extends ComponentManager implements Model {
     /**
      * Initializes a ModelManager with the given wishBook and userPrefs.
      */
-    public ModelManager(ReadOnlyWishBook wishBook, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyWishBook wishBook, WishTransaction wishTransaction, UserPrefs userPrefs) {
         super();
-        requireAllNonNull(wishBook, userPrefs);
+        requireAllNonNull(wishBook, wishTransaction, userPrefs);
 
-        logger.fine("Initializing with wish book: " + wishBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing wish book: " + wishBook
+                + ", wish transaction: " + wishTransaction
+                + ", user prefs " + userPrefs);
 
         versionedWishBook = new VersionedWishBook(wishBook);
-        versionedWishTransaction = getWishTransaction(wishBook, /* convert xml to WishTransaction */ null);
+        versionedWishTransaction = getWishTransaction(wishBook, wishTransaction);
         filteredWishes = new FilteredList<>(versionedWishBook.getWishList());
     }
 
     public ModelManager() {
-        this(new WishBook(), new UserPrefs());
+        this(new WishBook(), new WishTransaction(), new UserPrefs());
     }
 
+    /**
+     * @see ModelManager#getWishTransaction(ReadOnlyWishBook, WishTransaction)
+     */
+    public VersionedWishTransaction getWishTransaction() {
+        return getWishTransaction(versionedWishBook, versionedWishTransaction);
+    }
+
+    /**
+     * Returns {@code VersionedWishTransaction} initialized with data from {@code wishBook} or {@code wishTransaction}.
+     */
     private VersionedWishTransaction getWishTransaction(ReadOnlyWishBook wishBook, WishTransaction wishTransaction) {
         if (wishTransaction == null) {
             return initWishTransactionWithWishBookData(wishBook);

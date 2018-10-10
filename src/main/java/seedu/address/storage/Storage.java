@@ -9,17 +9,27 @@ import seedu.address.commons.events.storage.DataSavingExceptionEvent;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyWishBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.WishTransaction;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends WishBookStorage, UserPrefsStorage {
+public interface Storage extends WishBookStorage, WishTransactionStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
     @Override
     void saveUserPrefs(UserPrefs userPrefs) throws IOException;
+
+    @Override
+    Path getWishTransactionFilePath();
+
+    @Override
+    Optional<WishTransaction> readWishTransaction() throws DataConversionException, IOException;
+
+    @Override
+    void saveWishTransaction(WishTransaction wishTransaction) throws IOException;
 
     @Override
     Path getWishBookFilePath();

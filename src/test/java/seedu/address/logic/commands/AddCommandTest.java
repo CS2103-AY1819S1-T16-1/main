@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyWishBook;
 import seedu.address.model.WishBook;
+import seedu.address.model.WishTransaction;
 import seedu.address.model.wish.Wish;
 import seedu.address.testutil.WishBuilder;
 
@@ -91,6 +92,11 @@ public class AddCommandTest {
         @Override
         public void addWish(Wish wish) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public WishTransaction getWishTransaction() {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override

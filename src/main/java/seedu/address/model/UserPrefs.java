@@ -12,31 +12,30 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs {
 
     private GuiSettings guiSettings;
-    private Path wishBookFilePath = Paths.get("data" , "wishbook.xml");
+    private Path wishTransactionFilePath = Paths.get("data", "wishtransaction.xml");
+    private Path wishBookFilePath = Paths.get("wishbook.xml");
 
-    public UserPrefs() {
-        setGuiSettings(500, 500, 0, 0);
-    }
+    public UserPrefs() { setGuiSettings(500, 500, 0, 0); }
 
     public GuiSettings getGuiSettings() {
         return guiSettings == null ? new GuiSettings() : guiSettings;
     }
 
-    public void updateLastUsedGuiSetting(GuiSettings guiSettings) {
-        this.guiSettings = guiSettings;
-    }
+    public void updateLastUsedGuiSetting(GuiSettings guiSettings) { this.guiSettings = guiSettings; }
 
     public void setGuiSettings(double width, double height, int x, int y) {
         guiSettings = new GuiSettings(width, height, x, y);
     }
 
-    public Path getWishBookFilePath() {
-        return wishBookFilePath;
-    }
+    public Path getWishTransactionFilePath() { return wishTransactionFilePath; }
 
-    public void setWishBookFilePath(Path wishBookFilePath) {
-        this.wishBookFilePath = wishBookFilePath;
+    public void setWishTransactionFilePath(Path wishTransactionFilePath) {
+        this.wishTransactionFilePath = wishTransactionFilePath;
     }
+    
+    public Path getWishBookFilePath() { return wishBookFilePath; }
+
+    public void setWishBookFilePath(Path wishBookFilePath) { this.wishBookFilePath = wishBookFilePath; }
 
     @Override
     public boolean equals(Object other) {
