@@ -149,7 +149,7 @@ image::LogicClassDiagram.png[width="800"]
 The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
 
 .Component interactions for `delete 1` command (part 1)
-image::SDforDeletePerson.png[width="800"]
+image::SDforDeleteWish.png[width="800"]
 
 [NOTE]
 Note how the `Model` simply raises a `WishBookChangedEvent` when the Wish Book data are changed, instead of asking the `Storage` to save the updates to the hard disk.
@@ -157,7 +157,7 @@ Note how the `Model` simply raises a `WishBookChangedEvent` when the Wish Book d
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
 
 .Component interactions for `delete 1` command (part 2)
-image::SDforDeletePersonEventHandling.png[width="800"]
+image::SDforDeleteWishEventHandling.png[width="800"]
 
 [NOTE]
 Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
@@ -252,50 +252,50 @@ The undo/redo mechanism is facilitated by `VersionedWishBook`.
 It extends `WishBook` with an undo/redo history, stored internally as an `wishBookStateList` and `currentStatePointer`.
 Additionally, it implements the following operations:
 
-* `VersionedWishBook#commit()` -- Saves the current url book state in its history.
-* `VersionedWishBook#undo()` -- Restores the previous url book state from its history.
-* `VersionedWishBook#redo()` -- Restores a previously undone url book state from its history.
+* `VersionedWishBook#commit()` -- Saves the current wish book state in its history.
+* `VersionedWishBook#undo()` -- Restores the previous wish book state from its history.
+* `VersionedWishBook#redo()` -- Restores a previously undone wish book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitWishBook()`, `Model#undoWishBook()` and `Model#redoWishBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedWishBook` will be initialized with the initial url book state, and the `currentStatePointer` pointing to that single url book state.
+Step 1. The user launches the application for the first time. The `VersionedWishBook` will be initialized with the initial wish book state, and the `currentStatePointer` pointing to that single url book state.
 
 image::UndoRedoStartingStateListDiagram.png[width="800"]
 
-Step 2. The user executes `delete 5` command to delete the 5th wish in the url book. The `delete` command calls `Model#commitWishBook()`, causing the modified state of the url book after the `delete 5` command executes to be saved in the `wishBookStateList`, and the `currentStatePointer` is shifted to the newly inserted url book state.
+Step 2. The user executes `delete 5` command to delete the 5th wish in the wish book. The `delete` command calls `Model#commitWishBook()`, causing the modified state of the url book after the `delete 5` command executes to be saved in the `wishBookStateList`, and the `currentStatePointer` is shifted to the newly inserted url book state.
 
 image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
 
-Step 3. The user executes `add n/David ...` to add a new wish. The `add` command also calls `Model#commitWishBook()`, causing another modified url book state to be saved into the `wishBookStateList`.
+Step 3. The user executes `add n/David ...` to add a new wish. The `add` command also calls `Model#commitWishBook()`, causing another modified wish book state to be saved into the `wishBookStateList`.
 
 image::UndoRedoNewCommand2StateListDiagram.png[width="800"]
 
 [NOTE]
-If a command fails its execution, it will not call `Model#commitWishBook()`, so the url book state will not be saved into the `wishBookStateList`.
+If a command fails its execution, it will not call `Model#commitWishBook()`, so the wish book state will not be saved into the `wishBookStateList`.
 
-Step 4. The user now decides that adding the wish was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoWishBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous url book state, and restores the url book to that state.
+Step 4. The user now decides that adding the wish was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoWishBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous wish book state, and restores the url book to that state.
 
 image::UndoRedoExecuteUndoStateListDiagram.png[width="800"]
 
 [NOTE]
-If the `currentStatePointer` is at index 0, pointing to the initial url book state, then there are no previous url book states to restore. The `undo` command uses `Model#canUndoWishBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the `currentStatePointer` is at index 0, pointing to the initial wish book state, then there are no previous url book states to restore. The `undo` command uses `Model#canUndoWishBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
 image::UndoRedoSequenceDiagram.png[width="800"]
 
-The `redo` command does the opposite -- it calls `Model#redoWishBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the url book to that state.
+The `redo` command does the opposite -- it calls `Model#redoWishBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the wish book to that state.
 
 [NOTE]
-If the `currentStatePointer` is at index `wishBookStateList.size() - 1`, pointing to the latest url book state, then there are no undone url book states to restore. The `redo` command uses `Model#canRedoWishBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the `currentStatePointer` is at index `wishBookStateList.size() - 1`, pointing to the latest wish book state, then there are no undone url book states to restore. The `redo` command uses `Model#canRedoWishBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the url book, such as `list`, will usually not call `Model#commitWishBook()`, `Model#undoWishBook()` or `Model#redoWishBook()`. Thus, the `wishBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the wish book, such as `list`, will usually not call `Model#commitWishBook()`, `Model#undoWishBook()` or `Model#redoWishBook()`. Thus, the `wishBookStateList` remains unchanged.
 
 image::UndoRedoNewCommand3StateListDiagram.png[width="800"]
 
-Step 6. The user executes `clear`, which calls `Model#commitWishBook()`. Since the `currentStatePointer` is not pointing at the end of the `wishBookStateList`, all url book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitWishBook()`. Since the `currentStatePointer` is not pointing at the end of the `wishBookStateList`, all wish book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
 
 image::UndoRedoNewCommand4StateListDiagram.png[width="800"]
 
@@ -307,7 +307,7 @@ image::UndoRedoActivityDiagram.png[width="650"]
 
 ===== Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire url book.
+* **Alternative 1 (current choice):** Saves the entire wish book.
 ** Pros: Easy to implement.
 ** Cons: May have performance issues in terms of memory usage.
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
@@ -316,7 +316,7 @@ image::UndoRedoActivityDiagram.png[width="650"]
 
 ===== Aspect: Data structure to support the undo/redo commands
 
-* **Alternative 1 (current choice):** Use a list to store the history of url book states.
+* **Alternative 1 (current choice):** Use a list to store the history of wish book states.
 ** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
 ** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedWishBook`.
 * **Alternative 2:** Use `HistoryManager` for undo/redo
@@ -373,6 +373,78 @@ _{TO-DO}_
 
 // end::wish[]
 
+=== Save Amount feature
+
+==== Current Implementation
+
+The Save Amount feature is executed through an `SaveCommand` by the user, which after parsing,
+is facilitated mainly by the `ModelManager` which implements `Model`.
+Wish stores the `price` and `savedAmount` of `Wish`, helping to track the progress of the savings towards the `price`.
+Meanwhile, WishBook stores the `spareFunds`, which is an excess pool of funds that can be used in the future.
+After adding a saving, the FilteredWishList is also updated to reflect the latest WishBook.
+
+Given below is an example usage scenario and how the SaveCommand behaves at each step:
+
+Step 1. The user launches the application for the first time.
+WishBook will be initialised in `ModelManager` with the initial WishBook state, where `SavedAmount spareFunds` = 0.0 .
+
+Step 2. The user executes `save 1 s/10`, to save $10 into an existing wish with `Index` 1 and `Price` $15. In the SaveCommand#execute method,
+a new editedWish is created to reflect the new savedAmount. It then calls Model#updateWish to update this wish with the old one in `WishBook`.
+
+The resultant wish will have the following properties:
+
+* Name: _1TB Toshiba SSD_
+* SavedAmount: 10.00
+* Price: 15.00
+* DueDate: 20/4/2018 (20th April 2018)
+* URL: `empty string`
+* Remark: `empty string`
+* Tags: `none`
+* Transactions: `empty LinkedList`
+* Fulfilled: `false`
+
+[NOTE]
+If the `Index` is invalid, or the saving entered causes `savedAmount` to become negative, it will not call Model#updateWish.
+
+Step 3. The user decides to execute save 1 s/10 again. However, SaveCommand checks that `savedAmount` > `price`.
+SaveCommand#execute creates a new `editedWish` with `savedAmount = wish.getPrice()`.
+
+The resultant wish will have the following properties:
+
+* Name: _1TB Toshiba SSD_
+* SavedAmount: 15.00
+* Price: 15.00
+* DueDate: 20/4/2018 (20th April 2018)
+* URL: `empty string`
+* Remark: `empty string`
+* Tags: `none`
+* Transactions: `empty LinkedList`
+* Fulfilled: `true`
+
+Step 4. The excess amount of $5 is stored in a new `SavedAmount` variable `excessAmount`.
+SaveCommand#execute then calls Model#addToSpareFunds(excess) to update the `spareFunds` in WishBook.
+
+In WishBook, the result would be:
+
+* spareFunds: 5.00
+
+Step 5. The user tries to execute `save 1 s/10` again. However, since the value for `fulfilled` is true,
+
+_{TO-DO: Sequence Diagram here}_
+
+==== Design Considerations
+===== Aspect: Data structure to support the spareFunds feature
+
+* **Alternative 1 (current choice):** Store it in a `SavedAmount` variable in `WishBook`.
+** Pros: Easy to implement.
+** Cons: More methods needed when needing to move funds from `spareFunds` to other wishes.
+* **Alternative 2:** Store it as a pseudo wish with index 0.
+** Pros: It can be treated as another `wish`, hence existing methods can be used without needing to create much more new ones.
+** Cons: Requires dealing with an extra wish that has to be hidden on the `WishListPanel` and displayed separately on the UI.
+We must remember to skip this wish in methods that involve displaying the WishList.
+
+
+// end::wish[]
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -618,12 +690,12 @@ Do take a look at <<Design-Logic>> before attempting to modify the `Logic` compo
 [discrete]
 ==== `Model` component
 
-*Scenario:* You are in charge of `model`. One day, the `logic`-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular tag from everyone in the url book, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.
+*Scenario:* You are in charge of `model`. One day, the `logic`-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular tag from everyone in the wish book, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.
 
 [TIP]
 Do take a look at <<Design-Model>> before attempting to modify the `Model` component.
 
-. Add a `removeTag(Tag)` method. The specified tag will be removed from everyone in the url book.
+. Add a `removeTag(Tag)` method. The specified tag will be removed from everyone in the wish book.
 +
 ****
 * Hints
@@ -640,7 +712,7 @@ Do take a look at <<Design-Model>> before attempting to modify the `Model` compo
 [discrete]
 ==== `Ui` component
 
-*Scenario:* You are in charge of `ui`. During a beta testing session, your team is observing how the users use your url book application. You realize that one of the users occasionally tries to delete non-existent tags from a wish, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn't prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last wish in the list. Your job is to implement improvements to the UI to solve all these problems.
+*Scenario:* You are in charge of `ui`. During a beta testing session, your team is observing how the users use your wish book application. You realize that one of the users occasionally tries to delete non-existent tags from a wish, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn't prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last wish in the list. Your job is to implement improvements to the UI to solve all these problems.
 
 [TIP]
 Do take a look at <<Design-Ui>> before attempting to modify the `UI` component.
@@ -690,7 +762,7 @@ image::getting-started-ui-result-after.png[width="200"]
 *** Do read the commits one at a time if you feel overwhelmed.
 ****
 
-. Modify the link:{repoURL}/src/main/java/seedu/url/ui/StatusBarFooter.java[`StatusBarFooter`] to show the total number of wishes in the url book.
+. Modify the link:{repoURL}/src/main/java/seedu/url/ui/StatusBarFooter.java[`StatusBarFooter`] to show the total number of wishes in the wish book.
 +
 **Before**
 +
@@ -703,7 +775,7 @@ image::getting-started-ui-status-after.png[width="500"]
 ****
 * Hints
 ** link:{repoURL}/src/main/resources/view/StatusBarFooter.fxml[`StatusBarFooter.fxml`] will need a new `StatusBar`. Be sure to set the `GridPane.columnIndex` properly for each `StatusBar` to avoid misalignment!
-** link:{repoURL}/src/main/java/seedu/url/ui/StatusBarFooter.java[`StatusBarFooter`] needs to initialize the status bar on application start, and to update it accordingly whenever the url book is updated.
+** link:{repoURL}/src/main/java/seedu/url/ui/StatusBarFooter.java[`StatusBarFooter`] needs to initialize the status bar on application start, and to update it accordingly whenever the wish book is updated.
 * Solution
 ** Modify the constructor of link:{repoURL}/src/main/java/seedu/url/ui/StatusBarFooter.java[`StatusBarFooter`] to take in the number of wishes when the application just started.
 ** Use link:{repoURL}/src/main/java/seedu/url/ui/StatusBarFooter.java[`StatusBarFooter#handleWishBookChangedEvent(WishBookChangedEvent)`] to update the number of wishes whenever there are new changes to the wishbook.
@@ -715,12 +787,12 @@ image::getting-started-ui-status-after.png[width="500"]
 [discrete]
 ==== `Storage` component
 
-*Scenario:* You are in charge of `storage`. For your next project milestone, your team plans to implement a new feature of saving the url book to the cloud. However, the current implementation of the application constantly saves the url book after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the url book storage.
+*Scenario:* You are in charge of `storage`. For your next project milestone, your team plans to implement a new feature of saving the wish book to the cloud. However, the current implementation of the application constantly saves the url book after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the url book storage.
 
 [TIP]
 Do take a look at <<Design-Storage>> before attempting to modify the `Storage` component.
 
-. Add a new method `backupWishBook(ReadOnlyWishBook)`, so that the url book can be saved in a fixed temporary location.
+. Add a new method `backupWishBook(ReadOnlyWishBook)`, so that the wish book can be saved in a fixed temporary location.
 +
 ****
 * Hint
@@ -1042,30 +1114,6 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: Rank wishes
-
-*MSS*
-
-1.  *Actor* species the wish field to rank the wishes by.
-2.  *System* ranks the wishes in specified order and displays the new order.
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 1a. *Actor* enters invalid wish field.
-+
-[none]
-** 1a1. *System* shows Rank command usage.
-+
-Use case ends.
-
-* 2a. There are no wishes in the wish list.
-+
-Use case ends.
-
-[discrete]
 === Use case: Save money for a wish
 
 *MSS*
@@ -1096,33 +1144,6 @@ Use case ends.
 +
 [none]
 ** 1c1. *Actor* is prompted to enter a valid value.
-+
-Use case ends.
-
-[discrete]
-=== Use case: Reorder wishes
-
-*MSS*
-
-1.  *Actor* specifies indices of wishes to swap.
-2.  *System* swaps wishes belonging to the specified indices.
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 1a. *Actor* enters invalid indexes.
-+
-[none]
-** 1a1. *System* shows Reorder command usage.
-+
-Use case ends.
-
-* 1b. *System* has less than 2 wishes.
-+
-[none]
-** 1b1. *System* shows Reorder command usage.
 +
 Use case ends.
 
@@ -1197,6 +1218,45 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
+=== Use case: View command history
+
+*MSS*
+
+1.  *Actor* requests to view history of commands entered.
+2.  *System* shows all commands entered.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. *System* has no recorded commands.
++
+[none]
+** 1a1. User is prompted to enter a command.
++
+Use case ends.
+
+[discrete]
+=== Use case: View savings history
+
+*MSS*
+
+1.  *Actor* requests to view history of savings entered.
+2.  *System* shows all savings entered, from newest to oldest.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. *System* has no recorded savings.
++
+[none]
+** 1a1. User is prompted to enter a saving.
++
+Use case ends.
 
 _{More to be added}_
 

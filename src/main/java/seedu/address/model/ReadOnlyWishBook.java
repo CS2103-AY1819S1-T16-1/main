@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.wish.Wish;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a wish book
  */
 public interface ReadOnlyWishBook {
 

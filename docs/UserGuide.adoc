@@ -87,10 +87,10 @@ Format: `edit INDEX [n/WISH_NAME] [p/PRICE] [d/TIME_GIVEN]/[d/END_DATE] [t/TAG]`
 Examples:
 
 * `edit 1 n/Macbook Pro t/Broke wishes` +
-Edits the name of the wish and the tag of the 1st goal to be Macbook Pro and Broke wishes respectively
+Edits the name of the wish and the tag of the 1st wish to be Macbook Pro and Broke wishes respectively
 
 * `edit 2 p/22 d/22w` +
-Edits the price and time given to accomplish the 2nd goal to 22 (in the chosen currency) and 22 weeks respectively.
+Edits the price and time given to accomplish the 2nd wish to 22 (in the chosen currency) and 22 weeks respectively.
 
 === Listing all wishes : `list`
 
@@ -130,20 +130,16 @@ Format: `find SEARCH_PREDICATE [MORE_SEARCH_PREDICATES]`
 ****
 * The user can search using the following search predicates:
     * `NAME`
-    * `DATE`
-    * `PRICE`
     * `TAG`
 * `NAME`is the default search predicate.
-* The search is case insensitive e.g. watch will match Watch.
-* Only full words will be matched e.g. wat will not match watch.
-* Goals matching at least one keyword will be returned e.g. watch will return apple watch, pebble watch.
-* `DATE` is the creation date of the wish.
-* `PRICE` is the sale price of the item. It should be a positive number corrected to the smallest denomination of the currency.
+* The search is case insensitive. e.g. watch will match Watch.
+* Only full words will be matched. e.g. wat will not match watch.
+* Wishes matching at least one keyword will be returned. e.g. watch will return apple watch, pebble watch.
 ****
 
 Examples:
 
-* `find 22d` +
+* `find d/22` +
 Returns wish with stipulated time given of 22 days.
 
 * `find watch t/broke wishes` +
@@ -193,7 +189,7 @@ Selects the 1st wish in the results of the `find` command.
 === Save money for a particular wish: `save`
 
 Channels savings for a specified wish. +
-Format: `save [INDEX] AMOUNT`
+Format: `save [INDEX] s/AMOUNT`
 
 ****
 * `INDEX` should be a positive integer 1, 2, 3… no larger than the number of wishes
@@ -305,7 +301,7 @@ _{explain how the user can enable/disable data encryption}_
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Wish Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous WishBook folder.
 
 == Command Summary
 
@@ -317,15 +313,15 @@ e.g. `delete 3`
 * *Edit* : `edit INDEX [n/WISH_NAME] [p/PRICE] [d/TIME_GIVEN]/[d/END_DATE] [t/TAG]` +
 e.g. `edit 1 n/Macbook Pro t/Broke wishes`
 * *Find* : `find SEARCH_PREDICATE [MORE_SEARCH_PREDICATES]` +
-e.g. `find 22d`
+e.g. `find d/22`
 * *List* : `list`
 * *List completed* : `list -c`
 * *List uncompleted* : `list -u`
 * *Help* : `help`
 * *Select* : `select INDEX` +
 e.g.`select 2`
-* *Save* : `save AMOUNT [INDEX]` +
-e.g. `save 1000 1`
+* *Save* : `save [INDEX] s/AMOUNT` +
+e.g. `save 1 s/1000`
 * *Command History* : `history -c`
 * *Savings History* : `history -s`
 * *Remark* : `remark INDEX r/[REMARK]`

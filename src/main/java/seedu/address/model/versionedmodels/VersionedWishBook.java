@@ -11,14 +11,14 @@ import seedu.address.model.WishBook;
  */
 public class VersionedWishBook extends WishBook implements VersionedModel {
 
-    private final List<ReadOnlyWishBook> addressBookStateList;
+    private final List<ReadOnlyWishBook> wishBookStateList;
     private int currentStatePointer;
 
     public VersionedWishBook(ReadOnlyWishBook initialState) {
         super(initialState);
 
-        addressBookStateList = new ArrayList<>();
-        addressBookStateList.add(new WishBook(initialState));
+        wishBookStateList = new ArrayList<>();
+        wishBookStateList.add(new WishBook(initialState));
         currentStatePointer = 0;
     }
 
@@ -29,12 +29,12 @@ public class VersionedWishBook extends WishBook implements VersionedModel {
     @Override
     public void commit() {
         removeStatesAfterCurrentPointer();
-        addressBookStateList.add(new WishBook(this));
+        wishBookStateList.add(new WishBook(this));
         currentStatePointer++;
     }
 
     private void removeStatesAfterCurrentPointer() {
-        addressBookStateList.subList(currentStatePointer + 1, addressBookStateList.size()).clear();
+        wishBookStateList.subList(currentStatePointer + 1, wishBookStateList.size()).clear();
     }
 
     /**
@@ -46,7 +46,7 @@ public class VersionedWishBook extends WishBook implements VersionedModel {
             throw new NoUndoableStateException();
         }
         currentStatePointer--;
-        resetData(addressBookStateList.get(currentStatePointer));
+        resetData(wishBookStateList.get(currentStatePointer));
     }
 
     /**
@@ -58,7 +58,7 @@ public class VersionedWishBook extends WishBook implements VersionedModel {
             throw new NoRedoableStateException();
         }
         currentStatePointer++;
-        resetData(addressBookStateList.get(currentStatePointer));
+        resetData(wishBookStateList.get(currentStatePointer));
     }
 
     /**
@@ -72,7 +72,7 @@ public class VersionedWishBook extends WishBook implements VersionedModel {
      * Returns true if {@code redo()} has address book states to redo.
      */
     public boolean canRedo() {
-        return currentStatePointer < addressBookStateList.size() - 1;
+        return currentStatePointer < wishBookStateList.size() - 1;
     }
 
     @Override
@@ -87,12 +87,12 @@ public class VersionedWishBook extends WishBook implements VersionedModel {
             return false;
         }
 
-        VersionedWishBook otherVersionedAddressBook = (VersionedWishBook) other;
+        VersionedWishBook otherVersionedWishBook = (VersionedWishBook) other;
 
         // state check
-        return super.equals(otherVersionedAddressBook)
-                && addressBookStateList.equals(otherVersionedAddressBook.addressBookStateList)
-                && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
+        return super.equals(otherVersionedWishBook)
+                && wishBookStateList.equals(otherVersionedWishBook.wishBookStateList)
+                && currentStatePointer == otherVersionedWishBook.currentStatePointer;
     }
 
 }

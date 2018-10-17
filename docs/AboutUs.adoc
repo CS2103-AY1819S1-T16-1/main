@@ -4,9 +4,8 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-Save Goals was developed by the https://se-edu.github.io/docs/Team.html[GaveSoals] team. +
-_{The dummy content given below serves as a placeholder to be used by future forks of the project.}_ +
-{empty} +
+WishBook was developed by the https://github.com/orgs/CS2103-AY1819S1-T16-1/teams/developers[GaveSoals] team. +
+
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
 The original application (addressbook-level4) was developed by the https://se-edu.github.io/docs/Team.html[se-edu] team. +

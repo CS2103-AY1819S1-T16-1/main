@@ -80,7 +80,7 @@ public class WishBookParser {
 
         case HistoryCommand.COMMAND_WORD:
         case HistoryCommand.COMMAND_ALIAS:
-            return new HistoryCommand();
+            return new HistoryCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

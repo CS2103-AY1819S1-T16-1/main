@@ -137,8 +137,12 @@ public class WishBookParserTest {
 
     @Test
     public void parseCommand_history() throws Exception {
-        assertTrue(parser.parseCommand(HistoryCommand.COMMAND_WORD) instanceof HistoryCommand);
-        assertTrue(parser.parseCommand(HistoryCommand.COMMAND_WORD + " 3") instanceof HistoryCommand);
+        HistoryCommand commandHistoryCommand = (HistoryCommand) parser.parseCommand(HistoryCommand.COMMAND_WORD
+                + " " + HistoryCommand.HISTORY_ALL_COMMANDS);
+        HistoryCommand savingsHistoryCommand = (HistoryCommand) parser.parseCommand(HistoryCommand.COMMAND_WORD
+                + " " + HistoryCommand.HISTORY_ALL_SAVINGS);
+        assertTrue(commandHistoryCommand instanceof HistoryCommand);
+        assertTrue(savingsHistoryCommand instanceof HistoryCommand);
 
         try {
             parser.parseCommand("histories");
@@ -150,8 +154,13 @@ public class WishBookParserTest {
 
     @Test
     public void parseCommand_historyAlias() throws Exception {
-        assertTrue(parser.parseCommand(HistoryCommand.COMMAND_ALIAS) instanceof HistoryCommand);
-        assertTrue(parser.parseCommand(HistoryCommand.COMMAND_ALIAS + " 3") instanceof HistoryCommand);
+        HistoryCommand commandHistoryCommand = (HistoryCommand) parser.parseCommand(
+                HistoryCommand.COMMAND_ALIAS + " " + HistoryCommand.HISTORY_ALL_COMMANDS);
+        HistoryCommand savingsHistoryCommand = (HistoryCommand) parser.parseCommand(
+                HistoryCommand.COMMAND_ALIAS + " " + HistoryCommand.HISTORY_ALL_SAVINGS);
+
+        assertTrue(commandHistoryCommand instanceof HistoryCommand);
+        assertTrue(savingsHistoryCommand instanceof HistoryCommand);
 
         try {
             parser.parseCommand("histories");
@@ -166,9 +175,9 @@ public class WishBookParserTest {
         ListCommand listAllCommand = (ListCommand) parser.parseCommand(
                 ListCommand.COMMAND_WORD);
         ListCommand listCompletedCommand = (ListCommand) parser.parseCommand(
-                ListCommand.COMMAND_WORD + " -c");
+                ListCommand.COMMAND_WORD + " " + ListCommand.SHOW_COMPLETED_COMMAND);
         ListCommand listUncompletedCommand = (ListCommand) parser.parseCommand(
-                ListCommand.COMMAND_WORD + " -u");
+                ListCommand.COMMAND_WORD + " " + ListCommand.SHOW_UNCOMPLETED_COMMAND);
         assertEquals(new ListCommand(ListCommand.ListType.SHOW_ALL), listAllCommand);
         assertEquals(new ListCommand(ListCommand.ListType.SHOW_COMPLETED), listCompletedCommand);
         assertEquals(new ListCommand(ListCommand.ListType.SHOW_UNCOMPLETED), listUncompletedCommand);
@@ -179,9 +188,9 @@ public class WishBookParserTest {
         ListCommand listAllCommand = (ListCommand) parser.parseCommand(
                 ListCommand.COMMAND_ALIAS);
         ListCommand listCompletedCommand = (ListCommand) parser.parseCommand(
-                ListCommand.COMMAND_ALIAS + " -c");
+                ListCommand.COMMAND_ALIAS + " " + ListCommand.SHOW_COMPLETED_COMMAND);
         ListCommand listUncompletedCommand = (ListCommand) parser.parseCommand(
-                ListCommand.COMMAND_ALIAS + " -u");
+                ListCommand.COMMAND_ALIAS + " " + ListCommand.SHOW_UNCOMPLETED_COMMAND);
         assertEquals(new ListCommand(ListCommand.ListType.SHOW_ALL), listAllCommand);
         assertEquals(new ListCommand(ListCommand.ListType.SHOW_COMPLETED), listCompletedCommand);
         assertEquals(new ListCommand(ListCommand.ListType.SHOW_UNCOMPLETED), listUncompletedCommand);

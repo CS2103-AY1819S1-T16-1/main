@@ -43,7 +43,7 @@ public class SavedAmount {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid savedAmount number.
      */
     public static boolean isValidSavedAmount(String test) {
         return test.matches(SAVED_AMOUNT_VALIDATION_REGEX);

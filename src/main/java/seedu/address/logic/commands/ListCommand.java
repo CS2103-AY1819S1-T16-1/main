@@ -18,15 +18,16 @@ public class ListCommand extends Command {
     public static final String SHOW_UNCOMPLETED_COMMAND = "-u";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all wishes that are in the WishBook.\n"
-            + COMMAND_WORD + " -c: Lists all wishes have been completed.\n"
-            + COMMAND_WORD + " -u: Lists all wishes that are still in progress.\n";
+            + COMMAND_WORD + " " + SHOW_COMPLETED_COMMAND + ": Lists all wishes have been completed.\n"
+            + COMMAND_WORD + " " + SHOW_UNCOMPLETED_COMMAND + ": Lists all wishes that are still in progress.\n";
+    public static final String MESSAGE_SUCCESS = "Listed all wishes";
+    public static final String MESSAGE_SHOWED_COMPLETED = "Listed completed wishes";
+    public static final String MESSAGE_SHOWED_UNCOMPLETED = "Listed uncompleted wishes";
 
     /**
      * Types of lists that can be shown.
      */
     public enum ListType { SHOW_ALL, SHOW_COMPLETED, SHOW_UNCOMPLETED }
-
-    public static final String MESSAGE_SUCCESS = "Listed all wishes";
 
     private final ListType listType;
 
@@ -38,14 +39,16 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
 
-        if (this.listType.equals(ListType.SHOW_ALL)) {
-            model.updateFilteredWishList(PREDICATE_SHOW_ALL_WISHES);
-        } else if (this.listType.equals(ListType.SHOW_COMPLETED)) {
+        if (listType.equals(ListType.SHOW_COMPLETED)) {
             model.updateFilteredWishList(new WishCompletedPredicate(true));
-        } else {
+            return new CommandResult(MESSAGE_SHOWED_COMPLETED);
+        }
+        if (listType.equals(ListType.SHOW_UNCOMPLETED)) {
             model.updateFilteredWishList(new WishCompletedPredicate(false));
+            return new CommandResult(MESSAGE_SHOWED_UNCOMPLETED);
         }
 
+        model.updateFilteredWishList(PREDICATE_SHOW_ALL_WISHES);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
