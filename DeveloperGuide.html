@@ -30,9 +30,10 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#add-wish-feature">3.2. Add Wish feature</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#savings-history-feature">3.2. Savings History feature</a></li>
+<li><a href="#add-wish-feature">3.3. Add Wish feature</a></li>
+<li><a href="#logging">3.4. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -804,9 +805,126 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-wish-feature"><a class="link" href="#add-wish-feature">3.2. Add Wish feature</a></h3>
+<h3 id="savings-history-feature"><a class="link" href="#savings-history-feature">3.2. Savings History feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<h4 id="capturing-the-state-of-code-wishtransaction-code"><a class="link" href="#capturing-the-state-of-code-wishtransaction-code">3.2.1. Capturing the state of <code>WishTransaction</code></a></h4>
+<div class="paragraph">
+<p>The current state of the savings history of the <code>WishBook</code> is captured by <code>VersionedWishTransaction</code>.
+<code>VersionedWishTransaction</code> extends <code>WishTransaction</code> and has an undo/redo history, similar to the implementation of the Undo/Redo feature, and is stored internally as a <code>wishStateList</code> and <code>currentStatePointer</code>. Additionally, it implements <code>VersionedModel</code> and so contains the implementation of the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>VersionedWishTransaction#commit()</code>&#8201;&#8212;&#8201;Saves the current wish transaction state in its history.</p>
+</li>
+<li>
+<p><code>VersionedWishTransaction#undo()</code>&#8201;&#8212;&#8201;Restores the previous wish transaction state from its history.</p>
+</li>
+<li>
+<p><code>VersionedWishTransaction#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone wish transaction state from its history.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> and <code>Model#redoWishBook()</code> respectively.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="capturing-the-state-of-each-code-wish-code"><a class="link" href="#capturing-the-state-of-each-code-wish-code">3.2.2. Capturing the state of each <code>Wish</code></a></h4>
+<div class="paragraph">
+<p><code>WishTransaction</code> keeps track of the state of all wishes in <code>WishBook</code> via a <code>wishMap</code> which maps the unique ID of a <code>Wish</code> to a list of <code>Wish</code> states. <code>WishTransaction</code> implements <code>ActionCommandListener</code> such that any state changing command performed to a <code>Wish</code> or the <code>WishBook</code> such as <code>AddCommand()</code>, <code>EditCommand()</code>, <code>SaveCommand()</code>, etc will result in the <code>WishMap</code> being updated accordingly in <code>WishTransaction</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="persistent-storage"><a class="link" href="#persistent-storage">3.2.3. Persistent storage</a></h4>
+<div class="paragraph">
+<p><code>VersionedWishTransaction</code>, <code>WishTransaction</code> can be easily converted to and from xml using  <code>XmlWishTransactions</code>. <code>XmlWishTransactions</code> is saved as an xml file when the user explicitly closes the window, thereby invoking <code>MainApp#stop()</code> which saves the current state of <code>VersionedWishTransaction</code> in the <code>wishStateList</code> to hard disk.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the savings history mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application. The default file path storing the previous state of the <code>WishTransaction</code> will be retrieved, unless otherwise specified by the user, and the contents from the xml file will be parsed and converted into a <code>WishTransaction</code> object via the <code>XmlWishTransactions</code> object. If the file at the specified location is behind the current state of the <code>WishBook</code>, content of the <code>WishTransaction</code> will be overwritten by the <code>WishBook</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>wishStateList</code> starts off with the initial state of the <code>WishTransaction</code> as the first item in the list.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>add n/iPhone &#8230;&#8203;</code> to add a new wish. The <code>add</code> command calls <code>Model#commitWishBook()</code>, causing the current state of the modified wish transaction state to be saved into <code>wishStateList</code>. As this is a command that changes the state of the <code>WishBook</code>, <code>Model#addWish()</code> will call <code>VersionedWishTransaction#addWish()</code> to add a new wish to the <code>WishMap</code>.</p>
+</div>
+<div class="ulist NOTE">
+<ul class="NOTE">
+<li>
+<p>If a command fails its execution, it will not call <code>Model#commitWishBook()</code>, so the wish transaction state will not be saved into the <code>wishStateList</code>.</p>
+</li>
+<li>
+<p>If the <code>WishMap</code> contains an identical wish (such is identified by <code>Wish#isSameWish()</code>), then the call to add this wish will fail. As such, the wish will not be added to the <code>WishMap</code> or the <code>WishBook</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Step 3. The user now decides that adding the wish was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoWishBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous wish transaction state, and restores the wish transaction to that state.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the <code>currentStatePointer</code> is at index 0, pointing to the initial wish transaction state, then there are no previous wish transaction states to restore. The <code>undo</code> command uses <code>Model#canUndoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoWishBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the wish transaction to that state.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the <code>currentStatePointer</code> is at index <code>wishStateList.size() - 1</code>, pointing to the latest wish transaction state, then there are no undone wish transaction states to restore. The <code>redo</code> command uses <code>Model#canRedoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 4. The user then decides to execute the command <code>list</code>. Commands that do not modify the state of the <code>WishBook</code>, such as <code>list</code>, will usually not call <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> or <code>Model#redoWishBook()</code>. Thus, the <code>wishBookStateList</code> remains unchanged.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. The user finally exits the app by clicking on the close button. The most recent state of the <code>WishTransaction</code> will be converted into xml format via the the <code>XmlWishTransactions</code> object and be saved into the same file path it was first retrieved from.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If there was some error saving the current state of the <code>WishTransaction</code> to the specified file path in hard disk, an exception will be thrown and a warning will be shown to the user. The current state of the <code>WishTransaction</code> object will not be saved to hard disk.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-wish-feature"><a class="link" href="#add-wish-feature">3.3. Add Wish feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The Add Wish feature is executed through an <code>AddCommand</code> by the user, which after parsing,
 is facilitated mainly by the <code>ModelManager</code> which implements <code>Model</code>.
@@ -883,21 +1001,21 @@ as <code>filteredWishes</code> is updated to have all wishes in <code>WishBook</
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p><em>{TO-DO}</em></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -928,7 +1046,7 @@ as <code>filteredWishes</code> is updated to have all wishes in <code>WishBook</
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2946,4 +3064,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-17 09:16:06 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-17 16:10:17 UTC</div></div></div></body></html>
