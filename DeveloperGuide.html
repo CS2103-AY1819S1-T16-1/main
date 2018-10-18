@@ -33,8 +33,9 @@
 <li><a href="#savings-history-feature">3.2. Savings History feature</a></li>
 <li><a href="#add-wish-feature">3.3. Add Wish feature</a></li>
 <li><a href="#save-amount-feature">3.4. Save Amount feature</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#find-wish-feature">3.5. Find Wish Feature</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1174,14 +1175,116 @@ We must remember to skip this wish in methods that involve displaying the WishLi
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="find-wish-feature"><a class="link" href="#find-wish-feature">3.5. Find Wish Feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.5.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The find mechanism is facilitated by <code>FindCommand</code> and <code>FindCommandParser</code>. It extends <code>Command</code> and implements the following operations.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FindCommand#execute()</code>&#8201;&#8212;&#8201;Executes the command by running a predicate <code>NameContainsKeywordsPredicate</code> and updates the current wish list.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The find mechanism is supported by <code>FindCommandParser</code>. It implements <code>Parser</code> that contains the following operations.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FindCommandParser#parse()</code>&#8201;&#8212;&#8201;Checks the arguments for empty strings and throws a <code>ParseException</code> if empty string is found. It then splits it by one or more white spaces. It then removes any strings in the list of common words.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The predicate <code>NameContainsKeywordsPredicate</code> takes in a list of strings and checks if any of the strings contain fully or partial in the list of wish&#8217;s name, and returns the corresponding wish if so.</p>
+</div>
+<div class="paragraph">
+<p><em>{TO-DO: Sequence Diagram here}</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="example"><a class="link" href="#example">3.5.2. Example</a></h4>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the Find mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>find iphone</code> command to get all wishses containing the word 'iphone'.
+The <code>find</code> command calls <code>FindCommandParser#parse()</code>, checking the values <code>iphone</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a command fails its execution, it will not call <code>FindCommand#execute()</code>, so the state will not be saved.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The entire list of wishes is filtered by the predicate <code>NameContainsKeywordsPredicate</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The filtered list of wishes is returned to the GUI.</p>
+</div>
+<div class="paragraph">
+<p><em>{TO-DO: Flow Chart Diagram}</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-predicate-works"><a class="link" href="#aspect-how-predicate-works">Aspect: How predicate works</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (Current choice):</strong> Predicate have additional filter with an ignore list.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement, user friendly.</p>
+</li>
+<li>
+<p>Cons: More complicated predicate, sub strings not easily taken care of.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Filter the data when it is taken in.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less complicated predicate.</p>
+</li>
+<li>
+<p>Cons: Manipulates the data, editing it for every other case.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1212,7 +1315,7 @@ We must remember to skip this wish in methods that involve displaying the WishLi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3211,4 +3314,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-18 05:54:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-18 09:46:15 UTC</div></div></div></body></html>
