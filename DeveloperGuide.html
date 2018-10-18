@@ -32,8 +32,9 @@
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
 <li><a href="#savings-history-feature">3.2. Savings History feature</a></li>
 <li><a href="#add-wish-feature">3.3. Add Wish feature</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
+<li><a href="#save-amount-feature">3.4. Save Amount feature</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -405,7 +406,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
+<img src="images/SDforDeleteWish.png" alt="SDforDeleteWish" width="800">
 </div>
 <div class="title">Figure 3. Component interactions for <code>delete 1</code> command (part 1)</div>
 </div>
@@ -426,7 +427,7 @@ Note how the <code>Model</code> simply raises a <code>WishBookChangedEvent</code
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforDeletePersonEventHandling.png" alt="SDforDeletePersonEventHandling" width="800">
+<img src="images/SDforDeleteWishEventHandling.png" alt="SDforDeleteWishEventHandling" width="800">
 </div>
 <div class="title">Figure 4. Component interactions for <code>delete 1</code> command (part 2)</div>
 </div>
@@ -614,13 +615,13 @@ Additionally, it implements the following operations:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>VersionedWishBook#commit()</code>&#8201;&#8212;&#8201;Saves the current url book state in its history.</p>
+<p><code>VersionedWishBook#commit()</code>&#8201;&#8212;&#8201;Saves the current wish book state in its history.</p>
 </li>
 <li>
-<p><code>VersionedWishBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous url book state from its history.</p>
+<p><code>VersionedWishBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous wish book state from its history.</p>
 </li>
 <li>
-<p><code>VersionedWishBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone url book state from its history.</p>
+<p><code>VersionedWishBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone wish book state from its history.</p>
 </li>
 </ul>
 </div>
@@ -631,7 +632,7 @@ Additionally, it implements the following operations:</p>
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedWishBook</code> will be initialized with the initial url book state, and the <code>currentStatePointer</code> pointing to that single url book state.</p>
+<p>Step 1. The user launches the application for the first time. The <code>VersionedWishBook</code> will be initialized with the initial wish book state, and the <code>currentStatePointer</code> pointing to that single url book state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -639,7 +640,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th wish in the url book. The <code>delete</code> command calls <code>Model#commitWishBook()</code>, causing the modified state of the url book after the <code>delete 5</code> command executes to be saved in the <code>wishBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted url book state.</p>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th wish in the wish book. The <code>delete</code> command calls <code>Model#commitWishBook()</code>, causing the modified state of the url book after the <code>delete 5</code> command executes to be saved in the <code>wishBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted url book state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -647,7 +648,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new wish. The <code>add</code> command also calls <code>Model#commitWishBook()</code>, causing another modified url book state to be saved into the <code>wishBookStateList</code>.</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new wish. The <code>add</code> command also calls <code>Model#commitWishBook()</code>, causing another modified wish book state to be saved into the <code>wishBookStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -661,13 +662,13 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitWishBook()</code>, so the url book state will not be saved into the <code>wishBookStateList</code>.
+If a command fails its execution, it will not call <code>Model#commitWishBook()</code>, so the wish book state will not be saved into the <code>wishBookStateList</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the wish was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoWishBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous url book state, and restores the url book to that state.</p>
+<p>Step 4. The user now decides that adding the wish was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoWishBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous wish book state, and restores the url book to that state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -681,7 +682,7 @@ If a command fails its execution, it will not call <code>Model#commitWishBook()<
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial url book state, then there are no previous url book states to restore. The <code>undo</code> command uses <code>Model#canUndoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the <code>currentStatePointer</code> is at index 0, pointing to the initial wish book state, then there are no previous url book states to restore. The <code>undo</code> command uses <code>Model#canUndoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 </td>
 </tr>
 </table>
@@ -695,7 +696,7 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial u
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoWishBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the url book to that state.</p>
+<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoWishBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the wish book to that state.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -704,13 +705,13 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial u
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size() - 1</code>, pointing to the latest url book state, then there are no undone url book states to restore. The <code>redo</code> command uses <code>Model#canRedoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size() - 1</code>, pointing to the latest wish book state, then there are no undone url book states to restore. The <code>redo</code> command uses <code>Model#canRedoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the url book, such as <code>list</code>, will usually not call <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> or <code>Model#redoWishBook()</code>. Thus, the <code>wishBookStateList</code> remains unchanged.</p>
+<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the wish book, such as <code>list</code>, will usually not call <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> or <code>Model#redoWishBook()</code>. Thus, the <code>wishBookStateList</code> remains unchanged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -718,7 +719,7 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 </div>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitWishBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>wishBookStateList</code>, all url book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitWishBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>wishBookStateList</code>, all wish book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -741,7 +742,7 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire url book.</p>
+<p><strong>Alternative 1 (current choice):</strong> Saves the entire wish book.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -774,7 +775,7 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of url book states.</p>
+<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of wish book states.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1008,14 +1009,179 @@ as <code>filteredWishes</code> is updated to have all wishes in <code>WishBook</
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
+<h3 id="save-amount-feature"><a class="link" href="#save-amount-feature">3.4. Save Amount feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The Save Amount feature is executed through an <code>SaveCommand</code> by the user, which after parsing,
+is facilitated mainly by the <code>ModelManager</code> which implements <code>Model</code>.
+Wish stores the <code>price</code> and <code>savedAmount</code> of <code>Wish</code>, helping to track the progress of the savings towards the <code>price</code>.
+Meanwhile, WishBook stores the <code>spareFunds</code>, which is an excess pool of funds that can be used in the future.
+After adding a saving, the FilteredWishList is also updated to reflect the latest WishBook.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the SaveCommand behaves at each step:</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time.
+WishBook will be initialised in <code>ModelManager</code> with the initial WishBook state, where <code>SavedAmount spareFunds</code> = 0.0 .</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>save 1 s/10</code>, to save $10 into an existing wish with <code>Index</code> 1 and <code>Price</code> $15. In the SaveCommand#execute method,
+a new editedWish is created to reflect the new savedAmount. It then calls Model#updateWish to update this wish with the old one in <code>WishBook</code>.</p>
+</div>
+<div class="paragraph">
+<p>The resultant wish will have the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name: <em>1TB Toshiba SSD</em></p>
+</li>
+<li>
+<p>SavedAmount: 10.00</p>
+</li>
+<li>
+<p>Price: 15.00</p>
+</li>
+<li>
+<p>DueDate: 20/4/2018 (20th April 2018)</p>
+</li>
+<li>
+<p>URL: <code>empty string</code></p>
+</li>
+<li>
+<p>Remark: <code>empty string</code></p>
+</li>
+<li>
+<p>Tags: <code>none</code></p>
+</li>
+<li>
+<p>Transactions: <code>empty LinkedList</code></p>
+</li>
+<li>
+<p>Fulfilled: <code>false</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the <code>Index</code> is invalid, or the saving entered causes <code>savedAmount</code> to become negative, it will not call Model#updateWish.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The user decides to execute save 1 s/10 again. However, SaveCommand checks that <code>savedAmount</code> &gt; <code>price</code>.
+SaveCommand#execute creates a new <code>editedWish</code> with <code>savedAmount = wish.getPrice()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The resultant wish will have the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name: <em>1TB Toshiba SSD</em></p>
+</li>
+<li>
+<p>SavedAmount: 15.00</p>
+</li>
+<li>
+<p>Price: 15.00</p>
+</li>
+<li>
+<p>DueDate: 20/4/2018 (20th April 2018)</p>
+</li>
+<li>
+<p>URL: <code>empty string</code></p>
+</li>
+<li>
+<p>Remark: <code>empty string</code></p>
+</li>
+<li>
+<p>Tags: <code>none</code></p>
+</li>
+<li>
+<p>Transactions: <code>empty LinkedList</code></p>
+</li>
+<li>
+<p>Fulfilled: <code>true</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Step 4. The excess amount of $5 is stored in a new <code>SavedAmount</code> variable <code>excessAmount</code>.
+SaveCommand#execute then calls Model#addToSpareFunds(excess) to update the <code>spareFunds</code> in WishBook.</p>
+</div>
+<div class="paragraph">
+<p>In WishBook, the result would be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>spareFunds: 5.00</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Step 5. The user tries to execute <code>save 1 s/10</code> again. However, since the value for <code>fulfilled</code> is true,</p>
+</div>
+<div class="paragraph">
+<p><em>{TO-DO: Sequence Diagram here}</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-sparefunds-feature"><a class="link" href="#aspect-data-structure-to-support-the-sparefunds-feature">Aspect: Data structure to support the spareFunds feature</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Store it in a <code>SavedAmount</code> variable in <code>WishBook</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: More methods needed when needing to move funds from <code>spareFunds</code> to other wishes.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Store it as a pseudo wish with index 0.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It can be treated as another <code>wish</code>, hence existing methods can be used without needing to create much more new ones.</p>
+</li>
+<li>
+<p>Cons: Requires dealing with an extra wish that has to be hidden on the <code>WishListPanel</code> and displayed separately on the UI.
+We must remember to skip this wish in methods that involve displaying the WishList.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1046,7 +1212,7 @@ as <code>filteredWishes</code> is updated to have all wishes in <code>WishBook</
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1530,7 +1696,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 </div>
 <h4 id="code-model-code-component" class="discrete"><code>Model</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>model</code>. One day, the <code>logic</code>-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular tag from everyone in the url book, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>model</code>. One day, the <code>logic</code>-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular tag from everyone in the wish book, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1547,7 +1713,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a <code>removeTag(Tag)</code> method. The specified tag will be removed from everyone in the url book.</p>
+<p>Add a <code>removeTag(Tag)</code> method. The specified tag will be removed from everyone in the wish book.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -1596,7 +1762,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 </div>
 <h4 id="code-ui-code-component" class="discrete"><code>Ui</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>ui</code>. During a beta testing session, your team is observing how the users use your url book application. You realize that one of the users occasionally tries to delete non-existent tags from a wish, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn&#8217;t prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last wish in the list. Your job is to implement improvements to the UI to solve all these problems.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>ui</code>. During a beta testing session, your team is observing how the users use your wish book application. You realize that one of the users occasionally tries to delete non-existent tags from a wish, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn&#8217;t prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last wish in the list. Your job is to implement improvements to the UI to solve all these problems.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1752,7 +1918,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 </div>
 </li>
 <li>
-<p>Modify the <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of wishes in the url book.</p>
+<p>Modify the <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of wishes in the wish book.</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -1781,7 +1947,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <p><a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
 </li>
 <li>
-<p><a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the url book is updated.</p>
+<p><a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the wish book is updated.</p>
 </li>
 </ul>
 </div>
@@ -1817,7 +1983,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 </div>
 <h4 id="code-storage-code-component" class="discrete"><code>Storage</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>storage</code>. For your next project milestone, your team plans to implement a new feature of saving the url book to the cloud. However, the current implementation of the application constantly saves the url book after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the url book storage.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>storage</code>. For your next project milestone, your team plans to implement a new feature of saving the wish book to the cloud. However, the current implementation of the application constantly saves the url book after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the url book storage.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1834,7 +2000,7 @@ Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage componen
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a new method <code>backupWishBook(ReadOnlyWishBook)</code>, so that the url book can be saved in a fixed temporary location.</p>
+<p>Add a new method <code>backupWishBook(ReadOnlyWishBook)</code>, so that the wish book can be saved in a fixed temporary location.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -2557,49 +2723,6 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-rank-wishes" class="discrete">Use case: Rank wishes</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Actor</strong> species the wish field to rank the wishes by.</p>
-</li>
-<li>
-<p><strong>System</strong> ranks the wishes in specified order and displays the new order.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a. <strong>Actor</strong> enters invalid wish field.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a1. <strong>System</strong> shows Rank command usage.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>2a. There are no wishes in the wish list.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
 <h3 id="use-case-save-money-for-a-wish" class="discrete">Use case: Save money for a wish</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2654,56 +2777,6 @@ for <code>RemarkCommandParser</code>.</p>
 <ul class="none">
 <li>
 <p>1c1. <strong>Actor</strong> is prompted to enter a valid value.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-reorder-wishes" class="discrete">Use case: Reorder wishes</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Actor</strong> specifies indices of wishes to swap.</p>
-</li>
-<li>
-<p><strong>System</strong> swaps wishes belonging to the specified indices.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a. <strong>Actor</strong> enters invalid indexes.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a1. <strong>System</strong> shows Reorder command usage.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>1b. <strong>System</strong> has less than 2 wishes.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1b1. <strong>System</strong> shows Reorder command usage.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2839,6 +2912,80 @@ for <code>RemarkCommandParser</code>.</p>
 <p>2a. List is empty.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-view-command-history" class="discrete">Use case: View command history</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Actor</strong> requests to view history of commands entered.</p>
+</li>
+<li>
+<p><strong>System</strong> shows all commands entered.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. <strong>System</strong> has no recorded commands.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. User is prompted to enter a command.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-view-savings-history" class="discrete">Use case: View savings history</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Actor</strong> requests to view history of savings entered.</p>
+</li>
+<li>
+<p><strong>System</strong> shows all savings entered, from newest to oldest.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. <strong>System</strong> has no recorded savings.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. User is prompted to enter a saving.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
 </div>
 </li>
 </ul>
@@ -3064,4 +3211,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-18 02:58:15 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-18 03:19:17 UTC</div></div></div></body></html>

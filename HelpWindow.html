@@ -203,11 +203,11 @@ Format: <code>edit INDEX [n/WISH_NAME] [p/PRICE] [d/TIME_GIVEN]/[d/END_DATE] [t/
 <ul>
 <li>
 <p><code>edit 1 n/Macbook Pro t/Broke wishes</code><br>
-Edits the name of the wish and the tag of the 1st goal to be Macbook Pro and Broke wishes respectively</p>
+Edits the name of the wish and the tag of the 1st wish to be Macbook Pro and Broke wishes respectively</p>
 </li>
 <li>
 <p><code>edit 2 p/22 d/22w</code><br>
-Edits the price and time given to accomplish the 2nd goal to 22 (in the chosen currency) and 22 weeks respectively.</p>
+Edits the price and time given to accomplish the 2nd wish to 22 (in the chosen currency) and 22 weeks respectively.</p>
 </li>
 </ul>
 </div>
@@ -278,31 +278,19 @@ Format: <code>find SEARCH_PREDICATE [MORE_SEARCH_PREDICATES]</code></p>
 <p><code>NAME</code></p>
 </li>
 <li>
-<p><code>DATE</code></p>
-</li>
-<li>
-<p><code>PRICE</code></p>
-</li>
-<li>
 <p><code>TAG</code></p>
 </li>
 <li>
 <p>`NAME`is the default search predicate.</p>
 </li>
 <li>
-<p>The search is case insensitive e.g. watch will match Watch.</p>
+<p>The search is case insensitive. e.g. watch will match Watch.</p>
 </li>
 <li>
-<p>Only full words will be matched e.g. wat will not match watch.</p>
+<p>Only full words will be matched. e.g. wat will not match watch.</p>
 </li>
 <li>
-<p>Goals matching at least one keyword will be returned e.g. watch will return apple watch, pebble watch.</p>
-</li>
-<li>
-<p><code>DATE</code> is the creation date of the wish.</p>
-</li>
-<li>
-<p><code>PRICE</code> is the sale price of the item. It should be a positive number corrected to the smallest denomination of the currency.</p>
+<p>Wishes matching at least one keyword will be returned. e.g. watch will return apple watch, pebble watch.</p>
 </li>
 </ul>
 </div>
@@ -314,7 +302,7 @@ Format: <code>find SEARCH_PREDICATE [MORE_SEARCH_PREDICATES]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find 22d</code><br>
+<p><code>find d/22</code><br>
 Returns wish with stipulated time given of 22 days.</p>
 </li>
 <li>
@@ -407,7 +395,7 @@ Selects the 1st wish in the results of the <code>find</code> command.</p>
 <h3 id="save-money-for-a-particular-wish-code-save-code"><a class="link" href="#save-money-for-a-particular-wish-code-save-code">3.12. Save money for a particular wish: <code>save</code></a></h3>
 <div class="paragraph">
 <p>Channels savings for a specified wish.<br>
-Format: <code>save [INDEX] AMOUNT</code></p>
+Format: <code>save [INDEX] s/AMOUNT</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -597,7 +585,7 @@ There is no need to save manually.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Wish Book folder.</p>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous WishBook folder.</p>
 </div>
 </div>
 </div>
@@ -623,7 +611,7 @@ e.g. <code>edit 1 n/Macbook Pro t/Broke wishes</code></p>
 </li>
 <li>
 <p><strong>Find</strong> : <code>find SEARCH_PREDICATE [MORE_SEARCH_PREDICATES]</code><br>
-e.g. <code>find 22d</code></p>
+e.g. <code>find d/22</code></p>
 </li>
 <li>
 <p><strong>List</strong> : <code>list</code></p>
@@ -642,8 +630,8 @@ e.g. <code>find 22d</code></p>
 e.g.<code>select 2</code></p>
 </li>
 <li>
-<p><strong>Save</strong> : <code>save AMOUNT [INDEX]</code><br>
-e.g. <code>save 1000 1</code></p>
+<p><strong>Save</strong> : <code>save [INDEX] s/AMOUNT</code><br>
+e.g. <code>save 1 s/1000</code></p>
 </li>
 <li>
 <p><strong>Command History</strong> : <code>history -c</code></p>
@@ -666,4 +654,4 @@ e.g. <code>save 1000 1</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-18 02:58:15 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-18 03:19:17 UTC</div></div></div></body></html>
