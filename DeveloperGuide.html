@@ -29,13 +29,14 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#savings-history-feature">3.2. Savings History feature</a></li>
-<li><a href="#add-wish-feature">3.3. Add Wish feature</a></li>
-<li><a href="#save-amount-feature">3.4. Save Amount feature</a></li>
-<li><a href="#find-wish-feature">3.5. Find Wish Feature</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#model">3.1. Model</a></li>
+<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
+<li><a href="#savings-history-feature">3.3. Savings History feature</a></li>
+<li><a href="#add-wish-feature">3.4. Add Wish feature</a></li>
+<li><a href="#save-amount-feature">3.5. Save Amount feature</a></li>
+<li><a href="#find-wish-feature">3.6. Find Wish Feature</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -543,7 +544,9 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>stores the Wish Book data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Wish&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;Wish&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that
+the UI automatically updates when the data in the list change. The elements of the <code>ObservableList&lt;Wish&gt;</code> can also
+be filtered and sorted to suit the needs of specific commands.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -605,9 +608,132 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Wish Book</co
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.1. Undo/Redo feature</a></h3>
+<h3 id="model"><a class="link" href="#model">3.1. Model</a></h3>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<h4 id="wish-model"><a class="link" href="#wish-model">3.1.1. Wish Model</a></h4>
+<div class="paragraph">
+<p>A wish is uniquely identified by its Universal Unique Identifier (UUID) which is generated randomly only once for a
+particular wish, upon its creation through the <code>AddCommand</code>. A wish stores the following primary attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name</p>
+</li>
+<li>
+<p>Price</p>
+</li>
+<li>
+<p>Date</p>
+</li>
+<li>
+<p>Saved Amount</p>
+</li>
+<li>
+<p>Url</p>
+</li>
+<li>
+<p>Remark</p>
+</li>
+<li>
+<p>Tags</p>
+</li>
+<li>
+<p>UUID</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is impossible for the user to create a duplicate wish as it is impossible to modify a wish&#8217;s UUID.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="wish-priority"><a class="link" href="#wish-priority">3.1.2. Wish Priority</a></h4>
+<div class="paragraph">
+<p>A wish needs to be prioritised in a specific order such that the wishes with the highest priority will be visible
+on the top of the list. In WishBook, the priority is determined primarily by the due date of the wish which is
+stored in every wish&#8217;s <code>Date</code> attribute. Ties are broken by <code>Name</code>. Further ties are broken by <code>UUID</code> as it is possible
+for the <code>Date</code> and <code>Name</code> of two wishes to be identical.</p>
+</div>
+<div class="paragraph">
+<p>The sorting of the displayed results is done by the <code>filteredSortedWishes</code> list. The sorting order is specified by
+<code>WishComparator</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-uniqueness-of-a-wish"><a class="link" href="#aspect-uniqueness-of-a-wish">Aspect: Uniqueness of a Wish</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1(current choice):</strong> Identify a <code>Wish</code> by a randomly generated UUID.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Extremely low probability of collision.</p>
+</li>
+<li>
+<p>Pros: No extra maintenance required upon generation as every <code>Wish</code> is unique.</p>
+</li>
+<li>
+<p>Cons: UUID does not map to any real world entity and it is used strictly for identification.</p>
+</li>
+<li>
+<p>Cons: It is more difficult to system test the <code>AddCommand</code> with the current group of methods for system tests as
+UUID is randomly generated each time.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Identify a wish by <code>Name</code>, <code>Price</code>, <code>Date</code>, <code>Url</code>, <code>Tags</code>. Wishes with identical values for
+these attributes will be represented by a single <code>WishCard</code>. The <code>WishCard</code> will be augmented with a <code>Multiplicity</code> to
+indicate the number of identical wishes.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: WishBook will be more compact and every attribute stored in a <code>Wish</code> maps to a real entity.</p>
+</li>
+<li>
+<p>Cons: Additional attribute <code>Multiplicity</code> may have to be frequently edited as it is another
+attribute that is affected by multiple commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Identify a wish by a new attribute <code>CreatedTime</code>, which is derived from the system time
+when the wish is created.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The attribute maps to a real entity. It can be an additional information presented to the user about a wish.</p>
+</li>
+<li>
+<p>Cons: There might be collisions in <code>CreatedTime</code> if the the system time is incorrect.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedWishBook</code>.
 It extends <code>WishBook</code> with an undo/redo history, stored internally as an <code>wishBookStateList</code> and <code>currentStatePointer</code>.
@@ -737,7 +863,7 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -807,9 +933,9 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 </div>
 </div>
 <div class="sect2">
-<h3 id="savings-history-feature"><a class="link" href="#savings-history-feature">3.2. Savings History feature</a></h3>
+<h3 id="savings-history-feature"><a class="link" href="#savings-history-feature">3.3. Savings History feature</a></h3>
 <div class="sect3">
-<h4 id="capturing-the-state-of-code-wishtransaction-code"><a class="link" href="#capturing-the-state-of-code-wishtransaction-code">3.2.1. Capturing the state of <code>WishTransaction</code></a></h4>
+<h4 id="capturing-the-state-of-code-wishtransaction-code"><a class="link" href="#capturing-the-state-of-code-wishtransaction-code">3.3.1. Capturing the state of <code>WishTransaction</code></a></h4>
 <div class="paragraph">
 <p>The current state of the savings history of the <code>WishBook</code> is captured by <code>VersionedWishTransaction</code>.
 <code>VersionedWishTransaction</code> extends <code>WishTransaction</code> and has an undo/redo history, similar to the implementation of the Undo/Redo feature, and is stored internally as a <code>wishStateList</code> and <code>currentStatePointer</code>. Additionally, it implements <code>VersionedModel</code> and so contains the implementation of the following operations:</p>
@@ -832,13 +958,13 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 </div>
 </div>
 <div class="sect3">
-<h4 id="capturing-the-state-of-each-code-wish-code"><a class="link" href="#capturing-the-state-of-each-code-wish-code">3.2.2. Capturing the state of each <code>Wish</code></a></h4>
+<h4 id="capturing-the-state-of-each-code-wish-code"><a class="link" href="#capturing-the-state-of-each-code-wish-code">3.3.2. Capturing the state of each <code>Wish</code></a></h4>
 <div class="paragraph">
 <p><code>WishTransaction</code> keeps track of the state of all wishes in <code>WishBook</code> via a <code>wishMap</code> which maps the unique ID of a <code>Wish</code> to a list of <code>Wish</code> states. <code>WishTransaction</code> implements <code>ActionCommandListener</code> such that any state changing command performed to a <code>Wish</code> or the <code>WishBook</code> such as <code>AddCommand()</code>, <code>EditCommand()</code>, <code>SaveCommand()</code>, etc will result in the <code>WishMap</code> being updated accordingly in <code>WishTransaction</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="persistent-storage"><a class="link" href="#persistent-storage">3.2.3. Persistent storage</a></h4>
+<h4 id="persistent-storage"><a class="link" href="#persistent-storage">3.3.3. Persistent storage</a></h4>
 <div class="paragraph">
 <p><code>VersionedWishTransaction</code>, <code>WishTransaction</code> can be easily converted to and from xml using  <code>XmlWishTransactions</code>. <code>XmlWishTransactions</code> is saved as an xml file when the user explicitly closes the window, thereby invoking <code>MainApp#stop()</code> which saves the current state of <code>VersionedWishTransaction</code> in the <code>wishStateList</code> to hard disk.</p>
 </div>
@@ -924,14 +1050,14 @@ If there was some error saving the current state of the <code>WishTransaction</c
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-wish-feature"><a class="link" href="#add-wish-feature">3.3. Add Wish feature</a></h3>
+<h3 id="add-wish-feature"><a class="link" href="#add-wish-feature">3.4. Add Wish feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The Add Wish feature is executed through an <code>AddCommand</code> by the user, which after parsing,
 is facilitated mainly by the <code>ModelManager</code> which implements <code>Model</code>.
 It also affects <code>versionedWishBook</code> and <code>versionedWishTransaction</code> by adding the target wish to both of their respective data structures.
-After adding a <code>Wish</code>, the <code>FilteredWishList</code> is also updated to reflect the latest WishBook.
+After adding a <code>Wish</code>, the <code>filteredSortedWishes</code> is also updated to reflect the latest WishBook.
 The UI is also prompted to refresh through a <code>WishBookChangedEvent</code>.</p>
 </div>
 <div class="paragraph">
@@ -939,28 +1065,13 @@ The UI is also prompted to refresh through a <code>WishBookChangedEvent</code>.<
 </div>
 <div class="paragraph">
 <p>Step 1. The user types in a valid <code>AddCommand</code>, for example, <code>add n/1 TB Toshiba SSD p/158 d/200</code>, and the current date is 2nd October 2017 (2/10/2017).
-The user&#8217;s command is successfully parsed to create a <code>Wish</code> with the following properties:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Name: <em>1TB Toshiba SSD</em></p>
-</li>
-<li>
-<p>Price: $158.00</p>
-</li>
-<li>
-<p>DueDate: <code>200d</code> ays from 2/10/2017</p>
-</li>
-<li>
-<p>URL: <code>not stated</code></p>
-</li>
-</ul>
+The <code>AddCommandParser</code> will employ <code>ParserUtil</code> to parse the attributes specified after each prefix. The parsing of the
+<code>Date</code> attribute which follows <code>d/</code> in the command will be discussed below.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. During the computation of DueDate is handled internally in the <code>DueDate</code> class,
-which is able to take days, months, and years as input to generate a proper DueDate with the current time the user executes the command.
-Internally, DueDate converts the input time into number of days, and adds it to the current date to get the desired DueDate.</p>
+<p>During the computation of wish expiry date is handled internally in the <code>ParserUtil</code> class,
+which is able to take days, months, and years as input to generate a proper <code>Date</code> with the current time the user executes the command.
+Internally, <code>ParserUtil#parseDate()</code> converts the input time into number of days, and adds it to the current date to get the desired <code>Date</code>.</p>
 </div>
 <div class="paragraph">
 <p>The resultant wish will have the following properties:</p>
@@ -977,7 +1088,7 @@ Internally, DueDate converts the input time into number of days, and adds it to 
 <p>Price: 158.00</p>
 </li>
 <li>
-<p>DueDate: 20/4/2018 (20th April 2018)</p>
+<p>Date: 20/4/2018 (20th April 2018)</p>
 </li>
 <li>
 <p>URL: <code>empty string</code></p>
@@ -994,42 +1105,40 @@ Internally, DueDate converts the input time into number of days, and adds it to 
 </ul>
 </div>
 <div class="paragraph">
-<p>Step 3. The resultant wish is pass into <code>VersionedWishBook#addWish</code> and <code>VersionedWishTransaction#addWish</code>,
+<p>Step 2. The resultant wish is pass into <code>VersionedWishBook#addWish</code> and <code>VersionedWishTransaction#addWish</code>,
 which tracks the history of the <code>WishBook</code> and <code>Wish</code> respectively. The list of wishes shown on the UI is also updated to show all wishes again,
-as <code>filteredWishes</code> is updated to have all wishes in <code>WishBook</code> and a <code>WishBookChangedEvent</code> is fired.</p>
+as <code>filteredSortedWishes</code> is updated to have all wishes in <code>WishBook</code> and a <code>WishBookChangedEvent</code> is fired.</p>
 </div>
 <div class="paragraph">
 <p><em>{TO-DO: Sequence Diagram here}</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p><em>{TO-DO}</em></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="save-amount-feature"><a class="link" href="#save-amount-feature">3.4. Save Amount feature</a></h3>
+<h3 id="save-amount-feature"><a class="link" href="#save-amount-feature">3.5. Save Amount feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The Save Amount feature is executed through an <code>SaveCommand</code> by the user, which after parsing,
 is facilitated mainly by the <code>ModelManager</code> which implements <code>Model</code>.
 Wish stores the <code>price</code> and <code>savedAmount</code> of <code>Wish</code>, helping to track the progress of the savings towards the <code>price</code>.
 Meanwhile, WishBook stores the <code>spareFunds</code>, which is an excess pool of funds that can be used in the future.
-After adding a saving, the FilteredWishList is also updated to reflect the latest WishBook.</p>
+After adding a saving, the <code>filteredSortedWishes</code> is also updated to reflect the latest observable WishBook.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the SaveCommand behaves at each step:</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time.
-WishBook will be initialised in <code>ModelManager</code> with the initial WishBook state, where <code>SavedAmount spareFunds</code> = 0.0 .</p>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>save 1 s/10</code>, to save $10 into an existing wish with <code>Index</code> 1 and <code>Price</code> $15. In the SaveCommand#execute method,
-a new editedWish is created to reflect the new savedAmount. It then calls Model#updateWish to update this wish with the old one in <code>WishBook</code>.</p>
+<p>Step 1. The user executes <code>save 1 s/10</code>, to save $10 into an existing wish with <code>Index</code> 1 and <code>Price</code> $15. The $10 is
+wrapped in an <code>Amount</code> and a <code>SaveCommand</code> instance is created with the <code>Amount</code>. <code>Amount</code> is then used to make an updated
+instance of the <code>Wish</code> at index 1 whose <code>SavedAmount</code> will be updated. <code>Model#updateWish</code> is then called to update this
+wish with the old one in <code>WishBook</code>.</p>
 </div>
 <div class="paragraph">
 <p>The resultant wish will have the following properties:</p>
@@ -1063,6 +1172,9 @@ a new editedWish is created to reflect the new savedAmount. It then calls Model#
 <li>
 <p>Fulfilled: <code>false</code></p>
 </li>
+<li>
+<p>Expired: <code>false</code></p>
+</li>
 </ul>
 </div>
 <div class="admonitionblock note">
@@ -1072,14 +1184,27 @@ a new editedWish is created to reflect the new savedAmount. It then calls Model#
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>Index</code> is invalid, or the saving entered causes <code>savedAmount</code> to become negative, it will not call Model#updateWish.
+<code>Amount</code> can be a negative value where it would mean a withdrawal of money from a particular wish.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>SavedAmount</code> of a wish cannot be negative. This means that an <code>Amount</code> cannot be negative enough to cause <code>SavedAmount</code>
+to be negative.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
 <p>Step 3. The user decides to execute save 1 s/10 again. However, SaveCommand checks that <code>savedAmount</code> &gt; <code>price</code>.
-SaveCommand#execute creates a new <code>editedWish</code> with <code>savedAmount = wish.getPrice()</code>.</p>
+SaveCommand#execute creates a new updated <code>Wish</code> with <code>savedAmount = wish.getPrice()</code>.</p>
 </div>
 <div class="paragraph">
 <p>The resultant wish will have the following properties:</p>
@@ -1113,6 +1238,9 @@ SaveCommand#execute creates a new <code>editedWish</code> with <code>savedAmount
 <li>
 <p>Fulfilled: <code>true</code></p>
 </li>
+<li>
+<p>Expired: <code>false</code></p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -1137,7 +1265,7 @@ SaveCommand#execute then calls Model#addToSpareFunds(excess) to update the <code
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-data-structure-to-support-the-sparefunds-feature"><a class="link" href="#aspect-data-structure-to-support-the-sparefunds-feature">Aspect: Data structure to support the spareFunds feature</a></h5>
 <div class="ulist">
@@ -1175,9 +1303,9 @@ We must remember to skip this wish in methods that involve displaying the WishLi
 </div>
 </div>
 <div class="sect2">
-<h3 id="find-wish-feature"><a class="link" href="#find-wish-feature">3.5. Find Wish Feature</a></h3>
+<h3 id="find-wish-feature"><a class="link" href="#find-wish-feature">3.6. Find Wish Feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.5.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The find mechanism is facilitated by <code>FindCommand</code> and <code>FindCommandParser</code>. It extends <code>Command</code> and implements the following operations.</p>
 </div>
@@ -1206,7 +1334,7 @@ We must remember to skip this wish in methods that involve displaying the WishLi
 </div>
 </div>
 <div class="sect3">
-<h4 id="example"><a class="link" href="#example">3.5.2. Example</a></h4>
+<h4 id="example"><a class="link" href="#example">3.6.2. Example</a></h4>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the Find mechanism behaves at each step.</p>
 </div>
@@ -1240,7 +1368,7 @@ If a command fails its execution, it will not call <code>FindCommand#execute()</
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.3. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.6.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-predicate-works"><a class="link" href="#aspect-how-predicate-works">Aspect: How predicate works</a></h5>
 <div class="ulist">
@@ -1277,14 +1405,14 @@ If a command fails its execution, it will not call <code>FindCommand#execute()</
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1315,7 +1443,7 @@ If a command fails its execution, it will not call <code>FindCommand#execute()</
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3314,4 +3442,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-24 07:35:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-24 10:35:18 UTC</div></div></div></body></html>
