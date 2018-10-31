@@ -132,10 +132,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></h3>
 <div class="paragraph">
-<p>Displays a popup window showing all the commands a user can use in <code>WishBook</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>help</code></p>
+<p>Displays a popup window showing all the commands a user can use in <code>WishBook</code>.<br>
+Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect2">
@@ -239,6 +237,20 @@ Edits the price and time given to accomplish the 2nd wish to 22 (in the chosen c
 <p>Shows a list of all the wishes you have set, sorted by date by default.<br>
 Format: <code>list</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Only wishes in the current state of the wishbook will be listed.</p>
+</li>
+<li>
+<p>Deleted wishes will not be displayed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="listing-completed-wishes-code-list-c-code"><a class="link" href="#listing-completed-wishes-code-list-c-code">3.5. Listing completed wishes : <code>list -c</code></a></h3>
@@ -246,12 +258,40 @@ Format: <code>list</code></p>
 <p>Shows a list of all the wishes that have been completed, sorted by date by default.<br>
 Format: <code>list -c</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Only wishes in the current state of the wishbook will be listed.</p>
+</li>
+<li>
+<p>Deleted wishes will not be displayed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="listing-uncompleted-wishes-code-list-u-code"><a class="link" href="#listing-uncompleted-wishes-code-list-u-code">3.6. Listing uncompleted wishes : <code>list -u</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all the wishes that are still in progress, sorted by date by default.<br>
 Format: <code>list -u</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Only wishes in the current state of the wishbook will be listed.</p>
+</li>
+<li>
+<p>Deleted wishes will not be displayed.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -316,7 +356,7 @@ Format: <code>find SEARCH_PREDICATE [MORE_SEARCH_PREDICATES]</code></p>
 <p><code>TAG</code></p>
 </li>
 <li>
-<p>`NAME`is the default search predicate.</p>
+<p><code>NAME</code> is the default search predicate.</p>
 </li>
 <li>
 <p>The search is case insensitive. e.g. watch will match Watch.</p>
@@ -364,7 +404,7 @@ Format: <code>delete INDEX</code></p>
 <p><code>INDEX</code> must be a positive integer 1, 2, 3&#8230;&#8203;</p>
 </li>
 <li>
-<p>If the wish at <code>INDEX</code> is not yet fulfilled, the saved amount in that wish will be channelled to unusedFunds.</p>
+<p>If the wish at <code>INDEX</code> is not yet fulfilled, the saved amount in that wish will be channelled to <code>unusedFunds</code>.</p>
 </li>
 </ul>
 </div>
@@ -402,6 +442,9 @@ Format: <code>select INDEX</code></p>
 <p>Selects the wish and loads the webpage at the <code>url</code> specific to that wish at the specified <code>INDEX</code>.</p>
 </li>
 <li>
+<p>If there is no internet connection, the webpage will not be loaded.</p>
+</li>
+<li>
 <p><code>INDEX</code> refers to the index number shown in the displayed wish list.</p>
 </li>
 <li>
@@ -432,7 +475,7 @@ Selects the 1st wish in the results of the <code>find</code> command.</p>
 <div class="sect2">
 <h3 id="save-money-for-a-particular-wish-code-save-code"><a class="link" href="#save-money-for-a-particular-wish-code-save-code">3.12. Save money for a particular wish: <code>save</code></a></h3>
 <div class="paragraph">
-<p>Channels savings for a specified wish.<br>
+<p>Channels a specified amount of money to savings for a specified wish.<br>
 Format: <code>save INDEX AMOUNT</code></p>
 </div>
 <div class="sidebarblock">
@@ -443,16 +486,16 @@ Format: <code>save INDEX AMOUNT</code></p>
 <p><code>INDEX</code> should be a positive integer 1, 2, 3… no larger than the number of wishes.</p>
 </li>
 <li>
-<p>If <code>INDEX</code> is 0, AMOUNT will be channelled directly to unusedFunds.</p>
+<p>If <code>INDEX</code> is 0, <code>AMOUNT</code> will be channelled directly to <code>unusedFunds</code>.</p>
 </li>
 <li>
-<p>If <code>AMOUNT</code> saved to INDEX is greater than the amount needed to fulfil that wish, excess funds will be channelled to unusedFunds.</p>
+<p>If <code>AMOUNT</code> saved to <code>INDEX</code> is greater than the amount needed to fulfil that wish, excess funds will be channelled to <code>unusedFunds</code>.</p>
 </li>
 <li>
-<p>If <code>AMOUNT</code> is negative, money will be removed from savings for that wish.<br></p>
+<p>If <code>AMOUNT</code> is negative, money will be removed from amount saved for that wish.<br></p>
 </li>
 <li>
-<p>If <code>AMOUNT</code> brings the savings value to below 0, <code>AMOUNT</code> will not be accepted.</p>
+<p>If <code>AMOUNT</code> brings the savings value for that wish to below 0, <code>AMOUNT</code> will not be accepted and the <code>save</code> command will fail.</p>
 </li>
 <li>
 <p>If wish at <code>INDEX</code> is already fulfilled, <code>AMOUNT</code> will not accepted.</p>
@@ -476,7 +519,7 @@ Attempt to remove $100.50 from the savings for the wish at index 1.</p>
 </li>
 <li>
 <p><code>save 0 100.50</code><br>
-Attempt save $100.50 to unusedFunds.</p>
+Attempt save $100.50 to <code>unusedFunds</code>.</p>
 </li>
 </ul>
 </div>
@@ -495,16 +538,19 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 <p><code>FROM_WISH_INDEX</code> and <code>TO_WISH_INDEX</code> should be a positive integer 1, 2, 3… no larger than the number of wishes</p>
 </li>
 <li>
-<p>If <code>FROM_WISH_INDEX</code> is 0, AMOUNT will be channelled from unusedFunds to <code>TO_WISH_INDEX</code>.</p>
+<p>If <code>FROM_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from unusedFunds to <code>TO_WISH_INDEX</code>.</p>
 </li>
 <li>
-<p>If <code>TO_WISH_INDEX</code> is 0, AMOUNT will be channelled from <code>FROM_WISH_INDEX</code> to unusedFunds.</p>
+<p>If <code>TO_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from <code>FROM_WISH_INDEX</code> to <code>unusedFunds</code>.</p>
+</li>
+<li>
+<p><code>AMOUNT</code> from <code>unusedFunds</code> will only be successfully channelled if the exact amount requested if present in <code>unusedFunds</code>.</p>
 </li>
 <li>
 <p>If <code>FROM_WISH_INDEX</code> equals <code>TO_WISH_INDEX</code>, both indexes will not be accepted.</p>
 </li>
 <li>
-<p>If <code>AMOUNT</code> saved to <code>TO_WISH_INDEX</code> is greater than the amount needed to fulfil that wish, excess funds will be channelled to unusedFunds.</p>
+<p>If <code>AMOUNT</code> saved to <code>TO_WISH_INDEX</code> is greater than the amount needed to fulfil that wish, excess funds will be channelled to <code>unusedFunds</code>.</p>
 </li>
 <li>
 <p>If <code>AMOUNT</code> is negative, <code>AMOUNT</code> will not be accepted.<br></p>
@@ -518,6 +564,20 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 </ul>
 </div>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Index 0 is a specially allocated for unused funds. Excess funds when user attempts to save to a wish will be automatically allocated to <code>unusedFunds</code>. The user can also choose to channel funds from <code>unusedFunds</code> to a valid wish.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Examples:<br></p>
@@ -534,7 +594,7 @@ Attempt to move $10 from unusedFunds to the wish at index 1.</p>
 </li>
 <li>
 <p><code>move 1 0 10</code><br>
-Attempt to move $10 from the wish at index 1 to unusedFunds.</p>
+Attempt to move $10 from the wish at index 1 to <code>unusedFunds</code>.</p>
 </li>
 </ul>
 </div>
@@ -582,6 +642,17 @@ Removes the remark for the first wish (if any).</p>
 <div class="paragraph">
 <p>Restores WishBook to the state before the previous undoable command was executed.<br>
 Format: <code>undo</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If no undoable commands exist or the state of the wishbook is already in its original state, the undo command will fail and the state of the wishbook will remain unchanged.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -761,4 +832,4 @@ e.g. <code>move 1 2 10</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 17:27:42 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 02:55:01 UTC</div></div></div></body></html>
