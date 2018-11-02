@@ -16,23 +16,21 @@
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
 <li><a href="#adding-a-wish-code-add-code">3.2. Adding a wish: <code>add</code></a></li>
 <li><a href="#editing-a-wish-code-edit-code">3.3. Editing a wish : <code>edit</code></a></li>
-<li><a href="#listing-all-wishes-code-list-code">3.4. Listing all wishes : <code>list</code></a></li>
-<li><a href="#listing-completed-wishes-code-list-c-code">3.5. Listing completed wishes : <code>list -c</code></a></li>
-<li><a href="#listing-uncompleted-wishes-code-list-u-code">3.6. Listing uncompleted wishes : <code>list -u</code></a></li>
-<li><a href="#listing-history-of-entered-commands-code-history-c-code">3.7. Listing history of entered commands : <code>history -c</code></a></li>
-<li><a href="#viewing-your-saving-history-code-history-s-code">3.8. Viewing your saving history: <code>history -s</code></a></li>
-<li><a href="#locating-wishes-by-name-code-find-code">3.9. Locating wishes by name: <code>find</code></a></li>
-<li><a href="#deleting-a-wish-code-delete-code">3.10. Deleting a wish : <code>delete</code></a></li>
-<li><a href="#selecting-a-wish-code-select-code">3.11. Selecting a wish : <code>select</code></a></li>
-<li><a href="#save-money-for-a-particular-wish-code-save-code">3.12. Save money for a particular wish: <code>save</code></a></li>
-<li><a href="#move-money-between-wishes-move">3.13. Move money between wishes: 'move'</a></li>
-<li><a href="#editing-a-remark-for-a-wish-code-remark-code">3.14. Editing a remark for a wish : <code>remark</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.15. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.16. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.17. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.19. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.20. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#listing-wishes-code-list-code">3.4. Listing wishes : <code>list</code></a></li>
+<li><a href="#listing-history-of-entered-commands-code-history-c-code">3.5. Listing history of entered commands : <code>history -c</code></a></li>
+<li><a href="#viewing-your-saving-history-code-history-s-code">3.6. Viewing your saving history: <code>history -s</code></a></li>
+<li><a href="#locating-wishes-by-name-code-find-code">3.7. Locating wishes by name: <code>find</code></a></li>
+<li><a href="#deleting-a-wish-code-delete-code">3.8. Deleting a wish : <code>delete</code></a></li>
+<li><a href="#selecting-a-wish-code-select-code">3.9. Selecting a wish : <code>select</code></a></li>
+<li><a href="#save-money-for-a-particular-wish-code-save-code">3.10. Save money for a particular wish: <code>save</code></a></li>
+<li><a href="#move-money-between-wishes-code-move-code">3.11. Move money between wishes: <code>move</code></a></li>
+<li><a href="#editing-a-remark-for-a-wish-code-remark-code">3.12. Editing a remark for a wish : <code>remark</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.13. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.14. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.17. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -82,7 +80,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>list</code></strong> : Lists all the items you have set as wishes (sorted by due date).</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/uPhoneXX p/1000 d/5m</code> : adds an item “uPhoneXX” as a goal to be completed in 5 months.</p>
+<p><strong><code>add</code></strong><code>n/uPhoneXX p/1000 a/5m</code> : adds an item “uPhoneXX” as a goal to be completed in 5 months.</p>
 </li>
 <li>
 <p><strong><code>help</code></strong>: displays list of command with usage.</p>
@@ -117,7 +115,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add WISH</code>, <code>WISH</code> is a parameter which can be used as add iPhone.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g. in <code>save AMOUNT [INDEX]</code>, <code>INDEX</code> is an optional parameter, since the save command can be used as <code>save 40</code>.</p>
+<p>Items in square brackets are optional e.g. in <code>list [FILTER]</code>, <code>FILTER</code> is an optional parameter, since the list command can be used as <code>list</code> to display all wishes in WishBook.</p>
 </li>
 <li>
 <p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/broke</code>, <code>t/needs</code> etc.</p>
@@ -140,7 +138,7 @@ Format: <code>help</code></p>
 <h3 id="adding-a-wish-code-add-code"><a class="link" href="#adding-a-wish-code-add-code">3.2. Adding a wish: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a wish to the wish list<br>
-Format: <code>add n/WISH_NAME p/PRICE t/[d/TIME_GIVEN]/[d/END_DATE]</code></p>
+Format: <code>add n/WISH_NAME p/PRICE t/[a/TIME_GIVEN]/[d/END_DATE] [u/URL] [t/TAG]</code></p>
 </div>
 <div class="ulist TIP">
 <ul class="TIP">
@@ -172,10 +170,10 @@ Format: <code>add n/WISH_NAME p/PRICE t/[d/TIME_GIVEN]/[d/END_DATE]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/smallRice p/999 d/2d</code></p>
+<p><code>add n/smallRice p/999 a/2d</code></p>
 </li>
 <li>
-<p><code>add n/kfcBook_13inch p/2300 d/6m3w</code></p>
+<p><code>add n/kfcBook_13inch p/2300 a/6m3w</code></p>
 </li>
 <li>
 <p><code>add n/prinkles p/1.95 d/24/04/2020</code></p>
@@ -187,7 +185,7 @@ Format: <code>add n/WISH_NAME p/PRICE t/[d/TIME_GIVEN]/[d/END_DATE]</code></p>
 <h3 id="editing-a-wish-code-edit-code"><a class="link" href="#editing-a-wish-code-edit-code">3.3. Editing a wish : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing wish in the wish list.<br>
-Format: <code>edit INDEX [n/WISH_NAME] [p/PRICE] [d/TIME_GIVEN]/[d/END_DATE] [t/TAG]</code></p>
+Format: <code>edit INDEX [n/WISH_NAME] [p/PRICE] [a/TIME_GIVEN]/[d/END_DATE] [u/URL] [t/TAG]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -225,17 +223,34 @@ Format: <code>edit INDEX [n/WISH_NAME] [p/PRICE] [d/TIME_GIVEN]/[d/END_DATE] [t/
 Edits the name of the wish and the tag of the 1st wish to be Macbook Pro and Broke wishes respectively</p>
 </li>
 <li>
-<p><code>edit 2 p/22 d/22w</code><br>
+<p><code>edit 2 p/22 a/22w</code><br>
 Edits the price and time given to accomplish the 2nd wish to 22 (in the chosen currency) and 22 weeks respectively.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-wishes-code-list-code"><a class="link" href="#listing-all-wishes-code-list-code">3.4. Listing all wishes : <code>list</code></a></h3>
+<h3 id="listing-wishes-code-list-code"><a class="link" href="#listing-wishes-code-list-code">3.4. Listing wishes : <code>list</code></a></h3>
 <div class="paragraph">
-<p>Shows a list of all the wishes you have set, sorted by date by default.<br>
-Format: <code>list</code></p>
+<p>Shows a list of all the wishes you have set, sorted by date by default, based on the given filter.
+If no filter is specified, all wishes in the WishBook will be listed.<br>
+Format: <code>list [FILTER]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+Lists all the wishes in the WishBook.</p>
+</li>
+<li>
+<p><code>list -c</code><br>
+Lists all the completed wishes in the WishBook.</p>
+</li>
+<li>
+<p><code>list -u</code><br>
+Lists all the uncompleted wishes in the WishBook.</p>
+</li>
+</ul>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -253,49 +268,7 @@ Format: <code>list</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-completed-wishes-code-list-c-code"><a class="link" href="#listing-completed-wishes-code-list-c-code">3.5. Listing completed wishes : <code>list -c</code></a></h3>
-<div class="paragraph">
-<p>Shows a list of all the wishes that have been completed, sorted by date by default.<br>
-Format: <code>list -c</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Only wishes in the current state of the wishbook will be listed.</p>
-</li>
-<li>
-<p>Deleted wishes will not be displayed.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-uncompleted-wishes-code-list-u-code"><a class="link" href="#listing-uncompleted-wishes-code-list-u-code">3.6. Listing uncompleted wishes : <code>list -u</code></a></h3>
-<div class="paragraph">
-<p>Shows a list of all the wishes that are still in progress, sorted by date by default.<br>
-Format: <code>list -u</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Only wishes in the current state of the wishbook will be listed.</p>
-</li>
-<li>
-<p>Deleted wishes will not be displayed.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-history-of-entered-commands-code-history-c-code"><a class="link" href="#listing-history-of-entered-commands-code-history-c-code">3.7. Listing history of entered commands : <code>history -c</code></a></h3>
+<h3 id="listing-history-of-entered-commands-code-history-c-code"><a class="link" href="#listing-history-of-entered-commands-code-history-c-code">3.5. Listing history of entered commands : <code>history -c</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history -c</code></p>
@@ -316,7 +289,7 @@ Format: <code>history -c</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-your-saving-history-code-history-s-code"><a class="link" href="#viewing-your-saving-history-code-history-s-code">3.8. Viewing your saving history: <code>history -s</code></a></h3>
+<h3 id="viewing-your-saving-history-code-history-s-code"><a class="link" href="#viewing-your-saving-history-code-history-s-code">3.6. Viewing your saving history: <code>history -s</code></a></h3>
 <div class="paragraph">
 <p>Shows a history of savings you have allocated, from newest to oldest.<br>
 Format: <code>history -s</code></p>
@@ -337,7 +310,7 @@ Format: <code>history -s</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-wishes-by-name-code-find-code"><a class="link" href="#locating-wishes-by-name-code-find-code">3.9. Locating wishes by name: <code>find</code></a></h3>
+<h3 id="locating-wishes-by-name-code-find-code"><a class="link" href="#locating-wishes-by-name-code-find-code">3.7. Locating wishes by name: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds wishes which satisfy the given search predicate.<br>
 Format: <code>find SEARCH_PREDICATE [MORE_SEARCH_PREDICATES]</code></p>
@@ -377,18 +350,18 @@ Format: <code>find SEARCH_PREDICATE [MORE_SEARCH_PREDICATES]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find d/22</code><br>
-Returns wish with stipulated time given of 22 days.</p>
+<p><code>find n/watch</code><br>
+Returns any wish with name containing watch</p>
 </li>
 <li>
-<p><code>find watch t/broke wishes</code><br>
-Returns any wish with name containing watch, with tag broke wishes.</p>
+<p><code>find n/watch t/broke wishes</code><br>
+Returns any wish with name containing 'watch', with tag 'broke wishes'.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-wish-code-delete-code"><a class="link" href="#deleting-a-wish-code-delete-code">3.10. Deleting a wish : <code>delete</code></a></h3>
+<h3 id="deleting-a-wish-code-delete-code"><a class="link" href="#deleting-a-wish-code-delete-code">3.8. Deleting a wish : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified wish from the list.<br>
 Format: <code>delete INDEX</code></p>
@@ -429,7 +402,7 @@ Deletes the 1st wish in the results of the find command (if any).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-wish-code-select-code"><a class="link" href="#selecting-a-wish-code-select-code">3.11. Selecting a wish : <code>select</code></a></h3>
+<h3 id="selecting-a-wish-code-select-code"><a class="link" href="#selecting-a-wish-code-select-code">3.9. Selecting a wish : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the wish identified by the index number used in the displayed wish list.<br>
 Format: <code>select INDEX</code></p>
@@ -479,7 +452,7 @@ Selects the 1st wish in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="save-money-for-a-particular-wish-code-save-code"><a class="link" href="#save-money-for-a-particular-wish-code-save-code">3.12. Save money for a particular wish: <code>save</code></a></h3>
+<h3 id="save-money-for-a-particular-wish-code-save-code"><a class="link" href="#save-money-for-a-particular-wish-code-save-code">3.10. Save money for a particular wish: <code>save</code></a></h3>
 <div class="paragraph">
 <p>Channels a specified amount of money to savings for a specified wish.<br>
 Format: <code>save INDEX AMOUNT</code></p>
@@ -531,7 +504,7 @@ Attempt save $100.50 to <code>unusedFunds</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="move-money-between-wishes-move"><a class="link" href="#move-money-between-wishes-move">3.13. Move money between wishes: 'move'</a></h3>
+<h3 id="move-money-between-wishes-code-move-code"><a class="link" href="#move-money-between-wishes-code-move-code">3.11. Move money between wishes: <code>move</code></a></h3>
 <div class="paragraph">
 <p>Moves funds from one wish to another.<br>
 Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
@@ -606,7 +579,7 @@ Attempt to move $10 from the wish at index 1 to <code>unusedFunds</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-remark-for-a-wish-code-remark-code"><a class="link" href="#editing-a-remark-for-a-wish-code-remark-code">3.14. Editing a remark for a wish : <code>remark</code></a></h3>
+<h3 id="editing-a-remark-for-a-wish-code-remark-code"><a class="link" href="#editing-a-remark-for-a-wish-code-remark-code">3.12. Editing a remark for a wish : <code>remark</code></a></h3>
 <div class="paragraph">
 <p>Edits the remark for a wish specified in the index.<br>
 Format: <code>remark INDEX r/[REMARK]</code></p>
@@ -644,7 +617,7 @@ Removes the remark for the first wish (if any).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.15. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.13. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores WishBook to the state before the previous undoable command was executed.<br>
 Format: <code>undo</code></p>
@@ -700,7 +673,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.16. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.14. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -732,28 +705,28 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.17. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from WishBook.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.19. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.17. Saving the data</a></h3>
 <div class="paragraph">
 <p>WishBook data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.20. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
@@ -775,8 +748,8 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong>  <code>add n/WISH_NAME p/PRICE t/[d/TIME_GIVEN]/[d/END_DATE]</code><br>
-e.g. <code>add n/kfcBook_13inch p/2300 d/6m3w</code></p>
+<p><strong>Add</strong>  <code>add n/WISH_NAME p/PRICE t/[a/TIME_GIVEN]/[d/END_DATE]</code><br>
+e.g. <code>add n/kfcBook_13inch p/2300 a/6m3w</code></p>
 </li>
 <li>
 <p><strong>Clear</strong> : <code>clear</code></p>
@@ -786,7 +759,7 @@ e.g. <code>add n/kfcBook_13inch p/2300 d/6m3w</code></p>
 e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/WISH_NAME] [p/PRICE] [d/TIME_GIVEN]/[d/END_DATE] [t/TAG]</code><br>
+<p><strong>Edit</strong> : <code>edit INDEX [n/WISH_NAME] [p/PRICE] [a/TIME_GIVEN]/[d/END_DATE] [t/TAG]</code><br>
 e.g. <code>edit 1 n/Macbook Pro t/Broke wishes</code></p>
 </li>
 <li>
@@ -838,4 +811,4 @@ e.g. <code>move 1 2 10</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 07:46:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 08:06:02 UTC</div></div></div></body></html>

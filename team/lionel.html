@@ -1,0 +1,502 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Lionel Tan - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Lionel Tan - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-wishbook"><a class="link" href="#project-wishbook">PROJECT: WishBook</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WishBook is a desktop savings assistant application written in Java, built for people who want to set savings goals (Wishes)
+and keep track of their progress in saving toward those wishes.
+It is created by Team T16-1 for CS2103T: Software Engineering module offered by School of Computing,
+National University of Singapore, in AY2018/2019 Semester 1.
+This project portfolio consists of the contributions I have made to WishBook over the semester.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="major-enhancements"><a class="link" href="#major-enhancements">Major Enhancements</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Move Command</strong>: added Move Command</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>What it does</strong>: Allows users to move funds between wishes, or to transfer between wishes and the unused funds.</p>
+</li>
+<li>
+<p><strong>Justification</strong>: Previously, to reallocate funds from one wish to another, the user had to save a negated amount from one of their wishes,
+and then save that positive amount into the targeted wish.
+It can be quite troublesome to shift funds between wishes, as the user would have to type two separate commands.
+As such, I developed the move command that allows the user to transfer funds between wishes directly in a single command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Save to unused funds</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>What it does</strong>: Allow users to save toward unused funds directly. Also, any excess saved amount will be channelled automatically to unused funds.</p>
+</li>
+<li>
+<p><strong>Justification</strong>: Previously, if the input amount causes the wish’s saved amount to exceed its price,
+the excess amount would be stored inside that wish.
+However, this excess amount cannot be reallocated, since the wish has already been fulfilled.
+Thus, I modified the Save command to channel any excess saved amount to an UnusedFunds within WishBook.
+The money inside the UnusedFunds can later be redistributed to other wishes, via the Move Command.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="minor-enhancements"><a class="link" href="#minor-enhancements">Minor Enhancements</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Savings History</strong>: add option to show savings history for History Command.</p>
+</li>
+<li>
+<p><strong>List</strong>: add option to display only completed or uncompleted wishes.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other Contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Shorthand alias: Add shorthand equivalent alias for commands.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Useful to increase speed and efficiency while using WishBook</p>
+</li>
+<li>
+<p>users would now be able to type a command with only 1 or 2 characters, instead of typing the whole word.
+(Pull Request <a href="https://github.com/CS2103-AY1819S1-T16-1/main/pull/3">#3</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Documented new functions added to User Guide.</p>
+</li>
+<li>
+<p>Consistently updated the User Guide to reflect the current function usage in our application.</p>
+</li>
+<li>
+<p>Refactored Developer Guide to make it specific to our WishBook implementation.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Refactored code and documentation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Contributed regularly to refactoring the code from the previous AddressBook-Level 4 application.</p>
+</li>
+<li>
+<p>Refactor terms specific to AddressBook-Level 4, to suit our current WishBook application</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Reported bugs and issues:
+<a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/61">#61</a>
+<a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/created_by/lionelat">#90</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="save-money-for-a-particular-wish-code-save-code"><a class="link" href="#save-money-for-a-particular-wish-code-save-code">Save money for a particular wish: <code>save</code></a></h3>
+<div class="paragraph">
+<p>Channels a specified amount of money to savings for a specified wish.<br>
+Format: <code>save INDEX AMOUNT</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> should be a positive integer 1, 2, 3… no larger than the number of wishes.</p>
+</li>
+<li>
+<p>If <code>INDEX</code> is 0, <code>AMOUNT</code> will be channelled directly to <code>unusedFunds</code>.</p>
+</li>
+<li>
+<p>If <code>AMOUNT</code> saved to <code>INDEX</code> is greater than the amount needed to fulfil that wish, excess funds will be channelled to <code>unusedFunds</code>.</p>
+</li>
+<li>
+<p>If <code>AMOUNT</code> is negative, money will be removed from amount saved for that wish.<br></p>
+</li>
+<li>
+<p>If <code>AMOUNT</code> brings the savings value for that wish to below 0, <code>AMOUNT</code> will not be accepted and the <code>save</code> command will fail.</p>
+</li>
+<li>
+<p>If wish at <code>INDEX</code> is already fulfilled, <code>AMOUNT</code> will not accepted.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>save 1 1000</code><br>
+Attempt to save $1000 for the wish at index 1.</p>
+</li>
+<li>
+<p><code>save 1 -100.50</code><br>
+Attempt to remove $100.50 from the savings for the wish at index 1.</p>
+</li>
+<li>
+<p><code>save 0 100.50</code><br>
+Attempt save $100.50 to <code>unusedFunds</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="move-money-between-wishes-code-move-code"><a class="link" href="#move-money-between-wishes-code-move-code">Move money between wishes: <code>move</code></a></h3>
+<div class="paragraph">
+<p>Moves funds from one wish to another.<br>
+Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>FROM_WISH_INDEX</code> and <code>TO_WISH_INDEX</code> should be a positive integer 1, 2, 3… no larger than the number of wishes</p>
+</li>
+<li>
+<p>If <code>FROM_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from unusedFunds to <code>TO_WISH_INDEX</code>.</p>
+</li>
+<li>
+<p>If <code>TO_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from <code>FROM_WISH_INDEX</code> to <code>unusedFunds</code>.</p>
+</li>
+<li>
+<p><code>AMOUNT</code> from <code>unusedFunds</code> will only be successfully channelled if the exact amount requested if present in <code>unusedFunds</code>.</p>
+</li>
+<li>
+<p>If <code>FROM_WISH_INDEX</code> equals <code>TO_WISH_INDEX</code>, both indexes will not be accepted.</p>
+</li>
+<li>
+<p>If <code>AMOUNT</code> saved to <code>TO_WISH_INDEX</code> is greater than the amount needed to fulfil that wish, excess funds will be channelled to <code>unusedFunds</code>.</p>
+</li>
+<li>
+<p>If <code>AMOUNT</code> is negative, <code>AMOUNT</code> will not be accepted.<br></p>
+</li>
+<li>
+<p>If <code>AMOUNT</code> brings the savings amount of wish at <code>FROM_WISH_INDEX</code> to below 0, <code>AMOUNT</code> will not be accepted.</p>
+</li>
+<li>
+<p>If wish at <code>FROM_WISH_INDEX</code> or <code>TO_WISH_INDEX</code> is already fulfilled, <code>AMOUNT</code> will not accepted.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Index 0 is a specially allocated for unused funds. Excess funds when user attempts to save to a wish will be automatically allocated to <code>unusedFunds</code>. The user can also choose to channel funds from <code>unusedFunds</code> to a valid wish.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>move 1 2 10</code><br>
+Attempt to move $10 from the wish at index 1 to the wish at index 2.</p>
+</li>
+<li>
+<p><code>move 0 1 10</code><br>
+Attempt to move $10 from unusedFunds to the wish at index 1.</p>
+</li>
+<li>
+<p><code>move 1 0 10</code><br>
+Attempt to move $10 from the wish at index 1 to <code>unusedFunds</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="save-amount-feature"><a class="link" href="#save-amount-feature">Save Amount feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The Save Amount feature is executed through a <code>SaveCommand</code> by the user, which after parsing,
+is facilitated mainly by the <code>ModelManager</code> which implements <code>Model</code>.
+Wish stores the <code>price</code> and <code>savedAmount</code> of <code>Wish</code>, helping to track the progress of the savings towards the <code>price</code>.
+Meanwhile, WishBook stores an <code>unusedFunds</code>, which is an unallocated pool of funds that can be used in the future.
+After adding a saving, the <code>filteredSortedWishes</code> in <code>ModelManager</code> is updated to reflect the latest observable WishBook.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the SaveCommand behaves at each step:</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user executes <code>save 1 10</code>, to save $10 into an existing wish with <code>Index</code> 1 and <code>Price</code> $15. The $10 is
+wrapped in an <code>Amount</code> and a <code>SaveCommand</code> instance is created with the <code>Amount</code>. <code>Amount</code> is then used to make an updated
+instance of the <code>Wish</code> at index 1 whose <code>SavedAmount</code> will be updated. <code>Model#updateWish</code> is then called to update this
+wish with the old one in <code>WishBook</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>Index</code> of each <code>Wish</code> is labelled at the side of the app.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The resultant wish will have the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name: <em>1TB Toshiba SSD</em></p>
+</li>
+<li>
+<p>SavedAmount: 10.00</p>
+</li>
+<li>
+<p>Price: 15.00</p>
+</li>
+<li>
+<p>DueDate: 20/4/2018 (20th April 2018)</p>
+</li>
+<li>
+<p>URL: <code>empty string</code></p>
+</li>
+<li>
+<p>Remark: <code>empty string</code></p>
+</li>
+<li>
+<p>Tags: <code>none</code></p>
+</li>
+<li>
+<p>Transactions: <code>empty LinkedList</code></p>
+</li>
+<li>
+<p>Fulfilled: <code>false</code></p>
+</li>
+<li>
+<p>Expired: <code>false</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>Amount</code> can be a negative value where it would mean a withdrawal of money from a particular wish.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>SavedAmount</code> of a wish cannot be negative. This means that an <code>Amount</code> cannot be negative enough to cause <code>SavedAmount</code>
+to be negative.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. The user decides to execute <code>save 1 10</code> again. However, SaveCommand checks that <code>savedAmount</code> &gt; <code>price</code>.
+SaveCommand#execute creates a new updated <code>Wish</code> with <code>savedAmount = wish.getPrice()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The resultant wish will have the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name: <em>1TB Toshiba SSD</em></p>
+</li>
+<li>
+<p>SavedAmount: 15.00</p>
+</li>
+<li>
+<p>Price: 15.00</p>
+</li>
+<li>
+<p>DueDate: 20/4/2018 (20th April 2018)</p>
+</li>
+<li>
+<p>URL: <code>empty string</code></p>
+</li>
+<li>
+<p>Remark: <code>empty string</code></p>
+</li>
+<li>
+<p>Tags: <code>none</code></p>
+</li>
+<li>
+<p>Transactions: <code>empty LinkedList</code></p>
+</li>
+<li>
+<p>Fulfilled: <code>true</code></p>
+</li>
+<li>
+<p>Expired: <code>false</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Step 4. The excess amount of $5 is stored in a new <code>SavedAmount</code> variable <code>excess</code>.
+SaveCommand#execute then calls Model#updateUnusedFunds(excess) to update the <code>unusedFunds</code> in WishBook.</p>
+</div>
+<div class="paragraph">
+<p>In WishBook, the result would be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>unusedFunds: 5.00</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Step 5. The user tries to execute <code>save 1 10</code> again. However, since the value for Wish#isFulfilled is true, the amount
+will not be saved. SaveCommand#execute will throw a CommandException, with the message "Wish has already been fulfilled!".</p>
+</div>
+<div class="paragraph">
+<p><em>{TO-DO: Sequence Diagram here}</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-unusedfunds-feature"><a class="link" href="#aspect-data-structure-to-support-the-unusedfunds-feature">Aspect: Data structure to support the unusedFunds feature</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Store it in a <code>SavedAmount</code> variable in <code>WishBook</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: More methods needed when needing to move funds from <code>unusedFunds</code> to other wishes.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Store it as a pseudo wish with index 0.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It can be treated as another <code>wish</code>, hence existing methods can be used without needing to create much more new ones.</p>
+</li>
+<li>
+<p>Cons: Requires dealing with an extra wish that has to be hidden on the <code>WishListPanel</code> and displayed separately on the UI.
+We must remember to skip this wish in methods that involve displaying the WishList.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-savings-notifications"><a class="link" href="#proposed-savings-notifications">[Proposed] Savings Notifications</a></h3>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Some users may have many wishes, all of which have a different targeted date of completion and different price.
+It may thus be difficult for users to keep track of how much they need to consistently save to fulfil their various wishes on time.
+This Savings Notification feature will allow users to opt for daily/weekly/monthly notifications for each specific wish,
+reminding them of the amount that they need to save at the beginning of the chosen time period.
+This will help users to consistently save towards their wishes.</p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 08:06:02 UTC</div></div></div></body></html>

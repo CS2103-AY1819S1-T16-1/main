@@ -35,8 +35,9 @@
 <li><a href="#add-wish-feature">3.4. Add Wish feature</a></li>
 <li><a href="#save-amount-feature">3.5. Save Amount feature</a></li>
 <li><a href="#find-wish-feature">3.6. Find Wish Feature</a></li>
-<li><a href="#logging">3.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
+<li><a href="#proposed-savings-notifications">3.7. [Proposed] Savings Notifications</a></li>
+<li><a href="#logging">3.8. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1146,11 +1147,11 @@ as <code>filteredSortedWishes</code> is updated to have all wishes in <code>Wish
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The Save Amount feature is executed through an <code>SaveCommand</code> by the user, which after parsing,
+<p>The Save Amount feature is executed through a <code>SaveCommand</code> by the user, which after parsing,
 is facilitated mainly by the <code>ModelManager</code> which implements <code>Model</code>.
 Wish stores the <code>price</code> and <code>savedAmount</code> of <code>Wish</code>, helping to track the progress of the savings towards the <code>price</code>.
-Meanwhile, WishBook stores the <code>spareFunds</code>, which is an excess pool of funds that can be used in the future.
-After adding a saving, the <code>filteredSortedWishes</code> is also updated to reflect the latest observable WishBook.</p>
+Meanwhile, WishBook stores an <code>unusedFunds</code>, which is an unallocated pool of funds that can be used in the future.
+After adding a saving, the <code>filteredSortedWishes</code> in <code>ModelManager</code> is updated to reflect the latest observable WishBook.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the SaveCommand behaves at each step:</p>
@@ -1236,7 +1237,7 @@ to be negative.
 </table>
 </div>
 <div class="paragraph">
-<p>Step 3. The user decides to execute save 1 10 again. However, SaveCommand checks that <code>savedAmount</code> &gt; <code>price</code>.
+<p>Step 3. The user decides to execute <code>save 1 10</code> again. However, SaveCommand checks that <code>savedAmount</code> &gt; <code>price</code>.
 SaveCommand#execute creates a new updated <code>Wish</code> with <code>savedAmount = wish.getPrice()</code>.</p>
 </div>
 <div class="paragraph">
@@ -1277,8 +1278,8 @@ SaveCommand#execute creates a new updated <code>Wish</code> with <code>savedAmou
 </ul>
 </div>
 <div class="paragraph">
-<p>Step 4. The excess amount of $5 is stored in a new <code>SavedAmount</code> variable <code>excessAmount</code>.
-SaveCommand#execute then calls Model#addToSpareFunds(excess) to update the <code>spareFunds</code> in WishBook.</p>
+<p>Step 4. The excess amount of $5 is stored in a new <code>SavedAmount</code> variable <code>excess</code>.
+SaveCommand#execute then calls Model#updateUnusedFunds(excess) to update the <code>unusedFunds</code> in WishBook.</p>
 </div>
 <div class="paragraph">
 <p>In WishBook, the result would be:</p>
@@ -1286,12 +1287,13 @@ SaveCommand#execute then calls Model#addToSpareFunds(excess) to update the <code
 <div class="ulist">
 <ul>
 <li>
-<p>spareFunds: 5.00</p>
+<p>unusedFunds: 5.00</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Step 5. The user tries to execute <code>save 1 10</code> again. However, since the value for <code>fulfilled</code> is true,</p>
+<p>Step 5. The user tries to execute <code>save 1 10</code> again. However, since the value for Wish#isFulfilled is true, the amount
+will not be saved. SaveCommand#execute will throw a CommandException, with the message "Wish has already been fulfilled!".</p>
 </div>
 <div class="paragraph">
 <p><em>{TO-DO: Sequence Diagram here}</em></p>
@@ -1300,7 +1302,7 @@ SaveCommand#execute then calls Model#addToSpareFunds(excess) to update the <code
 <div class="sect3">
 <h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-sparefunds-feature"><a class="link" href="#aspect-data-structure-to-support-the-sparefunds-feature">Aspect: Data structure to support the spareFunds feature</a></h5>
+<h5 id="aspect-data-structure-to-support-the-unusedfunds-feature"><a class="link" href="#aspect-data-structure-to-support-the-unusedfunds-feature">Aspect: Data structure to support the unusedFunds feature</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1311,7 +1313,7 @@ SaveCommand#execute then calls Model#addToSpareFunds(excess) to update the <code
 <p>Pros: Easy to implement.</p>
 </li>
 <li>
-<p>Cons: More methods needed when needing to move funds from <code>spareFunds</code> to other wishes.</p>
+<p>Cons: More methods needed when needing to move funds from <code>unusedFunds</code> to other wishes.</p>
 </li>
 </ul>
 </div>
@@ -1438,14 +1440,27 @@ If a command fails its execution, it will not call <code>FindCommand#execute()</
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
+<h3 id="proposed-savings-notifications"><a class="link" href="#proposed-savings-notifications">3.7. [Proposed] Savings Notifications</a></h3>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">3.7.1. Justification</a></h4>
+<div class="paragraph">
+<p>Some users may have many wishes, all of which have a different targeted date of completion and different price.
+It may thus be difficult for users to keep track of how much they need to consistently save to fulfil their various wishes on time.
+This Savings Notification feature will allow users to opt for daily/weekly/monthly notifications for each specific wish,
+reminding them of the amount that they need to save at the beginning of the chosen time period.
+This will help users to consistently save towards their wishes.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1476,7 +1491,7 @@ If a command fails its execution, it will not call <code>FindCommand#execute()</
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3475,4 +3490,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 07:46:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 08:06:02 UTC</div></div></div></body></html>
