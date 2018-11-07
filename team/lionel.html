@@ -14,6 +14,16 @@
 and keep track of their progress in saving toward those wishes.
 It is created by Team T16-1 for CS2103T: Software Engineering module offered by School of Computing,
 National University of Singapore, in AY2018/2019 Semester 1.
+The image below shows the main layout of our application:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UI.png" alt="UI" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Being in charge of the Logic Component and documentation, I was tasked with implementing new commands, while also making sure
+that all changes made by our team were consistently documented in our User Guide and Developer Guide.
 This project portfolio consists of the contributions I have made to WishBook over the semester.</p>
 </div>
 </div>
@@ -109,7 +119,7 @@ The money inside the UnusedFunds can later be redistributed to other wishes, via
 </div>
 </li>
 <li>
-<p>Refactored code and documentation</p>
+<p>Refactored code and documentation:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -170,10 +180,17 @@ Format: <code>save INDEX AMOUNT</code></p>
 <p>If <code>AMOUNT</code> is negative, money will be removed from amount saved for that wish.<br></p>
 </li>
 <li>
-<p>If <code>AMOUNT</code> brings the savings value for that wish to below 0, <code>AMOUNT</code> will not be accepted and the <code>save</code> command will fail.</p>
+<p><code>AMOUNT</code> will not be accepted if:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AMOUNT</code> brings the savings value for that wish to below 0.</p>
 </li>
 <li>
-<p>If wish at <code>INDEX</code> is already fulfilled, <code>AMOUNT</code> will not accepted.</p>
+<p>The wish at <code>INDEX</code> is already fulfilled.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -219,7 +236,7 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 <p>If <code>TO_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from <code>FROM_WISH_INDEX</code> to <code>unusedFunds</code>.</p>
 </li>
 <li>
-<p><code>AMOUNT</code> from <code>unusedFunds</code> will only be successfully channelled if the exact amount requested if present in <code>unusedFunds</code>.</p>
+<p><code>AMOUNT</code> from <code>unusedFunds</code> will only be successfully channelled if the exact amount requested is present in <code>unusedFunds</code>.</p>
 </li>
 <li>
 <p>If <code>FROM_WISH_INDEX</code> equals <code>TO_WISH_INDEX</code>, both indexes will not be accepted.</p>
@@ -228,13 +245,20 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 <p>If <code>AMOUNT</code> saved to <code>TO_WISH_INDEX</code> is greater than the amount needed to fulfil that wish, excess funds will be channelled to <code>unusedFunds</code>.</p>
 </li>
 <li>
-<p>If <code>AMOUNT</code> is negative, <code>AMOUNT</code> will not be accepted.<br></p>
+<p><code>AMOUNT</code> will not be accepted if:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AMOUNT</code> is negative.</p>
 </li>
 <li>
-<p>If <code>AMOUNT</code> brings the savings amount of wish at <code>FROM_WISH_INDEX</code> to below 0, <code>AMOUNT</code> will not be accepted.</p>
+<p><code>AMOUNT</code> brings the savings amount of wish at <code>FROM_WISH_INDEX</code> to below 0.</p>
 </li>
 <li>
-<p>If wish at <code>FROM_WISH_INDEX</code> or <code>TO_WISH_INDEX</code> is already fulfilled, <code>AMOUNT</code> will not accepted.</p>
+<p>Either wish at <code>FROM_WISH_INDEX</code> or <code>TO_WISH_INDEX</code> is already fulfilled.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -248,7 +272,7 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Index 0 is a specially allocated for unused funds. Excess funds when user attempts to save to a wish will be automatically allocated to <code>unusedFunds</code>. The user can also choose to channel funds from <code>unusedFunds</code> to a valid wish.</p>
+<p>Index 0 is specially allocated for unused funds. Excess funds when user attempts to save to a wish will be automatically allocated to <code>unusedFunds</code>. The user can also choose to channel funds from <code>unusedFunds</code> to a valid wish.</p>
 </div>
 </td>
 </tr>
@@ -384,7 +408,7 @@ to be negative.
 </table>
 </div>
 <div class="paragraph">
-<p>Step 3. The user decides to execute <code>save 1 10</code> again. However, SaveCommand checks that <code>savedAmount</code> &gt; <code>price</code>.
+<p>Step 2. The user decides to execute <code>save 1 10</code> again. However, SaveCommand checks that <code>savedAmount</code> &gt; <code>price</code>.
 SaveCommand#execute creates a new updated <code>Wish</code> with <code>savedAmount = wish.getPrice()</code>.</p>
 </div>
 <div class="paragraph">
@@ -425,7 +449,7 @@ SaveCommand#execute creates a new updated <code>Wish</code> with <code>savedAmou
 </ul>
 </div>
 <div class="paragraph">
-<p>Step 4. The excess amount of $5 is stored in a new <code>SavedAmount</code> variable <code>excess</code>.
+<p>Step 3. The excess amount of $5 is stored in a new <code>Amount</code> variable <code>excess</code>.
 SaveCommand#execute then calls Model#updateUnusedFunds(excess) to update the <code>unusedFunds</code> in WishBook.</p>
 </div>
 <div class="paragraph">
@@ -439,11 +463,16 @@ SaveCommand#execute then calls Model#updateUnusedFunds(excess) to update the <co
 </ul>
 </div>
 <div class="paragraph">
-<p>Step 5. The user tries to execute <code>save 1 10</code> again. However, since the value for Wish#isFulfilled is true, the amount
+<p>Step 4. The user tries to execute <code>save 1 10</code> again. However, since the value for Wish#isFulfilled is true, the amount
 will not be saved. SaveCommand#execute will throw a CommandException, with the message "Wish has already been fulfilled!".</p>
 </div>
 <div class="paragraph">
-<p><em>{TO-DO: Sequence Diagram here}</em></p>
+<p>The following sequence diagram shows how the save operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SaveCommandSequenceDiagram.png" alt="SaveCommandSequenceDiagram" width="800">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -499,4 +528,4 @@ This will help users to consistently save towards their wishes.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 08:58:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 14:11:07 UTC</div></div></div></body></html>

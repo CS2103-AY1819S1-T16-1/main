@@ -1237,7 +1237,7 @@ to be negative.
 </table>
 </div>
 <div class="paragraph">
-<p>Step 3. The user decides to execute <code>save 1 10</code> again. However, SaveCommand checks that <code>savedAmount</code> &gt; <code>price</code>.
+<p>Step 2. The user decides to execute <code>save 1 10</code> again. However, SaveCommand checks that <code>savedAmount</code> &gt; <code>price</code>.
 SaveCommand#execute creates a new updated <code>Wish</code> with <code>savedAmount = wish.getPrice()</code>.</p>
 </div>
 <div class="paragraph">
@@ -1278,7 +1278,7 @@ SaveCommand#execute creates a new updated <code>Wish</code> with <code>savedAmou
 </ul>
 </div>
 <div class="paragraph">
-<p>Step 4. The excess amount of $5 is stored in a new <code>SavedAmount</code> variable <code>excess</code>.
+<p>Step 3. The excess amount of $5 is stored in a new <code>Amount</code> variable <code>excess</code>.
 SaveCommand#execute then calls Model#updateUnusedFunds(excess) to update the <code>unusedFunds</code> in WishBook.</p>
 </div>
 <div class="paragraph">
@@ -1292,11 +1292,16 @@ SaveCommand#execute then calls Model#updateUnusedFunds(excess) to update the <co
 </ul>
 </div>
 <div class="paragraph">
-<p>Step 5. The user tries to execute <code>save 1 10</code> again. However, since the value for Wish#isFulfilled is true, the amount
+<p>Step 4. The user tries to execute <code>save 1 10</code> again. However, since the value for Wish#isFulfilled is true, the amount
 will not be saved. SaveCommand#execute will throw a CommandException, with the message "Wish has already been fulfilled!".</p>
 </div>
 <div class="paragraph">
-<p><em>{TO-DO: Sequence Diagram here}</em></p>
+<p>The following sequence diagram shows how the save operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SaveCommandSequenceDiagram.png" alt="SaveCommandSequenceDiagram" width="800">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -3490,4 +3495,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 08:58:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 14:11:07 UTC</div></div></div></body></html>

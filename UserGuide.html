@@ -138,7 +138,7 @@ Format: <code>help</code></p>
 <h3 id="adding-a-wish-code-add-code"><a class="link" href="#adding-a-wish-code-add-code">3.2. Adding a wish: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a wish to the wish list<br>
-Format: <code>add n/WISH_NAME p/PRICE t/[a/TIME_GIVEN]/[d/END_DATE] [u/URL] [t/TAG]</code></p>
+Format: <code>add n/WISH_NAME p/PRICE t/[a/TIME_GIVEN]/[d/END_DATE] [u/URL] [r/REMARK] [t/TAG] [MORE TAGS]</code></p>
 </div>
 <div class="ulist TIP">
 <ul class="TIP">
@@ -173,7 +173,7 @@ Format: <code>add n/WISH_NAME p/PRICE t/[a/TIME_GIVEN]/[d/END_DATE] [u/URL] [t/T
 <p><code>add n/smallRice p/999 a/2d</code></p>
 </li>
 <li>
-<p><code>add n/kfcBook 13inch p/2300 a/6m3w</code></p>
+<p><code>add n/kfcBook 13inch p/2300 a/6m3w r/For dad t/family t/computing</code></p>
 </li>
 <li>
 <p><code>add n/prinkles p/1.95 d/24/04/2020</code></p>
@@ -474,10 +474,17 @@ Format: <code>save INDEX AMOUNT</code></p>
 <p>If <code>AMOUNT</code> is negative, money will be removed from amount saved for that wish.<br></p>
 </li>
 <li>
-<p>If <code>AMOUNT</code> brings the savings value for that wish to below 0, <code>AMOUNT</code> will not be accepted and the <code>save</code> command will fail.</p>
+<p><code>AMOUNT</code> will not be accepted if:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AMOUNT</code> brings the savings value for that wish to below 0.</p>
 </li>
 <li>
-<p>If wish at <code>INDEX</code> is already fulfilled, <code>AMOUNT</code> will not accepted.</p>
+<p>The wish at <code>INDEX</code> is already fulfilled.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -523,7 +530,7 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 <p>If <code>TO_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from <code>FROM_WISH_INDEX</code> to <code>unusedFunds</code>.</p>
 </li>
 <li>
-<p><code>AMOUNT</code> from <code>unusedFunds</code> will only be successfully channelled if the exact amount requested if present in <code>unusedFunds</code>.</p>
+<p><code>AMOUNT</code> from <code>unusedFunds</code> will only be successfully channelled if the exact amount requested is present in <code>unusedFunds</code>.</p>
 </li>
 <li>
 <p>If <code>FROM_WISH_INDEX</code> equals <code>TO_WISH_INDEX</code>, both indexes will not be accepted.</p>
@@ -532,13 +539,20 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 <p>If <code>AMOUNT</code> saved to <code>TO_WISH_INDEX</code> is greater than the amount needed to fulfil that wish, excess funds will be channelled to <code>unusedFunds</code>.</p>
 </li>
 <li>
-<p>If <code>AMOUNT</code> is negative, <code>AMOUNT</code> will not be accepted.<br></p>
+<p><code>AMOUNT</code> will not be accepted if:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AMOUNT</code> is negative.</p>
 </li>
 <li>
-<p>If <code>AMOUNT</code> brings the savings amount of wish at <code>FROM_WISH_INDEX</code> to below 0, <code>AMOUNT</code> will not be accepted.</p>
+<p><code>AMOUNT</code> brings the savings amount of wish at <code>FROM_WISH_INDEX</code> to below 0.</p>
 </li>
 <li>
-<p>If wish at <code>FROM_WISH_INDEX</code> or <code>TO_WISH_INDEX</code> is already fulfilled, <code>AMOUNT</code> will not accepted.</p>
+<p>Either wish at <code>FROM_WISH_INDEX</code> or <code>TO_WISH_INDEX</code> is already fulfilled.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -552,7 +566,7 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Index 0 is a specially allocated for unused funds. Excess funds when user attempts to save to a wish will be automatically allocated to <code>unusedFunds</code>. The user can also choose to channel funds from <code>unusedFunds</code> to a valid wish.</p>
+<p>Index 0 is specially allocated for unused funds. Excess funds when user attempts to save to a wish will be automatically allocated to <code>unusedFunds</code>. The user can also choose to channel funds from <code>unusedFunds</code> to a valid wish.</p>
 </div>
 </td>
 </tr>
@@ -811,4 +825,4 @@ e.g. <code>move 1 2 10</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 08:58:24 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 14:11:07 UTC</div></div></div></body></html>
