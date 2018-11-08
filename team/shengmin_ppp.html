@@ -1,0 +1,559 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Leong Shengmin - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Leong Shengmin - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-wishbook"><a class="link" href="#project-wishbook">PROJECT: WishBook</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By: <code>CS2103T Team T16-1</code>
+---</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WishBook (WB) is a piggy bank in a digital app form, made for people who need a user-friendly solution for keeping track of their disposable income. Not only does WB keep records of your savings, it also allows users to set items as goals for users to work towards, serving as a way to cultivate the habit of saving. WB is made for people who have material wants in life, but are uncertain of purchasing said wants, by helping them to reserve disposable income so that they know they can spend on their wants.</p>
+</div>
+<div class="paragraph">
+<p>This project portfolio consists of the contributions I have made to WishBook over the semester.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Below is a mockup of <code>WishBook</code></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Fig 1: Mockup of WishBook</em></p>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="strong-major-enhancement-strong-added-the-ability-to-view-savings-history"><a class="link" href="#strong-major-enhancement-strong-added-the-ability-to-view-savings-history"><strong>Major enhancement</strong>: added the ability to view savings history</a></h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Below is a screenshot of the savings history for a <code>Wish</code></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/savingsHistoryUI.png" alt="savingsHistoryUI" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Fig 2: Savings History of a Wish</em></p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Shows a history of savings you have allocated for any particular wish in the wishbook, from newest to oldest.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly because the automatic book-keeping of savings for each Wish allows the user to easily and clearly keep track of his or her savings over a length of time.</p>
+<div class="paragraph">
+<p>This feature also allows for extensions since the data collected in terms of amount saved as well as frequency of saving allows for precious insights to be drawn about the saving habits as well as saving priorities of the user.</p>
+</div>
+</li>
+<li>
+<p>Highlights: This enhancement affects existing commands and commands to be added in future.</p>
+<div class="paragraph">
+<p>The implementation of this feature involves many different components and is intrinsically tied to the state of the <code>WishBook</code>, which changes when the user executes an action-based command such as the <code>Add</code>, <code>Save</code>, <code>Edit</code> command.</p>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Areas involved:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Persistent Storage</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Facilitate reading and writing of savings histories of all wishes to hard disk. This data will also be saved to the hard disk when triggered by a change in the state of the wishbook.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Dynamic updating of savings history</p>
+<div class="ulist">
+<ul>
+<li>
+<p>In order for savings histories of each <code>Wish</code> to be updated dynamically, the implementation follows an event-driven model. When an action-based command is executed, subscribed classes will be notified of the change in state of the <code>WishBook</code>.</p>
+</li>
+<li>
+<p>The implementation of tracking the savings history of each <code>Wish</code> also needs to follow a <code>VersionedModel</code> that responds when notified by the change in <code>WishBook</code> state.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Testing</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Unit and Integrated testing for the code contributed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Credits:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Persistent storage</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Savings history saved as <code>xml</code> format using the <code>JAXB</code> framework.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Dynamic updating of savings history</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Follows event-driven model of <code>AddressBook-L4</code></p>
+</li>
+<li>
+<p><code>VersionedModel</code> implementation inspired by <code>undo</code>, <code>redo</code> functionality in <code>AddressBook-L4</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Testing</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>JUnit</code> testing framework adopted.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="strong-minor-enhancement-strong-updated-the-code-help-window-code-display"><a class="link" href="#strong-minor-enhancement-strong-updated-the-code-help-window-code-display"><strong>Minor enhancement</strong>: updated the  <code>Help Window</code> display.</a></h3>
+<div class="paragraph">
+<p>The <code>Help Window</code> is a pop-up window that appears when the <code>Help</code> command is executed. It is a guide to aid the user navigate the <code>WishBook</code>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>The image below shows a screenshot of the <code>Help Window</code>.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/helpWindow.png" alt="helpWindow" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Fig 3: Help Window</em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="strong-code-contributed-strong"><a class="link" href="#strong-code-contributed-strong"><strong>Code contributed</strong>:</a></h3>
+<div class="paragraph">
+<p><em>The following links contain code snippets of code contributed</em> [<a href="https://github.com/CS2103-AY1819S1-T16-1/main/commit/6fb424a707d9bee9bd5b2441c741c5051bed3b18#diff-7b7c12031dc90ab5f6a8ec163dc2e541">Functional code</a>]  [<a href="https://github.com/CS2103-AY1819S1-T16-1/main/commit/6fb424a707d9bee9bd5b2441c741c5051bed3b18#diff-b84c42f13e31e9508d50fbccaca0ac08">Test code</a>]</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="strong-other-contributions-strong"><a class="link" href="#strong-other-contributions-strong"><strong>Other contributions</strong>:</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User Guide:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Wrote the first version of the user guide containing all features in the first version of <code>WishBook</code>.[<a href="https://github.com/CS2103-AY1819S1-T16-1/main/blob/master/docs/old_userguide.md">link</a>]</p>
+</li>
+<li>
+<p>Added content for <code>History -s</code> command. [<a href="https://github.com/CS2103-AY1819S1-T16-1/main/blob/master/docs/UserGuide.adoc#viewing-your-saving-history-code-history-s-code">link</a>]</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Developer Guide:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added content for <code>History -s</code> command. [<a href="https://github.com/CS2103-AY1819S1-T16-1/main/blob/master/docs/DeveloperGuide.adoc#savings-history-feature">link</a>]</p>
+</li>
+<li>
+<p>Refactored undo, redo UML diagrams to reflect current version of WishBook.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>The following images show the undo, redo UML diagrams:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Fig 5.1: Undo Redo Sequence Diagram</em></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/UndoRedoExecuteUndoStateListDiagram.png" alt="UndoRedoExecuteUndoStateListDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Fig 5.2.2 Undo Redo State Diagram after <code>Undo</code> command executed</em></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Fig 5.3 Undo Redo Activity Diagram</em></p>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the Model class diagram.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>The following image shows the updated Model Class Diagram.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Fig 6: Model Class Diagram</em></p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the Storage class diagram.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>The following image shows the updated Storage Class Diagram.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/StorageClassDiagram.png" alt="StorageClassDiagram" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Fig 7: Storage Class Diagram</em></p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): [<a href="https://github.com/CS2103-AY1819S1-T16-1/main/pull/54">#54</a>], [<a href="https://github.com/CS2103-AY1819S1-T16-1/main/pull/32">#32</a>]</p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class [<a href="https://github.com/CS2103-AY1819S1-W10-2/main/issues/285">1</a>], [<a href="https://github.com/CS2103-AY1819S1-W10-2/main/issues/276">2</a>], [<a href="https://github.com/CS2103-AY1819S1-W10-2/main/issues/275">3</a>]</p>
+</li>
+<li>
+<p>Raised and resolved issues [<a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/created_by/leongshengmin">1</a>], [<a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues?q=is%3Aissue+assignee%3Aleongshengmin+is%3Aclosed">2</a>]</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tools:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Configured <code>RepoSense</code>, a Contribution Analysis Tool for the team repo [<a href="https://github.com/CS2103-AY1819S1-T16-1/main/pull/62/files">#62</a>]</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="viewing-your-saving-history-code-history-s-code"><a class="link" href="#viewing-your-saving-history-code-history-s-code">Viewing your saving history: <code>history -s</code></a></h3>
+<div class="paragraph">
+<p>Shows a history of savings you have allocated, from newest to oldest.<br>
+Format: <code>history -s</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Only history of wishes which currently exist in the <code>WishBook</code> will be stored. (i.e. wishes that have been deleted will no longer be tracked.)</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Proposed enhancement for V2.0</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p><em>{explain how the user can enable/disable data encryption}</em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="savings-history-feature"><a class="link" href="#savings-history-feature">Savings History feature</a></h3>
+<div class="sect3">
+<h4 id="capturing-the-state-of-code-wishtransaction-code"><a class="link" href="#capturing-the-state-of-code-wishtransaction-code">Capturing the state of <code>WishTransaction</code></a></h4>
+<div class="paragraph">
+<p>The current state of the savings history of the <code>WishBook</code> is captured by <code>VersionedWishTransaction</code>.
+<code>VersionedWishTransaction</code> extends <code>WishTransaction</code> and has an undo/redo history, similar to the implementation of the Undo/Redo feature, and is stored internally as a <code>wishStateList</code> and <code>currentStatePointer</code>. Additionally, it implements <code>VersionedModel</code> and so contains the implementation of the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>VersionedWishTransaction#commit()</code>&#8201;&#8212;&#8201;Saves the current wish transaction state in its history.</p>
+</li>
+<li>
+<p><code>VersionedWishTransaction#undo()</code>&#8201;&#8212;&#8201;Restores the previous wish transaction state from its history.</p>
+</li>
+<li>
+<p><code>VersionedWishTransaction#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone wish transaction state from its history.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> and <code>Model#redoWishBook()</code> respectively.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="capturing-the-state-of-each-code-wish-code"><a class="link" href="#capturing-the-state-of-each-code-wish-code">Capturing the state of each <code>Wish</code></a></h4>
+<div class="paragraph">
+<p><code>WishTransaction</code> keeps track of the state of all wishes in <code>WishBook</code> via a <code>wishMap</code> which maps the unique ID of a <code>Wish</code> to a list of <code>Wish</code> states. <code>WishTransaction</code> implements <code>ActionCommandListener</code> such that any state changing command performed to a <code>Wish</code> or the <code>WishBook</code> such as <code>AddCommand()</code>, <code>EditCommand()</code>, <code>SaveCommand()</code>, etc will result in the <code>WishMap</code> being updated accordingly in <code>WishTransaction</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="persistent-storage"><a class="link" href="#persistent-storage">Persistent storage</a></h4>
+<div class="paragraph">
+<p><code>VersionedWishTransaction</code>, <code>WishTransaction</code> can be easily converted to and from xml using  <code>XmlWishTransactions</code>. <code>XmlWishTransactions</code> is saved as an xml file when the user explicitly closes the window, thereby invoking <code>MainApp#stop()</code> which saves the current state of <code>VersionedWishTransaction</code> in the <code>wishStateList</code> to hard disk.</p>
+</div>
+<div class="paragraph">
+<p>If the user&#8217;s command triggers a change in the state of the <code>WishBook</code>, a <code>WishBookChangedEvent</code> will be raised, causing the subscribed <code>StorageManager</code> to respond by saving both the current state of the <code>WishBook</code> and <code>WishTransaction</code> to disk.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the savings history mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application. The default file path storing the previous state of the <code>WishTransaction</code> will be retrieved, unless otherwise specified by the user, and the contents from the xml file will be parsed and converted into a <code>WishTransaction</code> object via the <code>XmlWishTransactions</code> object. If the file at the specified location is behind the current state of the <code>WishBook</code>, content of the <code>WishTransaction</code> will be overwritten by the <code>WishBook</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>wishStateList</code> starts off with the initial state of the <code>WishTransaction</code> as the first item in the list.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>add n/iPhone &#8230;&#8203;</code> to add a new wish. The <code>add</code> command calls <code>Model#commitWishBook()</code>, causing the current state of the modified wish transaction state to be saved into <code>wishStateList</code>. As this is a command that changes the state of the <code>WishBook</code>, <code>Model#addWish()</code> will call <code>VersionedWishTransaction#addWish()</code> to add a new wish to the <code>WishMap</code>.</p>
+</div>
+<div class="ulist NOTE">
+<ul class="NOTE">
+<li>
+<p>If a command fails its execution, it will not call <code>Model#commitWishBook()</code>, so the wish transaction state will not be saved into the <code>wishStateList</code>.</p>
+</li>
+<li>
+<p>If the <code>WishMap</code> contains an identical wish (such is identified by <code>Wish#isSameWish()</code>), then the call to add this wish will fail. As such, the wish will not be added to the <code>WishMap</code> or the <code>WishBook</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Step 3. The user now decides that adding the wish was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoWishBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous wish transaction state, and restores the wish transaction to that state.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the <code>currentStatePointer</code> is at index 0, pointing to the initial wish transaction state, then there are no previous wish transaction states to restore. The <code>undo</code> command uses <code>Model#canUndoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoWishBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the wish transaction to that state.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the <code>currentStatePointer</code> is at index <code>wishStateList.size() - 1</code>, pointing to the latest wish transaction state, then there are no undone wish transaction states to restore. The <code>redo</code> command uses <code>Model#canRedoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 4. The user then decides to execute the command <code>list</code>. Commands that do not modify the state of the <code>WishBook</code>, such as <code>list</code>, will usually not call <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> or <code>Model#redoWishBook()</code>. Thus, the <code>wishBookStateList</code> remains unchanged.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. The user finally exits the app by clicking on the close button. The most recent state of the <code>WishTransaction</code> will be converted into xml format via the the <code>XmlWishTransactions</code> object and be saved into the same file path it was first retrieved from.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If there was some error saving the current state of the <code>WishTransaction</code> to the specified file path in hard disk, an exception will be thrown and a warning will be shown to the user. The current state of the <code>WishTransaction</code> object will not be saved to hard disk.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Proposed enhancement for V2.0</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-savings-notifications"><a class="link" href="#proposed-savings-notifications">[Proposed] Savings Notifications</a></h3>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Some users may have many wishes, all of which have a different targeted date of completion and different price.
+It may thus be difficult for users to keep track of how much they need to consistently save to fulfil their various wishes on time.
+This Savings Notification feature will allow users to opt for daily/weekly/monthly notifications for each specific wish,
+reminding them of the amount that they need to save at the beginning of the chosen time period.
+This will help users to consistently save towards their wishes.</p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 08:52:47 UTC</div></div></div></body></html>
