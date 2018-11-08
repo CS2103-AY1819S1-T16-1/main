@@ -231,7 +231,7 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 <p><code>FROM_WISH_INDEX</code> and <code>TO_WISH_INDEX</code> should be a positive integer 1, 2, 3… no larger than the number of wishes</p>
 </li>
 <li>
-<p>If <code>FROM_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from unusedFunds to <code>TO_WISH_INDEX</code>.</p>
+<p>If <code>FROM_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from <code>unusedFunds</code> to <code>TO_WISH_INDEX</code>.</p>
 </li>
 <li>
 <p>If <code>TO_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from <code>FROM_WISH_INDEX</code> to <code>unusedFunds</code>.</p>
@@ -273,8 +273,8 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Index 0 is specially allocated for unused funds. Excess funds when user attempts to save to a wish will be automatically
- allocated to <code>unusedFunds</code>.
+<p>Index 0 is specially allocated for <code>unused funds</code>. Excess funds when user attempts to save to a wish will be
+automatically allocated to <code>unusedFunds</code>.
 The user can also choose to channel funds from <code>unusedFunds</code> to a valid wish.</p>
 </div>
 </td>
@@ -292,7 +292,7 @@ Attempt to move $10 from the wish at index 1 to the wish at index 2.</p>
 </li>
 <li>
 <p><code>move 0 1 10</code><br>
-Attempt to move $10 from unusedFunds to the wish at index 1.</p>
+Attempt to move $10 from <code>unusedFunds</code> to the wish at index 1.</p>
 </li>
 <li>
 <p><code>move 1 0 10</code><br>
@@ -531,4 +531,4 @@ This will help users to consistently save towards their wishes.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 13:45:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 15:04:46 UTC</div></div></div></body></html>

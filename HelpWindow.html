@@ -30,7 +30,6 @@
 <li><a href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">3.17. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -42,7 +41,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>WishBook (WB) is a piggy bank in a digital app form, made for people who need a user-friendly solution for keeping
+<p><strong>WishBook</strong> (WB) is a piggy bank in a digital app form, made for people who need a user-friendly solution for keeping
  track of their disposable income. Not only does WB keep records of your savings, it also allows users to set items
   as goals for users to work towards, serving as a way to cultivate the habit of saving. WB is made for people who have
    material wants in life, but are uncertain of purchasing said wants, by helping them to reserve disposable income so
@@ -123,6 +122,19 @@ can be used as add iPhone.</p>
 <li>
 <p>Items in square brackets are optional e.g. in <code>list [FILTER]</code>, <code>FILTER</code> is an optional parameter, since the list
 command can be used as <code>list</code> to display all wishes in WishBook.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>An exception to this is <code>TIME_GIVEN</code> and <code>END_DATE</code>, whereby only one of the two can be used in any command.</p>
+</li>
+<li>
+<p>The <code>add</code> command requires either <code>TIME_GIVEN</code> and <code>END_DATE</code>.</p>
+</li>
+<li>
+<p>The <code>edit</code> command can take either or none of them.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code>
@@ -150,20 +162,21 @@ Format: <code>help</code></p>
 <p>Add a new wish to the wish list.<br>
 Format: <code>add n/WISH_NAME p/PRICE [a/PERIOD_GIVEN]/[d/END_DATE] [u/URL] [t/TAG]&#8230;&#8203;</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
+<div class="ulist TIP">
+<ul class="TIP">
 <li>
 <p><code>[END_DATE]</code>: Specified in <em>dd/mm/yyyy</em> format.</p>
 </li>
 <li>
-<p><code>[PERIOD_GIVEN]</code>: Specified in terms of days, weeks or months or years, prefixes marking such time
-periods are <em>‘d’, ‘w’, ‘m’</em> and <em>‘y’</em> respectively.</p>
+<p><code>[TIME_GIVEN]</code>: Specified in terms of years, months, weeks, and days, suffixes (coming after the value)
+marking such time periods are <em>‘y’</em>, <em>‘m’</em>, <em>‘w’</em>, and <em>‘d’</em> respectively.</p>
 </li>
 </ul>
 </div>
-</div>
+<div class="paragraph">
+<p>The order of <code>[TIME_GIVEN]</code> must be from the biggest unit of time to the smallest unit of time, meaning that the
+suffix <em>`y`</em> cannot come after any of the other three suffixes, and <em>'w'</em> cannot come after <em>'d'</em>, but can come
+after <em>'y'</em> and <em>'m'</em>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -200,7 +213,7 @@ Until all fields provided are valid, the wish will not be added to <code>WishBoo
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/smallRice p/999 a/2d</code></p>
+<p><code>add n/XBoxTwo p/999 a/1y</code></p>
 </li>
 <li>
 <p><code>add n/kfcBook 13inch p/2300 a/6m3w r/For dad t/family t/computing</code></p>
@@ -570,7 +583,7 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 <p><code>FROM_WISH_INDEX</code> and <code>TO_WISH_INDEX</code> should be a positive integer 1, 2, 3… no larger than the number of wishes</p>
 </li>
 <li>
-<p>If <code>FROM_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from unusedFunds to <code>TO_WISH_INDEX</code>.</p>
+<p>If <code>FROM_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from <code>unusedFunds</code> to <code>TO_WISH_INDEX</code>.</p>
 </li>
 <li>
 <p>If <code>TO_WISH_INDEX</code> is 0, <code>AMOUNT</code> will be channelled from <code>FROM_WISH_INDEX</code> to <code>unusedFunds</code>.</p>
@@ -612,8 +625,8 @@ Format: <code>move FROM_WISH_INDEX TO_WISH_INDEX AMOUNT</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Index 0 is specially allocated for unused funds. Excess funds when user attempts to save to a wish will be automatically
- allocated to <code>unusedFunds</code>.
+<p>Index 0 is specially allocated for <code>unused funds</code>. Excess funds when user attempts to save to a wish will be
+automatically allocated to <code>unusedFunds</code>.
 The user can also choose to channel funds from <code>unusedFunds</code> to a valid wish.</p>
 </div>
 </td>
@@ -631,7 +644,7 @@ Attempt to move $10 from the wish at index 1 to the wish at index 2.</p>
 </li>
 <li>
 <p><code>move 0 1 10</code><br>
-Attempt to move $10 from unusedFunds to the wish at index 1.</p>
+Attempt to move $10 from <code>unusedFunds</code> to the wish at index 1.</p>
 </li>
 <li>
 <p><code>move 1 0 10</code><br>
@@ -788,12 +801,6 @@ Format: <code>exit</code></p>
 There is no need to save manually.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></h3>
-<div class="paragraph">
-<p><em>{explain how the user can enable/disable data encryption}</em></p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -813,7 +820,7 @@ the data of your previous WishBook folder.</p>
 <ul>
 <li>
 <p><strong>Add</strong>  <code>add n/WISH_NAME p/PRICE t/[a/TIME_GIVEN]/[d/END_DATE] [u/URL] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>add n/kfcBook_13inch p/2300 a/6m3w</code></p>
+e.g. <code>add n/Sega Genesis p/2300 a/6m3w</code></p>
 </li>
 <li>
 <p><strong>Clear</strong> : <code>clear</code></p>
@@ -824,11 +831,11 @@ e.g. <code>delete 3</code></p>
 </li>
 <li>
 <p><strong>Edit</strong> : <code>edit INDEX [n/WISH_NAME] [p/PRICE] [a/TIME_GIVEN]/[d/END_DATE] [t/TAG]</code><br>
-e.g. <code>edit 1 n/Macbook Pro t/Broke wishes</code></p>
+e.g. <code>edit 1 n/Macbook Pro t/technology</code></p>
 </li>
 <li>
 <p><strong>Find</strong> : <code>find [-e] [n/NAME_KEYWORD]&#8230;&#8203; [t/TAG_KEYWORD]&#8230;&#8203; [r/REMARK_KEYWORD]&#8230;&#8203;</code><br>
-e.g. <code>find n/wat t/important</code></p>
+e.g. <code>find n/Vacuum Cleaner t/family</code></p>
 </li>
 <li>
 <p><strong>List</strong> : <code>list</code></p>
@@ -875,4 +882,4 @@ e.g. <code>move 1 2 10</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 13:45:08 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 15:04:46 UTC</div></div></div></body></html>
