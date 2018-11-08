@@ -1347,27 +1347,48 @@ We must remember to skip this wish in methods that involve displaying the WishLi
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The find mechanism is facilitated by <code>FindCommand</code> and <code>FindCommandParser</code>. It extends <code>Command</code> and implements the following operations.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>FindCommand#execute()</code>&#8201;&#8212;&#8201;Executes the command by running a predicate <code>NameContainsKeywordsPredicate</code> and updates the current wish list.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
 <p>The find mechanism is supported by <code>FindCommandParser</code>. It implements <code>Parser</code> that contains the following operations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>FindCommandParser#parse()</code>&#8201;&#8212;&#8201;Checks the arguments for empty strings and throws a <code>ParseException</code> if empty string is found. It then splits it by one or more white spaces. It then removes any strings in the list of common words.</p>
+<p><code>FindCommandParser#parse()</code>&#8201;&#8212;&#8201;Checks the arguments for empty strings and throws a <code>ParseException</code> if empty string is
+found. It then splits it by one or more white spaces. It then removes any strings in the list of common words.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The predicate <code>NameContainsKeywordsPredicate</code> takes in a list of strings and checks if any of the strings contain fully or partial in the list of wish&#8217;s name, and returns the corresponding wish if so.</p>
+<p>The find mechanism is also facilitated by <code>FindCommand</code>. It extends <code>Command</code> and implements the
+following operations.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FindCommand#execute()</code>&#8201;&#8212;&#8201;Executes the command by updating the current <code>FilteredSortedWishList</code> with the
+<code>WishContainsKeywordPredicate</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The predicate <code>WishContainsKeywordsPredicate</code>, takes in a three lists for the keywords of the following attributes:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Name</p>
+</li>
+<li>
+<p>Tags</p>
+</li>
+<li>
+<p>Remark</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>and also the <code>isExactMatch</code> argument. The result of the predicate is determined by checking
+whether a <code>Wish</code> contains the given keywords at their corresponding attributes. The match threshold
+is dictated by the value of <code>isExactMatch</code>.</p>
 </div>
 <div class="paragraph">
 <p><em>{TO-DO: Sequence Diagram here}</em></p>
@@ -1382,8 +1403,15 @@ We must remember to skip this wish in methods that involve displaying the WishLi
 <p>Step 1. The user launches the application for the first time.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>find iphone</code> command to get all wishses containing the word 'iphone'.
-The <code>find</code> command calls <code>FindCommandParser#parse()</code>, checking the values <code>iphone</code>.</p>
+<p>Step 2. The user executes <code>find n/iphone n/tablet</code> command to get all wishes whose name contains the
+keywords 'iphone' or 'tablet'.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The <code>FindCommandParser#parse()</code> is called and the <code>WishContainsKeywordPredicate</code> is constructed with
+the arguments of the find command.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. <code>FindCommand#execute()</code> is then called.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1392,16 +1420,16 @@ The <code>find</code> command calls <code>FindCommandParser#parse()</code>, chec
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>FindCommand#execute()</code>, so the state will not be saved.
+If a command fails its execution, <code>FindCommand#execute()</code> will not be called, so the state will not be saved.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 3. The entire list of wishes is filtered by the predicate <code>NameContainsKeywordsPredicate</code>.</p>
+<p>Step 5. The entire list of wishes is filtered by the predicate <code>NameContainsKeywordsPredicate</code>.</p>
 </div>
 <div class="paragraph">
-<p>Step 4. The filtered list of wishes is returned to the GUI.</p>
+<p>Step 6. The filtered list of wishes is returned to the GUI.</p>
 </div>
 <div class="paragraph">
 <p><em>{TO-DO: Flow Chart Diagram}</em></p>
@@ -1410,37 +1438,81 @@ If a command fails its execution, it will not call <code>FindCommand#execute()</
 <div class="sect3">
 <h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.6.3. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-predicate-works"><a class="link" href="#aspect-how-predicate-works">Aspect: How predicate works</a></h5>
+<h5 id="aspect-argument-format"><a class="link" href="#aspect-argument-format">Aspect: Argument format</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (Current choice):</strong> Predicate have additional filter with an ignore list.</p>
+<p><strong>Alternative 1 (Current choice):</strong> Require the user to prepend every keyword argument with the appropriate
+Wish attribute prefix.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement, user friendly.</p>
+<p>Pros: Easier to implement as it easier to match keyword against a Wish if the attribute to match against is known.</p>
 </li>
 <li>
-<p>Cons: More complicated predicate, sub strings not easily taken care of.</p>
+<p>Pros: User has more control over the results returned.</p>
+</li>
+<li>
+<p>Cons: User is required to type slightly more.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Filter the data when it is taken in.</p>
+<p><strong>Alternative 2:</strong> No prefixes are required in the arguments. Keywords can match with any one of the
+following chosen wish attributes: <code>Name</code>, <code>Tags</code> or <code>Remark</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Less complicated predicate.</p>
+<p>Pros: Less typing required from user.</p>
 </li>
 <li>
-<p>Cons: Manipulates the data, editing it for every other case.</p>
+<p>Cons: Command might be slightly slower as every keyword has to be checked against all chosen attributes of the
+wish.</p>
+</li>
+<li>
+<p>Cons: User has less control over the results returned.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-default-threshold-for-match-without-the-code-exact_match-code-flag"><a class="link" href="#aspect-default-threshold-for-match-without-the-code-exact_match-code-flag">3.6.4. Aspect: Default threshold for match without the <code>EXACT_MATCH</code> flag</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (Current choice):</strong> Keywords appended to different prefixes are grouped with a logical AND
+keywords appended to the same prefixes are grouped with a logical OR before being matched against a <code>Wish</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: A more intuitive way to find wishes.</p>
+</li>
+<li>
+<p>Cons: Can be restrictive in some situations.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Keywords appended to different prefixes are grouped with a logical OR
+keywords appended to the same prefixes are grouped with a logical OR before being matched against a <code>Wish</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Search results will be more inclusive.</p>
+</li>
+<li>
+<p>Cons: Very slim chance for such a use case.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -3495,4 +3567,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 08:52:47 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 12:57:21 UTC</div></div></div></body></html>
