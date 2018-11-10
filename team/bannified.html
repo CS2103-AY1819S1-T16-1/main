@@ -1,0 +1,706 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Dominic Chong (bannified) - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Dominic Chong (bannified) - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-wishbook"><a class="link" href="#project-wishbook">PROJECT: WishBook</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WishBook is a desktop application used to help one allocate one&#8217;s disposable income to a number of desired products.
+WishBook enables users to better organize their desirables, allowing them to visualize their spendings in a pleasant way.
+The user interacts with it by using a Command Line Interface (CLI), and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+</div>
+<div class="paragraph">
+<p>WishBook was developed by the GaveSoals team, a team of students based in the School of Computing, National University of Singapore.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>WishBook is an application that promotes sustainable and responsible consumerism, by having users be more frugal with their income while
+rewarding themselves at appropriate times, when they can afford to.</p>
+</div>
+<div class="paragraph">
+<p>Wishbook is an application adapted from addressbook-level4, the original application developed by the se-edu team.</p>
+</div>
+<div class="paragraph">
+<p>The source code of addressbook-level4 can be found <a href="https://github.com/nus-cs2103-AY1819S1/addressbook-level4">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>The main features of WishBook are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add a Wish (of a desired item) to the WishBook</p>
+</li>
+<li>
+<p>Add funds to a Wish to make progress in fulfilling a Wish</p>
+</li>
+<li>
+<p>Add remarks to a Wish</p>
+</li>
+<li>
+<p>Add funds to WishBook without an explicit Wish</p>
+</li>
+<li>
+<p>Keep track of the user&#8217;s progress to fulfilling a Wish, so that the user can buy it.</p>
+</li>
+<li>
+<p>Chang the details of a Wish after it has been added</p>
+</li>
+<li>
+<p>Find Wishes by name or tags</p>
+</li>
+<li>
+<p>View all completed or uncompleted Wishes</p>
+</li>
+<li>
+<p>Delete an unwanted Wish</p>
+</li>
+<li>
+<p>View of the Wish&#8217;s product page (if applicable)</p>
+</li>
+<li>
+<p>Undo and Redo commands</p>
+</li>
+<li>
+<p>View history of savings</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mentioned below are the contributions I have made with regards to WishBook&#8217;s development.
+Major components of the application were delegated to every person in the team, and I was tasked with the Model component.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: Add Wish Command</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to add a <code>Wish</code> by entering a product&#8217;s details.</p>
+</li>
+<li>
+<p>Justification: This feature is one of the core functionalities of the application,
+as a Wish is the primary entity that a User will interact with when using WishBook.</p>
+</li>
+<li>
+<p>Highlights:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Since this feature is core to the application,
+defensive programming has to be practiced when implementing this feature,
+as the Wish will likely affect features being added in the future.</p>
+</li>
+<li>
+<p>The Add Command also effectively creates Wish entries for the Wishbook to operate on,
+and is the entry point of the lifecycle of our application&#8217;s usage, bugs occurring
+in this command will cascade to other Wish-related commands, hence its implementation
+has to be safe and well-tested.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancements</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add an option for the user to state the Duration that a Wish will last, when adding a Wish with Add Command.</p>
+</li>
+<li>
+<p>Change syntax of Save Command to make it more user friendly</p>
+</li>
+<li>
+<p>Make Save Command show the change in SavedAmount of a wish from before</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: <a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=bannified">Project Code Dashboard link</a></p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>As Team Lead of GaveSoals:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed milestones <code>v1.1</code> - <code>v1.4</code> and one <code>v1.5</code> (release) on GitHub</p>
+</li>
+<li>
+<p>Handle distribution of tasks and features for the team</p>
+</li>
+<li>
+<p>Ensure that development is steady and milestones are met</p>
+</li>
+<li>
+<p>Manage issue tracker</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add age option (for dueDate) when adding a Wish (Pull requests <a href="https://github.com/CS2103-AY1819S1-T16-1/main/pull/74">#74</a>)</p>
+</li>
+<li>
+<p>Application-wide refactoring to suit our desired WishBook product (Pull requests <a href="https://github.com/CS2103-AY1819S1-T16-1/main/pull/12">#12</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quick-start"><a class="link" href="#quick-start">Quick Start</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
+</li>
+<li>
+<p>Download the latest <code>wishbook.jar</code> <a href="{repoURL}/releases">here</a>.</p>
+</li>
+<li>
+<p>Copy the file to the folder you want to use as the home folder for your WishBook app.</p>
+</li>
+<li>
+<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui" width="790">
+</div>
+</div>
+</li>
+<li>
+<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
+e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+</li>
+<li>
+<p>Some example commands you can try:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>list</code></strong> : Lists all the items you have set as wishes (sorted by due date).</p>
+</li>
+<li>
+<p><strong><code>add</code></strong><code>n/uPhoneXX p/1000 a/5m</code> : adds an item “uPhoneXX” as a goal to be completed in 5 months.</p>
+</li>
+<li>
+<p><strong><code>help</code></strong>: displays list of command with usage.</p>
+</li>
+<li>
+<p><strong><code>clear</code></strong>: clears view</p>
+</li>
+<li>
+<p><strong><code>exit</code></strong> : exits the app</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Refer to <a href="#Features">Features</a> for details of each command.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Features"><a class="link" href="#Features">Features</a></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Command Format</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add WISH</code>, <code>WISH</code> is a parameter which
+can be used as add iPhone.</p>
+</li>
+<li>
+<p>Items in square brackets are optional e.g. in <code>list [FILTER]</code>, <code>FILTER</code> is an optional parameter, since the list
+command can be used as <code>list</code> to display all wishes in WishBook.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>An exception to this is <code>TIME_GIVEN</code> and <code>END_DATE</code>, whereby only one of the two can be used in any command.</p>
+</li>
+<li>
+<p>The <code>add</code> command requires either <code>TIME_GIVEN</code> and <code>END_DATE</code>.</p>
+</li>
+<li>
+<p>The <code>edit</code> command can take either or none of them.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code>
+(i.e. 0 times), <code>t/broke</code>, <code>t/needs</code> etc.</p>
+</li>
+<li>
+<p>The <code>/</code> symbol between parameters means that you can use either of the parameters types in the command e.g. in
+<code>add WISH PRICE [TIME_GIVEN]/[START_DATE to END_DATE]</code>, you provide either the <code>TIME_GIVEN</code> parameter or <code>START_DATE</code>
+and <code>END_DATE</code> parameters.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-a-new-wish-code-add-code"><a class="link" href="#add-a-new-wish-code-add-code">Add a new wish: <code>add</code></a></h3>
+<div class="paragraph">
+<p>Add a new wish to the wish list.<br>
+Format: <code>add n/WISH_NAME p/PRICE [a/PERIOD_GIVEN]/[d/END_DATE] [u/URL] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="ulist TIP">
+<ul class="TIP">
+<li>
+<p><code>[END_DATE]</code>: Specified in <em>dd/mm/yyyy</em> format.</p>
+</li>
+<li>
+<p><code>[TIME_GIVEN]</code>: Specified in terms of years, months, weeks, and days, suffixes (coming after the value)
+marking such time periods are <em>‘y’</em>, <em>‘m’</em>, <em>‘w’</em>, and <em>‘d’</em> respectively.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The order of <code>[TIME_GIVEN]</code> must be from the biggest unit of time to the smallest unit of time, meaning that the
+suffix <em>`y`</em> cannot come after any of the other three suffixes, and <em>'w'</em> cannot come after <em>'d'</em>, but can come
+after <em>'y'</em> and <em>'m'</em>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you enter an invalid date, a warning message will be displayed to prompt the user to reenter a valid date.
+Until all fields provided are valid, the wish will not be added to <code>WishBook</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The expiry date you enter must be after current date.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/XBoxTwo p/999 a/1y</code></p>
+</li>
+<li>
+<p><code>add n/kfcBook 13inch p/2300 a/6m3w r/For dad t/family t/computing</code></p>
+</li>
+<li>
+<p><code>add n/prinkles p/1.95 d/24/04/2020</code></p>
+</li>
+<li>
+<p><code>add n/prinkles p/1.95 d/24/04/2020 u/www.amazon.com/prinkles t/high</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-a-wish-code-edit-code"><a class="link" href="#edit-a-wish-code-edit-code">Edit a wish : <code>edit</code></a></h3>
+<div class="paragraph">
+<p>Edits an existing wish in the wish list.<br>
+Format: <code>edit INDEX [n/WISH_NAME] [p/PRICE] [a/TIME_GIVEN]/[d/END_DATE] [u/URL] [t/TAG]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the wish at the specified <code>INDEX</code>. <code>INDEX</code> refers to the index number shown in the displayed list of goals. <code>INDEX</code> must be a positive integer 1, 2, 3, …</p>
+</li>
+<li>
+<p><code>INDEX</code> is labelled at the side of each wish.</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the wish will be removed i.e. adding of tags is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 n/Macbook Pro t/Broke wishes</code><br>
+Edits the name of the wish and the tag of the 1st wish to be Macbook Pro and Broke wishes respectively</p>
+</li>
+<li>
+<p><code>edit 2 p/22 a/22w</code><br>
+Edits the price and time given to accomplish the 2nd wish to 22 (in the chosen currency) and 22 weeks respectively.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="add-wish-feature"><a class="link" href="#add-wish-feature">Add Wish feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The Add Wish feature is executed through an <code>AddCommand</code> by the user, which after parsing,
+is facilitated mainly by the <code>ModelManager</code> which implements <code>Model</code>.
+It also affects <code>versionedWishBook</code> and <code>versionedWishTransaction</code> by adding the
+resultant wish to both of their respective data structures.
+After adding a <code>Wish</code>, the <code>filteredSortedWishes</code> is also updated to reflect the
+latest version of WishBook.
+The UI is also prompted to refresh through a <code>WishBookChangedEvent</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>AddCommandParser</code> parses the user&#8217;s input for parameters using prefixes,
+and checks them against their respective regular expressions (regex), specified
+in their respective classes.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>The following prefix/parameter pairs are <strong>compulsory</strong>, where a user&#8217;s input will be
+rejected if they are not provided:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>n/</code>: Name</p>
+</li>
+<li>
+<p><code>p/</code>: Price</p>
+</li>
+<li>
+<p>One of the following Date parameters:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>d/</code>: Exact expiry date</p>
+</li>
+<li>
+<p><code>a/</code>: duration (or lifetime) from time when command is entered</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following prefix/parameter pairs are <strong>optional</strong>, where a user&#8217;s input will
+be successful even if they are not provided:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>t/</code>: tags (more than one allowed)</p>
+</li>
+<li>
+<p><code>u/</code>: product&#8217;s URL (product page)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Regarding Duration (<code>a/</code>) vs Date (<code>d/</code>)</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If <code>d/</code> is used, a valid Date should be used.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Date comes in the format of <code>dd/mm/yyyy</code>,
+<code>dd</code> being days, <code>mm</code> being months, <code>yyyy</code> being the year, and the</p>
+</li>
+<li>
+<p>Specified date should also be a valid date in the future.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If <code>a/</code> is used, a valid Duration should be used.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>length instead of <code>dd/mm/yyyy</code> format, the format should be <code>&lt;years&gt;y&lt;months&gt;m&lt;days&gt;d</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>In any command, only <code>Duration</code> or <code>Date</code> can be used. Never both.</p>
+</li>
+<li>
+<p>If an invalid string for date or duration is provided, a warning will be
+displayed to prompt the user to enter a valid date or duration.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how an AddCommand is carried out.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user types in a valid <code>AddCommand</code>, <code>add n/1 TB Toshiba SSD p/158 a/200d</code>, and the current date is 2nd October 2017 (2/10/2017).</p>
+</div>
+<div class="paragraph">
+<p>The <code>AddCommandParser</code> will employ <code>ParserUtil</code> to parse the attributes specified after each prefix. The parsing of the
+<code>Duration</code> attribute which follows <code>a/</code> in the command will be discussed below.</p>
+</div>
+<div class="paragraph">
+<p>Since <code>Duration</code> prefix is used, the computation of a wish&#8217;s expiry date is handled
+internally in the <code>ParserUtil</code> class, which <code>ParserUtil#parseDate()</code> parses and converts
+the input string into a <code>Period</code> object (if input is valid),
+and adds the resultant <code>Period</code> to the current <code>Date</code> to get the desired
+<code>Date</code> of the <code>Wish</code>.</p>
+</div>
+<div class="paragraph">
+<p>The resultant <code>Wish</code> will have the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>id: <code>a randomly-generated UUID</code></p>
+</li>
+<li>
+<p>Name: <em>1TB Toshiba SSD</em></p>
+</li>
+<li>
+<p>SavedAmount: 0.00</p>
+</li>
+<li>
+<p>Price: 158.00</p>
+</li>
+<li>
+<p>Date: 20/4/2018 (20th April 2018)</p>
+</li>
+<li>
+<p>URL: <code>empty string</code></p>
+</li>
+<li>
+<p>Remark: <code>empty string</code></p>
+</li>
+<li>
+<p>Tags: <code>none</code></p>
+</li>
+<li>
+<p>Fulfilled: <code>false</code></p>
+</li>
+<li>
+<p>Expired: <code>false</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The resultant wish is pass into <code>VersionedWishBook#addWish</code> and <code>VersionedWishTransaction#addWish</code>,
+which tracks the history of the <code>WishBook</code> and <code>Wish</code> respectively. The list of wishes shown on the UI is also updated to show all wishes again,
+as <code>filteredSortedWishes</code> is updated to have all wishes in <code>WishBook</code> and a <code>WishBookChangedEvent</code> is fired.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how an <code>AddCommand</code> is processed in WB:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddWishSequenceDiagram.png" alt="AddWishSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2. Some time later, the user decides that she wants the exact same wish,
+but duplicated, and enters the exact same command, but with an exact <code>Date</code>
+instead of <code>Duration</code>, so the command entered is
+<code>add n/1 TB Toshiba SSD p/158 d/20/4/2018</code>.</p>
+</div>
+<div class="paragraph">
+<p>Since <code>Date</code> prefix is used, the <code>ParserUtil</code> parses the string into a <code>Date</code> object,
+and the resultant object is used directly for the resultant <code>Wish</code>.</p>
+</div>
+<div class="paragraph">
+<p>Similar to in Step 1, the command will be parsed successfully and a second <code>Wish</code>
+will be added, albeit with a different (hidden) id generated.</p>
+</div>
+<div class="paragraph">
+<p>The resultant <code>Wish</code> will have the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>id: <code>another randomly-generated UUID</code></p>
+</li>
+<li>
+<p>Name: <em>1TB Toshiba SSD</em></p>
+</li>
+<li>
+<p>SavedAmount: 0.00</p>
+</li>
+<li>
+<p>Price: 158.00</p>
+</li>
+<li>
+<p>Date: 20/4/2018 (20th April 2018)</p>
+</li>
+<li>
+<p>URL: <code>empty string</code></p>
+</li>
+<li>
+<p>Remark: <code>empty string</code></p>
+</li>
+<li>
+<p>Tags: <code>none</code></p>
+</li>
+<li>
+<p>Fulfilled: <code>false</code></p>
+</li>
+<li>
+<p>Expired: <code>false</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Different prefixes for <code>Duration</code> and <code>Date</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More focused user experience.
+User get more specific feedback depending on their preferred way of inputting date if a wrong input was made.
+If user uses <code>a/</code> and enters an incorrect <code>Duration</code>, the user will not receive an error message about the correct format
+for an exact <code>Date</code>, and will only be notified of the correct format of a <code>Duration</code>.</p>
+</li>
+<li>
+<p>Pros: Easier to implement and handle isolate errors related to respective input parameters.</p>
+</li>
+<li>
+<p>Cons: More prefixes for user to remember.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Have <code>Duration</code> and <code>Date</code> use the same prefix.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More natural usage of one prefix to determine <code>Wish</code> 's desired expiry date.</p>
+</li>
+<li>
+<p>Cons: Conflating implementation of <code>Duration</code> and <code>Date</code>, hence harder to debug.</p>
+</li>
+<li>
+<p>Cons: Tricky to implement, as we are parsing one input for two different desired formats.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 15:53:17 UTC</div></div></div></body></html>
