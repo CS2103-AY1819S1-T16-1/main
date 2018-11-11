@@ -2538,17 +2538,17 @@ b. Require developers to download those libraries manually (this creates extra w
 </li>
 </ul>
 </div>
-<h3 id="use-case-save-money-for-a-wish" class="discrete">Use case: Save money for a wish</h3>
+<h3 id="use-case-move-amount-between-wishes" class="discrete">Use case: Move amount between wishes</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Actor</strong> enters <span class="underline">X</span> amount of money to be saved.</p>
+<p><strong>Actor</strong> specifies the origin wish index, the destination wish index, and amount to move.</p>
 </li>
 <li>
-<p><strong>System</strong> transfers <span class="underline">X</span> from the bank to the wish that has the earliest due date.</p>
+<p><strong>System</strong> moves specified amount from origin wish to destination wish.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2561,11 +2561,135 @@ b. Require developers to download those libraries manually (this creates extra w
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. <strong>Actor</strong> specifies a wish to allocate the money to.</p>
+<p>1a. <strong>System</strong> has no recorded wishes.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. <strong>System</strong> adds <span class="underline">X</span> to the specified wish.</p>
+<p>1a1. <strong>Actor</strong> is prompted to add a wish.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1b. <strong>Actor</strong> enters invalid arguments.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. <strong>System</strong> shows Move command usage.</p>
+</li>
+<li>
+<p>1b2. <strong>Actor</strong> is prompted to enter a valid argument.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1c. <strong>Actor</strong> enters the same index for origin wish and destination wish.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c1. <strong>System</strong> shows Move command usage.</p>
+</li>
+<li>
+<p>1c2. <strong>Actor</strong> is prompted to enter a valid argument.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1d. The amount to move is greater than the existing saved amount in the origin wish.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1d1. <strong>System</strong> reports that saved amount of wish cannot become negative.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1e. The amount moved to destination wish exceeds the amount needed to fulfil the wish.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1e1. <strong>System</strong> moves to destination wish the required amount needed to fulfil it.</p>
+</li>
+<li>
+<p>1e2. <strong>System</strong> moves the excess amount to unused funds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1f. <strong>Actor</strong> specifies unused funds as the origin wish.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1f1. <strong>System</strong> moves amount from unused funds to the destination wish.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1g. <strong>Actor</strong> specifies unused funds as the destination wish.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1g1. <strong>System</strong> moves amount from origin wish to unused funds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-save-money-for-a-wish" class="discrete">Use case: Save money for a wish</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Actor</strong> enters <span class="underline">X</span> amount of money to be saved.</p>
+</li>
+<li>
+<p><strong>System</strong> transfers <span class="underline">X</span> to the wish with the specified index.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. <strong>Actor</strong> specifies to allocate the money to unused funds.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. <strong>System</strong> adds <span class="underline">X</span> to unused funds.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2592,6 +2716,35 @@ b. Require developers to download those libraries manually (this creates extra w
 <ul class="none">
 <li>
 <p>1c1. <strong>Actor</strong> is prompted to enter a valid value.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1d. <strong>Actor</strong> enters an amount of money that causes the wish&#8217;s saved amount to exceed the amount needed to fulfil the wish.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1d1. <strong>System</strong> adds the required amount to fulfil the saved amount of the wish at the specified index.</p>
+</li>
+<li>
+<p>1d2. <strong>System</strong> adds the excess amount to unused funds.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1e. <strong>Actor</strong> enters an amount that causes the wish&#8217;s resulting saved amount to become negative.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1e1. <strong>Actor</strong> is prompted to enter a valid value.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2989,4 +3142,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 16:08:51 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 12:53:31 UTC</div></div></div></body></html>
