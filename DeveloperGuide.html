@@ -35,9 +35,11 @@
 <li><a href="#add-wish-feature">3.4. Add Wish feature</a></li>
 <li><a href="#save-amount-feature">3.5. Save Amount feature</a></li>
 <li><a href="#find-wish-feature">3.6. Find Wish Feature</a></li>
-<li><a href="#proposed-savings-notifications">3.7. [Proposed] Savings Notifications</a></li>
-<li><a href="#logging">3.8. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
+<li><a href="#list-feature">3.7. List feature</a></li>
+<li><a href="#redesign-of-user-interface">3.8. Redesign of User Interface</a></li>
+<li><a href="#proposed-savings-notifications">3.9. [Proposed] Savings Notifications</a></li>
+<li><a href="#logging">3.10. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.11. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1692,9 +1694,268 @@ keywords appended to the same prefixes are grouped with a logical OR before bein
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-savings-notifications"><a class="link" href="#proposed-savings-notifications">3.7. [Proposed] Savings Notifications</a></h3>
+<h3 id="list-feature"><a class="link" href="#list-feature">3.7. List feature</a></h3>
+<div class="paragraph">
+<p>The <code>list -c and list -u</code> command allows the user to view the list of all wishes, completed and ongoing, respectively.
+A wish is completed if the savedAmount is greater or equal to the price of the wish.</p>
+</div>
 <div class="sect3">
-<h4 id="justification"><a class="link" href="#justification">3.7.1. Justification</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.7.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the list overdue mechanism behaves at each step:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes the command <code>list -c</code>.</p>
+</li>
+<li>
+<p><code>model.updateFilteredWishList()</code> will update the wish list with <code>WishCompletedPredicate</code> as the parameter (boolean). <code>wish.isFulfilled()</code> is called to check whether the wish is completed or not.</p>
+</li>
+<li>
+<p>The updated wish list would be reflected on the UI to be displayed to the user.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the Wish Detail Panel displays its updated content:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ListCompletedSequenceDiagram.png" alt="ListCompletedSequenceDiagram" width="790">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redesign-of-user-interface"><a class="link" href="#redesign-of-user-interface">3.8. Redesign of User Interface</a></h3>
+<div class="paragraph">
+<p>The UI has been redesigned to implement the following UI components required for WishBook:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Command Box</p>
+</li>
+<li>
+<p>Wish List Panel</p>
+</li>
+<li>
+<p>Wish Detail Panel</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="wish-list-panel"><a class="link" href="#wish-list-panel">3.8.1. Wish List Panel</a></h4>
+<div class="paragraph">
+<p>The Wish List Panel consists of a list of Wish Card which contains 4 UI elements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>WishCard#nameLabel</code> - A <code>Text</code> element that displays the wish’s name.</p>
+</li>
+<li>
+<p><code>WishCard#progressLabel</code> - A <code>Text</code> element that displays the wish’s saving progress in percentage format.</p>
+</li>
+<li>
+<p><code>WishCard#tags</code> - A <code>FlowPane</code> element that contains a <code>Text</code> element which displays the wish’s assigned tags.</p>
+</li>
+<li>
+<p><code>WishCard#progressBar</code> - A <code>progressBar</code> element that visually presents the percentage of the wish’s current saving progress.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Whenever the user adds a new wish or edits an existing wish, a new WishCard containing the wish will be added to the Wish List Panel or the content in the existing WishCard will be updated respectively.</p>
+</div>
+<div class="paragraph">
+<p>The user will be able to view the wish’s current saving progress both in terms of text on the progressLabel (e.g. ’80%’) and the progressBar. Also, the user will be able to see all the tags he/she assigned to categorize the wish.</p>
+</div>
+<div class="sect4">
+<h5 id="problem-with-the-old-design"><a class="link" href="#problem-with-the-old-design">Problem with the old design</a></h5>
+<div class="paragraph">
+<p>The UI (MainWindow) constructs the <code>WishListPanel</code> by obtaining an <code>ObservableList</code> of wish cards from <code>Model</code>, this list is assigned when UI starts, and will never be re-assigned.
+The UI "observes" the list and updates when it is modified.</p>
+</div>
+<div class="paragraph">
+<p>This approach works well for the <code>WishListPanel</code> because WishBook contains only 1 list of wish cards.
+However, the saving history list in the <code>WishDetailPanel</code> can not be updated in the same manner because Model component will change its card list’s reference when a user adds a new wish or updates the content of the wish.</p>
+</div>
+<div class="paragraph">
+<p>In this case, the <code>WishDetailPanel</code> in UI will not be updated because the card list of which UI has reference to is actually not changed.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design considerations</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Have a wishList in <code>Model</code> and keep it updated with the current list of cards</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Explanation: The UI needs only 1 reference to this <code>wishList</code>, each time user executes any changes, <code>wishList</code> is cleared and the new list of cards is copy to the <code>wishList</code>.</p>
+</li>
+<li>
+<p>Pros: The structure of <code>Model</code> and UI component needs not be changed</p>
+</li>
+<li>
+<p>Cons: Need to keep a copy of the current card list, copying the whole list of cards for each command operation has bad effect on performance .</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Model component raises an event when its current card list’s reference is changed</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Explanation: When user adds a new wish or executes save, <code>Model</code> will raise an event (<code>WishPanelUpdatedEvent</code>), which is subscribed by UI, then UI can re-assign its list of cards and update the cards panel accordingly.</p>
+</li>
+<li>
+<p>Pros: Better performance</p>
+</li>
+<li>
+<p>Cons: Need to re-design <code>Model</code> and UI components </p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="wish-detail-panel"><a class="link" href="#wish-detail-panel">3.8.2. Wish Detail Panel</a></h4>
+<div class="paragraph">
+<p>The Wish Detail Panel consists of 3 UI sub-components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>WishDetailSavingAmount</code> that contains <code>Text</code> elements to display price and the saving progress of the wish</p>
+</li>
+<li>
+<p><code>WishDetailSavingHistory</code> that contains a <code>List</code> of history of saving inputs of the wish</p>
+</li>
+<li>
+<p><code>WishBrowserPanel</code> that displays <code>WebView</code> of the URL of the wish.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Whenever the user adds a new wish or edits an existing wish, the content of the wish in Wish Detail Panel will be updated.
+The user will be able to view the wish’s current saving progress and the history of his/her saving inputs of the wish in the list format.
+Also, the user will be able to browse through the wish’s product page via its assigned URL.</p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-6"><a class="link" href="#current-implementation-6">Current Implementation</a></h5>
+<div class="paragraph">
+<p>Every time a new Wish is added or an existing wish is updated by the commands such as save, it raises a <code>WishDataUpdatedEvent</code>.
+The UI will then handle that event and update the <code>WishDetailPanel</code> with the new version of wish.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the WishBook behaves and <code>WishDetailPanel</code> is updated at each step:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes the command <code>save 1 1000</code>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a command fails its execution, WishDataUpdatedEvent will not be posted.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The save command updates the model with the new wish and raises a new <code>WishDataUpdatedEvent</code>.</p>
+</li>
+<li>
+<p><code>WishDetailSavingAmount</code> and <code>WishDetailSavingHistory</code> responds to the <code>WishDataUpdatedEvent</code> with <code>WishListPanel#handleWishUpdatedEvent()</code>.</p>
+</li>
+<li>
+<p>The <code>WishDetailSavingAmount</code> updates the wish’s current saving progress when <code>WishDetailSavingAmount#loadWishDetails</code> is called.</p>
+</li>
+<li>
+<p>The progress is calculated from when <code>Wish#getProgress</code> is called. The value is saveAmount / price. Then the progress label for the wish is set to that fraction.</p>
+</li>
+<li>
+<p>The <code>WishDetailSavingHistory</code> updates the wish’s saving history list when <code>WishDetailSavingHistory#loadWishDetails</code> is called.</p>
+</li>
+<li>
+<p>The saving history list is cleared.</p>
+</li>
+<li>
+<p>The new set of history entry is retrieved from <code>wishTransaction#getWishMap</code> and the saved amount is calculated from subtracting previous saving amount from the next one.</p>
+</li>
+<li>
+<p>The saving history list is now filled with the new list of updated saving history.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the Wish Detail Panel displays its updated content:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/WishDetailPanelSequenceDiagram.png" alt="WishDetailPanelSequenceDiagram" width="790">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h5>
+<div class="paragraph">
+<p><strong>Aspect: How to update the progress and saving history on UI</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Clear all the sub components and add new sub components accordingly</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: No matter which progress or history is changed, or what type of change (ie. delete, add, or edit), this change can be handled by the same method each time.</p>
+</li>
+<li>
+<p>Cons: It is redundant to clear everything and replace them with new sub components.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Handle different kinds of changes to the progress or history lists.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It is a lot faster to only change the sub component that is affected.</p>
+</li>
+<li>
+<p>Cons: There are too many cases for how the lists can be changed. (ie. a different change is needed for each of these cases: wish is deleted/edited/created/cleared, or a <code>wishTransaction</code> is deleted/added)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-savings-notifications"><a class="link" href="#proposed-savings-notifications">3.9. [Proposed] Savings Notifications</a></h3>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">3.9.1. Justification</a></h4>
 <div class="paragraph">
 <p>Some users may have many wishes, all of which have a different targeted date of completion and different price.
 It may thus be difficult for users to keep track of how much they need to consistently save to fulfil their various wishes on time.
@@ -1705,14 +1966,14 @@ This will help users to consistently save towards their wishes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.10. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.11, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1743,7 +2004,7 @@ This will help users to consistently save towards their wishes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.11. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3142,4 +3403,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 12:53:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:35:44 UTC</div></div></div></body></html>
