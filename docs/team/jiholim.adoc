@@ -21,7 +21,7 @@ WishBook boasts a beautifully designed Graphical User Interface (GUI) and makes 
 
 Below is a high definition product preview photo.
 
-image::UI.png[width="800"]
+image::Ui2.png[width="800"]
 
 == Summary of contributions
 
