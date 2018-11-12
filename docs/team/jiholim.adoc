@@ -21,11 +21,11 @@ WishBook boasts a beautifully designed Graphical User Interface (GUI) and makes 
 
 Below is a high definition product preview photo.
 
-image::ui2.png[width="790"]
+image::UI.png[width="800"]
 
 == Summary of contributions
 
-* *Major enhancement*: A complete redesign of GUI
+* *Major enhancement*: A complete redesign of GUI (UI & UX) and front-end development
 ** What it does: Displays an intuitive and data-rich graphical user interface that achieves the product’s goal and
 delivers smooth user experience when the features are being used.
 ** Justification: The redesign of the application is necessary as it unifies the different set of features that are built into a well-integrated product.
@@ -35,7 +35,7 @@ It required an in-depth analysis of design alternatives.
 The implementation too was challenging as it required changes to existing ui-related codebase
 
 * *Minor enhancements*:
-** Came up with show/hide tags command to show and hide wish’s tags in the list panel
+** Devised and built appropriate event handlers to present changes in model on ui
 ** Various Bug Fixes
 ** Update HelpWindow display
 
@@ -104,7 +104,7 @@ Given below is an example usage scenario and how the list overdue mechanism beha
 
 The following sequence diagram shows how the Wish Detail Panel displays its updated content:
 
-image::ListCompletedSequenceDiagram.png[width="790"]
+image::ListCompletedSequenceDiagram.png[width="800"]
 
 === Redesign of User Interface
 
@@ -185,7 +185,7 @@ If a command fails its execution, WishDataUpdatedEvent will not be posted.
 
 The following sequence diagram shows how the Wish Detail Panel displays its updated content:
 
-image::WishDetailPanelSequenceDiagram.png[width="790"]
+image::WishDetailPanelSequenceDiagram.png[width="800"]
 
 ===== Design Considerations
 
