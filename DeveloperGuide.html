@@ -100,7 +100,8 @@
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-JDK <code>10</code> on Windows will fail to run tests in <a href="UsingGradle.html#Running-Tests">headless mode</a> due to a <a href="https://github.com/javafxports/openjdk-jfx/issues/66">JavaFX bug</a>.
+JDK <code>10</code> on Windows will fail to run tests in <a href="UsingGradle.html#Running-Tests">headless mode</a> due to a
+<a href="https://github.com/javafxports/openjdk-jfx/issues/66">JavaFX bug</a>.
 Windows developers are highly recommended to use JDK <code>9</code>.
 </td>
 </tr>
@@ -134,7 +135,8 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 <p>Fork this repo, and clone the fork to your computer</p>
 </li>
 <li>
-<p>Open IntelliJ (if you are not in the welcome screen, click <code>File</code> &gt; <code>Close Project</code> to close the existing project dialog first)</p>
+<p>Open IntelliJ (if you are not in the welcome screen, click <code>File</code> &gt; <code>Close Project</code> to close the existing project
+dialog first)</p>
 </li>
 <li>
 <p>Set up the correct JDK version for Gradle</p>
@@ -162,24 +164,31 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 <p>Click <code>OK</code> to accept the default settings</p>
 </li>
 <li>
-<p>Open a console and run the command <code>gradlew processResources</code> (Mac/Linux: <code>./gradlew processResources</code>). It should finish with the <code>BUILD SUCCESSFUL</code> message.<br>
+<p>Open a console and run the command <code>gradlew processResources</code> (Mac/Linux: <code>./gradlew processResources</code>).
+It should finish with the <code>BUILD SUCCESSFUL</code> message.<br>
 This will generate all resources required by the application and tests.</p>
 </li>
 <li>
-<p>Open <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/storage/XmlAdaptedWish.java"><code>XmlAdaptedWish.java</code></a> and <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/MainWindow.java"><code>MainWindow.java</code></a> and check for any code errors</p>
+<p>Open <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/storage/XmlAdaptedWish.java"><code>XmlAdaptedWish.java</code></a> and
+<a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/main/java/seedu/url/ui/MainWindow.java"><code>MainWindow.java</code></a> and check for any code errors</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Due to an ongoing <a href="https://youtrack.jetbrains.com/issue/IDEA-189060">issue</a> with some of the newer versions of IntelliJ, code errors may be detected even if the project can be built and run successfully</p>
+<p>Due to an ongoing <a href="https://youtrack.jetbrains.com/issue/IDEA-189060">issue</a> with some of the newer versions of
+IntelliJ, code errors may be detected even if the project can be built and run successfully</p>
 </li>
 <li>
-<p>To resolve this, place your cursor over any of the code section highlighted in red. Press <span class="keyseq"><kbd>ALT</kbd>+<kbd>ENTER</kbd></span>, and select <code>Add '--add-modules=&#8230;&#8203;' to module compiler options</code> for each error</p>
+<p>To resolve this, place your cursor over any of the code section highlighted in red. Press <span class="keyseq"><kbd>ALT</kbd>+<kbd>ENTER</kbd></span>,
+and select <code>Add '--add-modules=&#8230;&#8203;' to module compiler options</code> for each error</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>Repeat this for the test folder as well (e.g. check <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/test/java/seedu/url/commons/util/XmlUtilTest.java"><code>XmlUtilTest.java</code></a> and <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/test/java/seedu/url/ui/HelpWindowTest.java"><code>HelpWindowTest.java</code></a> for code errors, and if so, resolve it the same way)</p>
+<p>Repeat this for the test folder as well
+(e.g. check <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/test/java/seedu/url/commons/util/XmlUtilTest.java"><code>XmlUtilTest.java</code></a>
+and <a href="https://github.com/CS2103-AY1819S1-T16-1/main/src/test/java/seedu/url/ui/HelpWindowTest.java"><code>HelpWindowTest.java</code></a> for code errors, and if so,
+resolve it the same way)</p>
 </li>
 </ol>
 </div>
@@ -1505,10 +1514,12 @@ will not be saved. SaveCommand#execute will throw a CommandException, with the m
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: It can be treated as another <code>wish</code>, hence existing methods can be used without needing to create much more new ones.</p>
+<p>Pros: It can be treated as another <code>wish</code>, hence existing methods can be used without needing to create much
+more new ones.</p>
 </li>
 <li>
-<p>Cons: Requires dealing with an extra wish that has to be hidden on the <code>WishListPanel</code> and displayed separately on the UI.
+<p>Cons: Requires dealing with an extra wish that has to be hidden on the <code>WishListPanel</code> and displayed separately
+on the UI.
 We must remember to skip this wish in methods that involve displaying the WishList.</p>
 </li>
 </ul>
@@ -1524,19 +1535,20 @@ We must remember to skip this wish in methods that involve displaying the WishLi
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The find mechanism is supported by <code>FindCommandParser</code>. It implements <code>Parser</code> that contains the following operations.</p>
+<p>The find mechanism is supported by <code>FindCommandParser</code>. It implements <code>Parser</code> that implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>FindCommandParser#parse()</code>&#8201;&#8212;&#8201;Checks the arguments for empty strings and throws a <code>ParseException</code> if empty string is
-found. It then splits it by one or more white spaces. It then removes any strings in the list of common words.</p>
+found. It then splits the arguments using <code>ArgumentTokenizer#tokenize()</code> and returns an <code>ArgumentMultimap</code>. Keywords of
+the same prefix are then grouped using <code>ArgumentMultimap#getAllValues()</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>The find mechanism is also facilitated by <code>FindCommand</code>. It extends <code>Command</code> and implements the
-following operations.</p>
+following operation:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1547,10 +1559,10 @@ following operations.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The predicate <code>WishContainsKeywordsPredicate</code>, takes in a three lists for the keywords of the following attributes:</p>
+<p>The predicate <code>WishContainsKeywordsPredicate</code>, takes in three lists of the keywords for the following attributes:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
 <p>Name</p>
 </li>
@@ -1560,15 +1572,12 @@ following operations.</p>
 <li>
 <p>Remark</p>
 </li>
-</ol>
+</ul>
 </div>
 <div class="paragraph">
 <p>and also the <code>isExactMatch</code> argument. The result of the predicate is determined by checking
 whether a <code>Wish</code> contains the given keywords at their corresponding attributes. The match threshold
 is dictated by the value of <code>isExactMatch</code>.</p>
-</div>
-<div class="paragraph">
-<p><em>{TO-DO: Sequence Diagram here}</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -1580,7 +1589,7 @@ is dictated by the value of <code>isExactMatch</code>.</p>
 <p>Step 1. The user launches the application for the first time.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>find n/iphone n/tablet</code> command to get all wishes whose name contains the
+<p>Step 2. The user executes <code>find n/wat n/apple t/impor</code> command to get all wishes whose name contains the
 keywords 'iphone' or 'tablet'.</p>
 </div>
 <div class="paragraph">
@@ -1590,26 +1599,16 @@ the arguments of the find command.</p>
 <div class="paragraph">
 <p>Step 4. <code>FindCommand#execute()</code> is then called.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, <code>FindCommand#execute()</code> will not be called, so the state will not be saved.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>Step 5. The entire list of wishes is filtered by the predicate <code>NameContainsKeywordsPredicate</code>.</p>
+<p>Step 5. The entire list of wishes is filtered by the predicate <code>WishContainsKeywordsPredicate</code>.</p>
 </div>
 <div class="paragraph">
 <p>Step 6. The filtered list of wishes is returned to the GUI.</p>
 </div>
-<div class="paragraph">
-<p><em>{TO-DO: Flow Chart Diagram}</em></p>
+<div class="imageblock">
+<div class="content">
+<img src="images/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram" width="800">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1658,12 +1657,12 @@ wish.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-default-threshold-for-match-without-the-code-exact_match-code-flag"><a class="link" href="#aspect-default-threshold-for-match-without-the-code-exact_match-code-flag">3.6.4. Aspect: Default threshold for match without the <code>EXACT_MATCH</code> flag</a></h4>
+<h4 id="aspect-default-threshold-for-match-without-the-exact-match-flag"><a class="link" href="#aspect-default-threshold-for-match-without-the-exact-match-flag">3.6.4. Aspect: Default threshold for match without the exact match flag</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (Current choice):</strong> Keywords appended to different prefixes are grouped with a logical AND
-keywords appended to the same prefixes are grouped with a logical OR before being matched against a <code>Wish</code>.</p>
+<p><strong>Alternative 1 (Current choice):</strong> Keywords appended to different prefixes are grouped with a logical AND and
+keywords appended to the same prefixes are grouped with a logical OR when being matched against a <code>Wish</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1676,8 +1675,8 @@ keywords appended to the same prefixes are grouped with a logical OR before bein
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Keywords appended to different prefixes are grouped with a logical OR
-keywords appended to the same prefixes are grouped with a logical OR before being matched against a <code>Wish</code>.</p>
+<p><strong>Alternative 2:</strong> Keywords appended to different prefixes are grouped with a logical OR and
+keywords appended to the same prefixes are grouped with a logical OR when being matched against a <code>Wish</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1958,7 +1957,8 @@ If a command fails its execution, WishDataUpdatedEvent will not be posted.
 <h4 id="justification"><a class="link" href="#justification">3.9.1. Justification</a></h4>
 <div class="paragraph">
 <p>Some users may have many wishes, all of which have a different targeted date of completion and different price.
-It may thus be difficult for users to keep track of how much they need to consistently save to fulfil their various wishes on time.
+It may thus be difficult for users to keep track of how much they need to consistently save to fulfil their various
+wishes on time.
 This Savings Notification feature will allow users to opt for daily/weekly/monthly notifications for each specific wish,
 reminding them of the amount that they need to save at the beginning of the chosen time period.
 This will help users to consistently save towards their wishes.</p>
@@ -2760,7 +2760,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. <strong>Actor</strong> is prompted to add a wish.</p>
+<p>1a1. <strong>System</strong> shows dialog notifying <strong>Actor</strong> that no relevant results can be found.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2790,6 +2790,19 @@ b. Require developers to download those libraries manually (this creates extra w
 <ul class="none">
 <li>
 <p>1c1. <strong>System</strong> shows dialog notifying <strong>Actor</strong> that no relevant results can be found.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1d. <strong>Actor</strong> enters empty prefixes for arguments.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c1. <strong>System</strong> shows all wishes in the WishBook.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3403,4 +3416,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 03:28:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 06:51:48 UTC</div></div></div></body></html>

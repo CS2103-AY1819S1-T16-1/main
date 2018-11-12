@@ -1,0 +1,532 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Ananda Kumar - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Ananda Kumar - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-wishbook"><a class="link" href="#project-wishbook">PROJECT: WishBook</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WishBook (WB) is a piggy bank in a digital app form, made for people who need a user-friendly solution for keeping track
+of their disposable income. Not only does WB keep records of your savings, it also allows users to set items as goals
+for users to work towards, serving as a way to cultivate the habit of saving. WB is made for people who have material
+wants in life, but are uncertain of purchasing said wants, by helping them to reserve disposable income so that they
+know they can spend on their wants.</p>
+</div>
+<div class="paragraph">
+<p>This project portfolio consists of the contributions I have made to WishBook over the semester.<br></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: Added <strong>the ability to save towards a wish or remove an amount from a wish.</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allows the user to save a specified amount of money to a particular wish or remove a specified amount
+from it. A wish will be fulfilled when the user saves up to 100% of a wish&#8217;s price and excess amount cannot be saved
+towards it any longer.</p>
+</li>
+<li>
+<p>Justification: This feature is a crucial feature in the WishBook as it cannot fulfill its primary requirement
+without it.The fact that two actions, namely saving and removing can be done with a single command means that there are
+less commands to remember.</p>
+</li>
+<li>
+<p>Highlights: This enhancement touches multiple components and required thorough consideration of alternative design.
+Hence it is naturally my most time consuming contribution. Significant effort was also expended in modifying the tests
+to test this new feature.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Added <strong>the ability to find wishes by name, tag and remark.</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allows a user to find a wish by its name, tag and remark with varying level of inclusiveness.</p>
+</li>
+<li>
+<p>Justification: The flexible design of this command allows user to specify varying number of arguments to the wish
+which gives the user multiple ways to find a wish or a group of wishes for ease of access.</p>
+</li>
+<li>
+<p>Highlights: It required an in-depth analysis of design alternatives. The implementation too was challenging as
+it required rewriting and adapting the code written for an existing command. Significant effort was also expended in
+modifying the tests to test this new feature.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Converted email attribute in a wish to date attribute which stores the due date of a wish. The
+date cannot be earlier or equal to the current date.</p>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Made the wish list to be permanently sorted by due date regardless of the commands applied
+on them.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Highlights: Required modification of test data which led to modification of a significant number of tests.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Made the wishes be identified only by a newly added attribute, UUID. This allows
+for addition of wishes with the same attribute values, something which was not allowed previously. UUID of a wish also
+cannot be changed upon addition of a wish.</p>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Added a remark command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Credits: Code was adapted from <a href="https://github.com/se-edu/addressbook-level4/pull/599" class="bare">https://github.com/se-edu/addressbook-level4/pull/599</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=dioptrique&amp;sort=displayName&amp;since=2018-09-12&amp;until=&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">Functional code</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed release <code>v1.1</code> on GitHub</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Did structural changes to User Guide: <a href="https://github.com/CS2103-AY1819S1-T16-1/main/pull/67">#67</a>,
+<a href="https://github.com/CS2103-AY1819S1-T16-1/main/pull/136">#136</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-T16-1/main/pull/4">#4</a></p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/71">#71</a>,
+<a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/20">#20</a>,
+<a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/127">#127</a>,
+<a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/130">#130</a>,
+<a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/77">#5</a>,
+ <a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/70">#6</a>,
+ <a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/85">#7</a>,
+ <a href="https://github.com/CS2103-AY1819S1-T16-1/main/issues/72">#8</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation
+targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="locate-your-wish-with-speed-and-precision-code-find-code"><a class="link" href="#locate-your-wish-with-speed-and-precision-code-find-code">Locate your wish with speed and precision: <code>find</code></a></h3>
+<div class="paragraph">
+<p>Find wishes which match the given search keywords.<br>
+Format: <code>find [-e] [n/NAME_KEYWORD]&#8230;&#8203; [t/TAG_KEYWORD]&#8230;&#8203; [r/REMARK_KEYWORD]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>At least one keyword must be provided.</p>
+</li>
+<li>
+<p>Searching multiple keywords of the <strong>same prefix</strong> will return wishes whose
+attribute corresponding to the prefix contain <strong>any</strong> one of the keywords.</p>
+</li>
+<li>
+<p>Searching with keywords of <strong>different prefixes</strong> will return only wishes that
+match will <strong>all</strong> the keywords of the different prefixes.</p>
+</li>
+<li>
+<p>Using the exact match flag, <code>-e</code> returns wishes whose corresponding attributes contain <strong>all</strong>
+the keywords.</p>
+</li>
+<li>
+<p>The search is case insensitive. e.g. watch will match Watch.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find n/wat</code><br>
+Returns any wish whose name contains the <em>wat</em>.</p>
+</li>
+<li>
+<p><code>find n/wat n/balloon n/appl</code><br>
+Returns wishes whose names which contain at least any one of <em>wat</em>, <em>balloon</em> or <em>appl</em>.</p>
+</li>
+<li>
+<p><code>find -e n/wat n/balloon n/appl</code><br>
+Returns only wishes whose names that contain all of <em>wat</em>, <em>balloon</em> and <em>appl</em>.</p>
+</li>
+<li>
+<p><code>find n/watch t/important</code><br>
+Returns any wish whose name contains <em>watch</em>, and whose tags contains <em>broke wishes</em>.</p>
+</li>
+<li>
+<p><code>find n/wat n/balloon t/important</code><br>
+Returns any wish whose name contains <em>wat</em> or <em>balloon</em>, and whose tags contains
+<em>important</em>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical
+documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="model"><a class="link" href="#model">Model</a></h3>
+<div class="sect3">
+<h4 id="wish-model"><a class="link" href="#wish-model">Wish Model</a></h4>
+<div class="paragraph">
+<p>A wish is uniquely identified by its Universal Unique Identifier (UUID) which is generated randomly only once for a
+particular wish, upon its creation through the <code>AddCommand</code>. A wish stores the following primary attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name</p>
+</li>
+<li>
+<p>Price</p>
+</li>
+<li>
+<p>Date</p>
+</li>
+<li>
+<p>Saved Amount</p>
+</li>
+<li>
+<p>Url</p>
+</li>
+<li>
+<p>Remark</p>
+</li>
+<li>
+<p>Tags</p>
+</li>
+<li>
+<p>UUID</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is impossible for the user to create a duplicate wish as it is impossible to modify a wish&#8217;s UUID.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="wish-priority"><a class="link" href="#wish-priority">Wish Priority</a></h4>
+<div class="paragraph">
+<p>A wish needs to be prioritised in a specific order such that the wishes with the highest priority will be visible
+on the top of the list. In WishBook, the priority is determined primarily by the due date of the wish which is
+stored in every wish&#8217;s <code>Date</code> attribute. Ties are broken by <code>Name</code>. Further ties are broken by <code>UUID</code> as it is possible
+for the <code>Date</code> and <code>Name</code> of two wishes to be identical.</p>
+</div>
+<div class="paragraph">
+<p>The sorting of the displayed results is done by the <code>filteredSortedWishes</code> list. The sorting order is specified by
+<code>WishComparator</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-uniqueness-of-a-wish"><a class="link" href="#aspect-uniqueness-of-a-wish">Aspect: Uniqueness of a Wish</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1(current choice):</strong> Identify a <code>Wish</code> by a randomly generated UUID.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Extremely low probability of collision.</p>
+</li>
+<li>
+<p>Pros: No extra maintenance required upon generation as every <code>Wish</code> is unique.</p>
+</li>
+<li>
+<p>Cons: UUID does not map to any real world entity and it is used strictly for identification.</p>
+</li>
+<li>
+<p>Cons: It is more difficult to system test the <code>AddCommand</code> with the current group of methods for system tests as
+UUID is randomly generated each time.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Identify a wish by <code>Name</code>, <code>Price</code>, <code>Date</code>, <code>Url</code>, <code>Tags</code>. Wishes with identical values for
+these attributes will be represented by a single <code>WishCard</code>. The <code>WishCard</code> will be augmented with a <code>Multiplicity</code> to
+indicate the number of identical wishes.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: WishBook will be more compact and every attribute stored in a <code>Wish</code> maps to a real entity.</p>
+</li>
+<li>
+<p>Cons: Additional attribute <code>Multiplicity</code> may have to be frequently edited as it is another
+attribute that is affected by multiple commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Identify a wish by a new attribute <code>CreatedTime</code>, which is derived from the system time
+when the wish is created.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The attribute maps to a real entity. It can be an additional information presented to the user about a wish.</p>
+</li>
+<li>
+<p>Cons: There might be collisions in <code>CreatedTime</code> if the the system time is incorrect.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="find-wish-feature"><a class="link" href="#find-wish-feature">Find Wish Feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The find mechanism is supported by <code>FindCommandParser</code>. It implements <code>Parser</code> that implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FindCommandParser#parse()</code>&#8201;&#8212;&#8201;Checks the arguments for empty strings and throws a <code>ParseException</code> if empty string is
+found. It then splits the arguments using <code>ArgumentTokenizer#tokenize()</code> and returns an <code>ArgumentMultimap</code>. Keywords of
+the same prefix are then grouped using <code>ArgumentMultimap#getAllValues()</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The find mechanism is also facilitated by <code>FindCommand</code>. It extends <code>Command</code> and implements the
+following operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>FindCommand#execute()</code>&#8201;&#8212;&#8201;Executes the command by updating the current <code>FilteredSortedWishList</code> with the
+<code>WishContainsKeywordPredicate</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The predicate <code>WishContainsKeywordsPredicate</code>, takes in three lists of the keywords for the following attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name</p>
+</li>
+<li>
+<p>Tags</p>
+</li>
+<li>
+<p>Remark</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>and also the <code>isExactMatch</code> argument. The result of the predicate is determined by checking
+whether a <code>Wish</code> contains the given keywords at their corresponding attributes. The match threshold
+is dictated by the value of <code>isExactMatch</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="example"><a class="link" href="#example">Example</a></h4>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the Find mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>find n/wat n/apple t/impor</code> command to get all wishes whose name contains the
+keywords 'iphone' or 'tablet'.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The <code>FindCommandParser#parse()</code> is called and the <code>WishContainsKeywordPredicate</code> is constructed with
+the arguments of the find command.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. <code>FindCommand#execute()</code> is then called.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. The entire list of wishes is filtered by the predicate <code>WishContainsKeywordsPredicate</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 6. The filtered list of wishes is returned to the GUI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindCommandSequenceDiagram.png" alt="FindCommandSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-argument-format"><a class="link" href="#aspect-argument-format">Aspect: Argument format</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (Current choice):</strong> Require the user to prepend every keyword argument with the appropriate
+Wish attribute prefix.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement as it easier to match keyword against a Wish if the attribute to match against is known.</p>
+</li>
+<li>
+<p>Pros: User has more control over the results returned.</p>
+</li>
+<li>
+<p>Cons: User is required to type slightly more.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> No prefixes are required in the arguments. Keywords can match with any one of the
+following chosen wish attributes: <code>Name</code>, <code>Tags</code> or <code>Remark</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less typing required from user.</p>
+</li>
+<li>
+<p>Cons: Command might be slightly slower as every keyword has to be checked against all chosen attributes of the
+wish.</p>
+</li>
+<li>
+<p>Cons: User has less control over the results returned.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-default-threshold-for-match-without-the-exact-match-flag"><a class="link" href="#aspect-default-threshold-for-match-without-the-exact-match-flag">Aspect: Default threshold for match without the exact match flag</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (Current choice):</strong> Keywords appended to different prefixes are grouped with a logical AND and
+keywords appended to the same prefixes are grouped with a logical OR when being matched against a <code>Wish</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: A more intuitive way to find wishes.</p>
+</li>
+<li>
+<p>Cons: Can be restrictive in some situations.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Keywords appended to different prefixes are grouped with a logical OR and
+keywords appended to the same prefixes are grouped with a logical OR when being matched against a <code>Wish</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Search results will be more inclusive.</p>
+</li>
+<li>
+<p>Cons: Very slim chance for such a use case.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 06:51:48 UTC</div></div></div></body></html>
