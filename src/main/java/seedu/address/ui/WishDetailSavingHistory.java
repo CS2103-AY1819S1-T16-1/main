@@ -28,6 +28,8 @@ public class WishDetailSavingHistory extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private WishTransaction wishTransaction;
+    private Wish currentWish;
+
     private ArrayList savingHistoryList = new ArrayList();
     private String id;
 
@@ -61,7 +63,12 @@ public class WishDetailSavingHistory extends UiPart<Region> {
             double prevAmount = prevWish.getSavedAmount().value;
             double nextAmount = entry.next().getSavedAmount().value;
             double diff = nextAmount - prevAmount;
-            savingHistoryList.add("Saved $" + String.format("%.2f", diff));
+
+            if (diff > 0) {
+                savingHistoryList.add("Saved $" + String.format("%.2f", diff));
+            } else if (diff < 0) {
+                savingHistoryList.add("Deducted $" + String.format("%.2f", Math.abs(diff)));
+            }
         }
 
         Collections.reverse(savingHistoryList);
@@ -73,6 +80,7 @@ public class WishDetailSavingHistory extends UiPart<Region> {
     @Subscribe
     private void handleWishPanelSelectionChangedEvent(WishPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        this.currentWish = event.getNewSelection();
         loadWishDetails(event.getNewSelection());
     }
 
@@ -81,6 +89,7 @@ public class WishDetailSavingHistory extends UiPart<Region> {
         logger.info(LogsCenter.getEventHandlingLogMessage(event,
                 "wish data updated by " + WishDetailSavingHistory.class.getSimpleName()));
         if (this.id.equals(event.getNewData().getId().toString())) {
+            this.currentWish = event.getNewData();
             loadWishDetails(event.getNewData());
         }
     }
@@ -90,6 +99,7 @@ public class WishDetailSavingHistory extends UiPart<Region> {
         logger.info(LogsCenter.getEventHandlingLogMessage(event,
                 "handled by " + WishDetailSavingHistory.class.getSimpleName()));
         this.wishTransaction = event.wishTransaction;
+        loadWishDetails(this.currentWish);
     }
 
     /**
