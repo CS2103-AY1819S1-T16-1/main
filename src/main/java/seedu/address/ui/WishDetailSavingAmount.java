@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.events.model.WishBookChangedEvent;
 import seedu.address.commons.events.ui.WishDataUpdatedEvent;
 import seedu.address.commons.events.ui.WishPanelSelectionChangedEvent;
 import seedu.address.model.wish.Wish;
@@ -31,6 +32,7 @@ public class WishDetailSavingAmount extends UiPart<Region> {
     private Label progress;
 
     private String id;
+    private Wish currentWish;
 
     public WishDetailSavingAmount() {
         super(FXML);
@@ -55,6 +57,7 @@ public class WishDetailSavingAmount extends UiPart<Region> {
         price.setText("/ $" + wish.getPrice().toString());
         progress.setText(getProgressInString(wish));
         this.id = wish.getId().toString();
+        this.currentWish = wish;
     }
 
     /**
@@ -63,6 +66,18 @@ public class WishDetailSavingAmount extends UiPart<Region> {
     private String getProgressInString(Wish wish) {
         Double progress = wish.getProgress() * 100;
         return String.format("%d", progress.intValue()) + "%";
+    }
+
+    @Subscribe
+    private void handleWishBookChangedEvent(WishBookChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event,
+                "handled by " + WishDetailSavingHistory.class.getSimpleName()));
+
+        for (Wish wish: event.data.getWishList()) {
+            if (this.id.equals(wish.getId().toString())) {
+                loadWishDetails(wish);
+            }
+        }
     }
 
     @Subscribe
