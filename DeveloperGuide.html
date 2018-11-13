@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>WishBook Level 4 - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>WishBook - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>WishBook Level 4 - Developer Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">AddressBook-Level4</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>WishBook - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
@@ -78,7 +78,12 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-wish">F.2. Deleting a wish</a></li>
-<li><a href="#saving-data">F.3. Saving data</a></li>
+<li><a href="#saving-to-a-wish">F.3. Saving to a wish</a></li>
+<li><a href="#moving-funds-between-wishes">F.4. Moving funds between wishes</a></li>
+<li><a href="#adding-a-wish">F.5. Adding a wish</a></li>
+<li><a href="#listing-out-wishes">F.6. Listing out wishes</a></li>
+<li><a href="#finding-wishes">F.7. Finding wishes</a></li>
+<li><a href="#saving-data">F.8. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -604,7 +609,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Wish Book</co
 <div class="sect2">
 <h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.wishbook.commons</code> package.</p>
+<p>Classes used by multiple components are in the <code>seedu.WishBook.commons</code> package.</p>
 </div>
 </div>
 </div>
@@ -744,7 +749,7 @@ when the wish is created.</p>
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedWishBook</code>.
-It extends <code>WishBook</code> with an undo/redo history, stored internally as an <code>wishBookStateList</code> and <code>currentStatePointer</code>.
+It extends <code>WishBook</code> with an undo/redo history, stored internally as an <code>WishBookStateList</code> and <code>currentStatePointer</code>.
 Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
@@ -775,7 +780,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th wish in the wish book. The <code>delete</code> command calls <code>Model#commitWishBook()</code>, causing the modified state of the url book after the <code>delete 5</code> command executes to be saved in the <code>wishBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted url book state.</p>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th wish in the wish book. The <code>delete</code> command calls <code>Model#commitWishBook()</code>, causing the modified state of the url book after the <code>delete 5</code> command executes to be saved in the <code>WishBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted url book state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -783,7 +788,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new wish. The <code>add</code> command also calls <code>Model#commitWishBook()</code>, causing another modified wish book state to be saved into the <code>wishBookStateList</code>.</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new wish. The <code>add</code> command also calls <code>Model#commitWishBook()</code>, causing another modified wish book state to be saved into the <code>WishBookStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -797,7 +802,7 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitWishBook()</code>, so the wish book state will not be saved into the <code>wishBookStateList</code>.
+If a command fails its execution, it will not call <code>Model#commitWishBook()</code>, so the wish book state will not be saved into the <code>WishBookStateList</code>.
 </td>
 </tr>
 </table>
@@ -840,13 +845,13 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial w
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size() - 1</code>, pointing to the latest wish book state, then there are no undone url book states to restore. The <code>redo</code> command uses <code>Model#canRedoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the <code>currentStatePointer</code> is at index <code>WishBookStateList.size() - 1</code>, pointing to the latest wish book state, then there are no undone url book states to restore. The <code>redo</code> command uses <code>Model#canRedoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the wish book, such as <code>list</code>, will usually not call <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> or <code>Model#redoWishBook()</code>. Thus, the <code>wishBookStateList</code> remains unchanged.</p>
+<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the wish book, such as <code>list</code>, will usually not call <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> or <code>Model#redoWishBook()</code>. Thus, the <code>WishBookStateList</code> remains unchanged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -854,7 +859,7 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 </div>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitWishBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>wishBookStateList</code>, all wish book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitWishBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>WishBookStateList</code>, all wish book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1041,7 +1046,7 @@ If the <code>currentStatePointer</code> is at index <code>wishStateList.size() -
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user then decides to execute the command <code>list</code>. Commands that do not modify the state of the <code>WishBook</code>, such as <code>list</code>, will usually not call <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> or <code>Model#redoWishBook()</code>. Thus, the <code>wishBookStateList</code> remains unchanged.</p>
+<p>Step 4. The user then decides to execute the command <code>list</code>. Commands that do not modify the state of the <code>WishBook</code>, such as <code>list</code>, will usually not call <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> or <code>Model#redoWishBook()</code>. Thus, the <code>WishBookStateList</code> remains unchanged.</p>
 </div>
 <div class="paragraph">
 <p>Step 5. The user finally exits the app by clicking on the close button. The most recent state of the <code>WishTransaction</code> will be converted into xml format via the the <code>XmlWishTransactions</code> object and be saved into the same file path it was first retrieved from.</p>
@@ -2558,9 +2563,6 @@ b. Require developers to download those libraries manually (this creates extra w
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -3232,9 +3234,6 @@ b. Require developers to download those libraries manually (this creates extra w
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -3276,9 +3275,6 @@ b. Require developers to download those libraries manually (this creates extra w
 <p>The software should work without requiring an installer.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -3359,9 +3355,6 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="deleting-a-wish"><a class="link" href="#deleting-a-wish">F.2. Deleting a wish</a></h3>
@@ -3372,18 +3365,67 @@ Expected: The most recent window size and location is retained.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all wishes using the <code>list</code> command. Multiple wishes in the list.</p>
+<p>Prerequisites: List all wishes using the list command. Multiple wishes in the list. Wish at index 1 should be fulfilled.</p>
 </li>
 <li>
 <p>Test case: <code>delete 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+Expected: First wish is deleted from the list. Details of the deleted wish shown in the status message. Unused funds will not be updated as the product has already been bought. Deleted wish details and amount in unused funds shown in status message. Timestamp in the status bar is updated.</p>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
-Expected: No wish is deleted. Error details shown in the status message. Status bar remains the same.</p>
+<p>Test case: <code>delete 2</code><br>
+Expected: Second wish is deleted. Money in the wish will be transferred to unused funds. Deleted wish details and amount in unused funds shown in status message. Timestamp in the status bar is updated.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
+<p>Test Case: <code>delete</code><br>
+Expected: Error. Invalid command format message shown in unused funds.</p>
+</li>
+<li>
+<p>Test Case: <code>delete -1</code><br>
+Expected: Error. Invalid command format message shown in unused funds.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>delete x</code> (where x is larger than the list size)<br>
+Expected: Error. Invalid wish provided message in message status.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-to-a-wish"><a class="link" href="#saving-to-a-wish">F.3. Saving to a wish</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Saving to a wish</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Add a new wish with the add command with a date earlier than the earliest wish in the WishBook. If the current date is past the earliest wish’s date, delete the first wish until this is no longer true and then add a new wish earlier than the earliest wish in the WishBook.</p>
+</li>
+<li>
+<p>Test case: <code>save 1 0</code><br>
+Expected: 0.00 saved to first wish. Details of saved amount and the remaining amount left for completion shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>save 1 0.01</code><br>
+Expected: 0.01 saved to first wish. Details of saved amount and the remaining amount left for completion shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>save 1 -0.01</code><br>
+Expected: 0.01 removed from first wish. Details of removed amount and the remaining amount left for completion shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>save 1 [VALUE LARGER THAN WISH PRICE]</code><br>
+Expected: Wish will be 100% and fulfilled. Details of the excess amount saved and the unused funds value shown in status message.</p>
+</li>
+<li>
+<p>Test case: <code>save 1 5</code><br>
+Expected: Unable to save to wish. Wish already fulfilled message shown in status message. Timestamp in status bar is updated.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>save 2 0.001</code>, <code>save 2 12.</code>, <code>save 2 12@</code><br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -3391,12 +3433,200 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
+<div class="sect2">
+<h3 id="moving-funds-between-wishes"><a class="link" href="#moving-funds-between-wishes">F.4. Moving funds between wishes</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Moving funds between 2 wishes:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Wish at index 1 should be fulfilled. If it is not, <code>save</code> until it is. The other wishes used in the subsequent commands should not be fulfilled.</p>
+</li>
+<li>
+<p>Test case: <code>move 1 2 50</code><br>
+Expected: No money moved from wish 1 to 2. Wish already fulfilled status message shown.</p>
+</li>
+<li>
+<p>Test case: <code>move 2 3 [AMOUNT SMALLER THAN SAVED AMOUNT AT FROM_INDEX]</code><br>
+Expected: Specified amount moved from wish 2 to wish 3. Moved message shown in status message. Timestamp in status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>move 2 3 [AMOUNT LARGER THAN SAVED AMOUNT AT FROM_INDEX]</code><br>
+Expected: No money moved from wish 1 to 2. <code>FROM_INDEX</code> does not contain the specified amount shown in status message.</p>
+</li>
+<li>
+<p>Test case: <code>move 2 3 [AMOUNT LARGER THAN SAVED AMOUNT AT TO_INDEX]</code><br>
+Expected: Money moved from wish 2 to 3. Wish 3 is fulfilled. Excess money goes to unused funds(index 0).  Moved amount, excess and updated unused funds shown in status message. Timestamp in status bar is updated.
+ed. Incorrect move commands to try: <code>move 2 3 -50</code>, <code>move 2 3 0.0001</code>
+Expected: No money will be moved. Appropriate error message shown in status message.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.3. Saving data</a></h3>
+<h3 id="adding-a-wish"><a class="link" href="#adding-a-wish">F.5. Adding a wish</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding to a wish</p>
+</li>
+<li>
+<p>Positive test cases</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: None. Duplicate Wishes can exist and have the same user-defined properties.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro d/25/12/2018 p/499.99</code><br>
+Expected: A new Wish named “PS4 Golden Pro”, priced at $499.99, and expiry date set to 25th December 2018, default URL of “www.amazon.com” will be added to the list of Wishes. Status message shows the details of the newly added Wish.</p>
+</li>
+<li>
+<p>Test case:  <code>add n/PS4 Golden Pro d/25/12/2018 p/499.99 t/technology</code><br>
+Expected: A new Wish named “PS4 Golden Pro”, priced at $499.99, and expiry date set to 25th December 2018, default URL of “www.amazon.com”, with a tag named “technology”, will be added to the list of Wishes. Status message shows the details of the newly added Wish. Selecting on the newly added Wish will also bring up the Amazon’s homepage on the right side of the Detail Panel.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro a/60d p/499.99</code><br>
+Expected: A new Wish named “PS4 Golden Pro”, priced at $499.99, and expiry date set to your current date plus 60 days, default URL of “www.amazon.com” will be added to the list of Wishes. Status message shows the details of the newly added Wish. Selecting on the newly added Wish will also bring up the Amazon’s homepage on the right side of the Detail Panel.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro a/2y p/499.99 u/www.google.com</code><br>
+Expected: A new Wish named “PS4 Golden Pro”, priced at $499.99, and expiry date set to your current date plus 2 years, default URL of “www.amazon.com” will be added to the list of Wishes. Status message shows the details of the newly added Wish. Selecting on the newly added Wish will also bring up the Google search engine webpage on the right side of the Detail Panel.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Negative test cases</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: None.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS’4 Golden Pro a/30d p/499.99</code><br>
+Expected: Status message shows that a Wish’s name can only contain alphanumeric numbers and spaces, and should not be blank.</p>
+</li>
+<li>
+<p>Test case: <code>add n/ a/30d p/499.99</code><br>
+Expected: Status message shows that a Wish’s name can only contain alphanumeric numbers and spaces, and should not be blank.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro a/30d3y p/499.99</code><br>
+Expected: Status message shows the given time format is invalid, and also shows the user’s time input.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro d/30.30.9999 p/499.99</code><br>
+Expected: Status message shows that the time should be of format: dd/mm/yy.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro a/3d p/499.9999999</code><br>
+Expected: Status message states that price value should only contain numbers, and at most two numbers after the decimal point.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro a/3d p/abc.de</code><br>
+Expected: Status message states that price value should only contain numbers, and at most two numbers after the decimal point.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro a/-1d p/22.22</code><br>
+Expected: Status message states that the given expiry date should be after the current date.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro d/25/12/1111 p/22.22</code><br>
+Expected: Status message states that the given expiry date should be after the current date.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro a/1d</code><br>
+Expected: Status message states that this is an invalid command format, and shows the correct usage of add command.</p>
+</li>
+<li>
+<p>Test case: <code>add n/PS4 Golden Pro d/25/12/2018 p/22.22 u/abc def.com</code><br>
+Expected: Status message states that URLs cannot have whitespaces.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-out-wishes"><a class="link" href="#listing-out-wishes">F.6. Listing out wishes</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Listing out wishes in the list</p>
+</li>
+<li>
+<p>Prerequisites: Have both completed (amount saved more than price) and uncompleted wishes.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>list</code><br>
+Expected: All wishes in WishBook is listed.</p>
+</li>
+<li>
+<p>Test case: <code>list -c</code><br>
+Expected: Only wishes that are completed will be shown on the list.</p>
+</li>
+<li>
+<p>Test case: <code>list -u</code><br>
+Expected: Only wishes that are uncompleted will be shown on the list.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-wishes"><a class="link" href="#finding-wishes">F.7. Finding wishes</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Finding a wish by name, tags or remark:</p>
+</li>
+<li>
+<p>Prerequisites: None</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>find r/Alice</code><br>
+Expected: Returns all the wishes whose remark contains “Alice” case insensitive. Number of wishes found is listed in status message. Only matched wishes visible in WishList.</p>
+</li>
+<li>
+<p>Test case: <code>find t/neigh t/paren</code><br>
+Expected: Returns all the wishes whose tags contain the keywords “neigh” or “paren”. Number of wishes found is listed in status message. Only matched wishes visible in WishList.</p>
+</li>
+<li>
+<p>Test case: <code>find n/EVG t/PS</code><br>
+Expected: Returns all wishes whose name contains “EVG” and whose tag contains “PS” case insensitve. Number of wishes found is listed in status message. Only matched wishes visible in WishList.</p>
+</li>
+<li>
+<p>Test case: <code>find n/EVG n/PS t/neigh t/paren</code><br>
+Expected: Returns all wishes whose name contains (“EVG” or “PS”) and  (“neigh” or “paren”). Number of wishes found is listed in status message. Only matched wishes visible in WishList.</p>
+</li>
+<li>
+<p>Test case: <code>find</code> <br>
+Expected: Invalid command. Invalid command format message shown in status message.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>find test</code>, <code>find d/22/10/1996</code>.<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">F.8. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3404,16 +3634,29 @@ Expected: Similar to previous.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+<p>Prerequisites: content of WishBook.xml and wishTransaction.xml files will be used to load data for a new session of WishBook. If data is missing from any of these files, data will be lost from subsequent sessions of WishBook unless the xml file data is restored and in proper format.</p>
+</li>
+<li>
+<p>Test case (gracefully exiting app assuming that WishBook contains more than 1 wish): <code>save 1 10</code> and then <code>exit</code><br>
+Expected: when a new session is started, WishBook should contain all wishes from the previous session. Wish in which the save command is performed for should have its saving history and save amount updated.</p>
+</li>
+<li>
+<p>Test case (WishBook data and wishTransaction data should be backed up everytime the state of WishBook changes): <code>save 1 10</code><br>
+Expected: assuming WishBook contains more than 1 wish, the execution of the save command should cause the WishBook.xml and wishTransaction.xml files to be updated with a new save amount.</p>
+</li>
+<li>
+<p>Test case (empty WishBook to simulate missing data) Copy the contents of the empty xml file after executing the clear command to simulate missing file data into WishBook.xml at the file path specified in the save location (which is specified in the preferences.json file)<br>
+Expected: When the WishBook is loaded, all wish data should be absent.</p>
+</li>
+<li>
+<p>Test case (corrupted data): delete data for 1 wish currently in WishBook by editing the WishBook.xml file.<br>
+Expected: assuming that the data format of the xml file is valid, WishBook should load the content of the WishBook based on the data present in WishBook.xml file (without the deleted wish data). If the data format of the xml file is invalid the WishBook will not load properly and an error message should appear.</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:44:07 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-13 15:32:55 UTC</div></div></div></body></html>

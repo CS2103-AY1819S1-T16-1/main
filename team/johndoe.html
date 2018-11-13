@@ -246,7 +246,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedWishBook</code>.
-It extends <code>WishBook</code> with an undo/redo history, stored internally as an <code>wishBookStateList</code> and <code>currentStatePointer</code>.
+It extends <code>WishBook</code> with an undo/redo history, stored internally as an <code>WishBookStateList</code> and <code>currentStatePointer</code>.
 Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
@@ -277,7 +277,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th wish in the wish book. The <code>delete</code> command calls <code>Model#commitWishBook()</code>, causing the modified state of the url book after the <code>delete 5</code> command executes to be saved in the <code>wishBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted url book state.</p>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th wish in the wish book. The <code>delete</code> command calls <code>Model#commitWishBook()</code>, causing the modified state of the url book after the <code>delete 5</code> command executes to be saved in the <code>WishBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted url book state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -285,7 +285,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new wish. The <code>add</code> command also calls <code>Model#commitWishBook()</code>, causing another modified wish book state to be saved into the <code>wishBookStateList</code>.</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new wish. The <code>add</code> command also calls <code>Model#commitWishBook()</code>, causing another modified wish book state to be saved into the <code>WishBookStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -299,7 +299,7 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitWishBook()</code>, so the wish book state will not be saved into the <code>wishBookStateList</code>.
+If a command fails its execution, it will not call <code>Model#commitWishBook()</code>, so the wish book state will not be saved into the <code>WishBookStateList</code>.
 </td>
 </tr>
 </table>
@@ -342,13 +342,13 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial w
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size() - 1</code>, pointing to the latest wish book state, then there are no undone url book states to restore. The <code>redo</code> command uses <code>Model#canRedoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the <code>currentStatePointer</code> is at index <code>WishBookStateList.size() - 1</code>, pointing to the latest wish book state, then there are no undone url book states to restore. The <code>redo</code> command uses <code>Model#canRedoWishBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the wish book, such as <code>list</code>, will usually not call <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> or <code>Model#redoWishBook()</code>. Thus, the <code>wishBookStateList</code> remains unchanged.</p>
+<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the wish book, such as <code>list</code>, will usually not call <code>Model#commitWishBook()</code>, <code>Model#undoWishBook()</code> or <code>Model#redoWishBook()</code>. Thus, the <code>WishBookStateList</code> remains unchanged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -356,7 +356,7 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 </div>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitWishBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>wishBookStateList</code>, all wish book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitWishBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>WishBookStateList</code>, all wish book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -452,4 +452,4 @@ If the <code>currentStatePointer</code> is at index <code>wishBookStateList.size
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:44:07 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-13 15:32:55 UTC</div></div></div></body></html>
